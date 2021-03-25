@@ -1,0 +1,5 @@
+node_modules/**/*
+./weather/.git
+
+# macOS
+.DS_Store
