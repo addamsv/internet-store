@@ -3,11 +3,23 @@ import React from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import Loading from './Loading';
+import axios from 'axios';
 
 class App extends React.Component {
   state = {
     isLoading: true,
   };
+
+  async getWeather(location) {
+    try {
+      await Location.requestPermissionsAsync();
+      const { data } = await axios.get('https://rs-clone-server.herokuapp.com/players/');
+      return data;
+    } catch(error) {
+      Alert.alert('Cant get weather data');
+      return {};
+    }
+  }
 
   async getLocation() {
     try {
@@ -15,19 +27,20 @@ class App extends React.Component {
       const location = await Location.getCurrentPositionAsync({});
       return { latitude: location.coords.latitude, longitude: location.coords.longitude };
     } catch(error) {
-      return new Promise((resolve) => {
-        resolve({latitude: false, longitude: false });
-      });
+      Alert.alert('Cant get Location');
+      return { latitude: null, longitude: null };
     }
   }
 
   componentDidMount() {
-    this.getLocation().then((location) => {
+    this.getLocation()
+    .then((location) => {
       if (location.latitude && location.longitude) {
+        // console.log(location.latitude, location.longitude);
+        this.getWeather(location).then((weather) => {
+          console.log(weather);
+        });
         this.setState({ isLoading: false });
-        console.log(location.latitude, location.longitude);
-      } else {
-        Alert.alert('Cant get Location');
       }
     });
   }
