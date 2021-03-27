@@ -3,11 +3,13 @@ import React from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
 import Loading from './Loading';
+import Weather from './Weather';
 import axios from 'axios';
 
 class App extends React.Component {
   state = {
     isLoading: true,
+    temp: 10,
   };
 
   async getWeather(location) {
@@ -36,7 +38,7 @@ class App extends React.Component {
     this.getLocation()
     .then((location) => {
       if (location.latitude && location.longitude) {
-        // console.log(location.latitude, location.longitude);
+        console.log(location.latitude, location.longitude);
         this.getWeather(location).then((weather) => {
           console.log(weather);
         });
@@ -46,8 +48,9 @@ class App extends React.Component {
   }
 
   render() {
+    const { isLoading, temp } = this.state;
     return (
-      this.state.isLoading ? <Loading /> : null
+      isLoading ? <Loading /> : <Weather temp={ Math.round(temp) } />
     );
   }
 }
