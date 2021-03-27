@@ -10,13 +10,14 @@ class App extends React.Component {
   state = {
     isLoading: true,
     temp: 10,
+    condition: 'Clear',
   };
 
   async getWeather(location) {
     try {
       await Location.requestPermissionsAsync();
-      const { data } = await axios.get('https://rs-clone-server.herokuapp.com/players/');
-      return data;
+      // const { data } = await axios.get('https://rs-clone-server.herokuapp.com/players/');
+      return { data: 'ok' }; // data;
     } catch(error) {
       Alert.alert('Cant get weather data');
       return {};
@@ -48,9 +49,9 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoading, temp } = this.state;
+    const { isLoading, temp, condition } = this.state;
     return (
-      isLoading ? <Loading /> : <Weather temp={ Math.round(temp) } />
+      isLoading ? <Loading /> : <Weather temp={ Math.round(temp) } condition={ condition } />
     );
   }
 }
