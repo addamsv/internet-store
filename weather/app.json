@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Weather template",
+    "githubUrl": "https://github.com/addamsv/react-native/tree/weather"
   }
 }
