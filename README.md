@@ -1,3 +1,3 @@
 # The Weather
 
-react-native (iPhone|Androide app)
+react-native (iPhone|Android app)
