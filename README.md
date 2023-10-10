@@ -1,6 +1,4 @@
 # internet-store
-front-product<br>
-  &nbsp;&nbsp;front-dev<br>
-  
-backend-product<br>
-  &nbsp;&nbsp;backend-dev<br>
+Android App
+
+<img src="./README_FILES/pixel_3_API33.png" width="242px" height="514px">

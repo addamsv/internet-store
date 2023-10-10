@@ -1,6 +1,9 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.API.Constants.BRAND_ROUTE;
+import static com.example.myapplication.API.Constants.DEVICE_ROUTE;
 import static com.example.myapplication.API.Constants.HOST_NAME;
+import static com.example.myapplication.API.Constants.TYPE_ROUTE;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -45,10 +48,8 @@ public class MainActivity extends AppCompatActivity {
         brandButton.setOnClickListener(v -> {
             userList.clear();
             ExecutorService service = Executors.newFixedThreadPool(3);
-            Future<String> stringData = service.submit(new FetchData(HOST_NAME + "brand"));
+            Future<String> stringData = service.submit(new FetchData(HOST_NAME + BRAND_ROUTE));
             try {
-                System.out.println("Trying");
-                System.out.println(stringData.get());
                 JSONObject jsonObject;
                 JSONArray jsonArray = null;
                 try {
@@ -73,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button typeButton = findViewById(R.id.button_types);
-        typeButton.setOnClickListener(v -> new FetchDataa(HOST_NAME, "type").start());
+        typeButton.setOnClickListener(v -> new FetchDataa(HOST_NAME, TYPE_ROUTE).start());
 
         Button deviceButton = findViewById(R.id.button_device);
-        deviceButton.setOnClickListener(v -> new FetchDataa(HOST_NAME, "device").start());
+        deviceButton.setOnClickListener(v -> new FetchDataa(HOST_NAME, DEVICE_ROUTE).start());
 
         listView.setOnItemClickListener((parent, view, position, id) -> System.out.println(userList.get(position) + ' ' + position));
     }
