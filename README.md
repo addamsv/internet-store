@@ -1,4 +1,5 @@
-# internet-store
+# Internet Store
+
 Android App
 
-<img src="./README_FILES/pixel_3_API33.png" width="242px" height="514px">
+<a href="./README_FILES/pixel_3_API33.png"><img src="./README_FILES/pixel_3_API33.png" width="121px" height="267px"></a>
