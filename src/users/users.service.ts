@@ -9,20 +9,21 @@ export class UsersService {
     }
 
     async getUsers() {
-        return [{id: 1, name: "Sergey", email: "a@a.a", password: 'aaa'}];
+        return await this.usersRepository.findAll();
+        // return [{id: 1, email: "a@a.a", password: 'aaa'}];
     }
 
     async addUser(userDto: UserDto) {
         console.log(userDto)
-        return ["addUser"];
+        return await this.usersRepository.create(userDto);
     }
 
-    dellUser() {
+    async dellUser() {
         console.log('remove');
         return ["remove"];
     }
 
-    updateUser() {
+    async updateUser() {
         console.log('update');
         return ["update"];
     }

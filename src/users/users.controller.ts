@@ -6,7 +6,6 @@ import {UserDto} from "./dto/userDto";
 
 @Controller('/api/v1')
 export class UsersController {
-
     constructor(private usersService: UsersService) {}
 
     @Get('/users')
