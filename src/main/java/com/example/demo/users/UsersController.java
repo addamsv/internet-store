@@ -15,7 +15,11 @@ public class UsersController {
 	public UsersController(UsersService usersService) {
 		this.usersService = usersService;
 	}
-
+//
+//	@GetMapping
+//	public List<String> getUsers() {
+//		return usersService.getUsers();
+//	}
 	@GetMapping
 	public List<Users> getUsers() {
 		return usersService.getUsers();
