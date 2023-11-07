@@ -14,6 +14,16 @@ export class UsersService {
 
     async addUser(userDto: UserDto) {
         console.log(userDto)
-        return ["ok"];
+        return ["addUser"];
+    }
+
+    dellUser() {
+        console.log('remove');
+        return ["remove"];
+    }
+
+    updateUser() {
+        console.log('update');
+        return ["update"];
     }
 }
