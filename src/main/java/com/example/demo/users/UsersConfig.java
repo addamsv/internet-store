@@ -12,13 +12,13 @@ public class UsersConfig {
     CommandLineRunner commandLineRunner(UsersRepository usersRepository) {
         return args -> {
             Users sergey = new Users(
-                    "Sergey",
-                    "a@a.a"
+                    "Sergey-aaa",
+                    "sergy@a.a"
             );
 
             Users alexandr = new Users(
-                    "Alex",
-                    "a@a.a"
+                    "Alex-bbb",
+                    "alex@a.a"
             );
 
             usersRepository.saveAll(List.of(sergey, alexandr));
