@@ -41,8 +41,8 @@ public class UsersController {
 			summary = "Create user"
 	)
 	@PostMapping
-	public void addUser(@RequestBody Users user) {
-		usersService.addUser(user);
+	public Users addUser(@RequestBody Users user) {
+		return usersService.addUser(user);
 	}
 
 	@Operation(
