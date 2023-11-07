@@ -20,12 +20,12 @@ export class UsersController {
     }
 
     @Delete('/users')
-    dellUser() {
+    dell() {
         return  this.usersService.dellUser();
     }
 
     @Put('/users')
-    updateUser() {
+    update() {
         return this.usersService.updateUser();
     }
 }
