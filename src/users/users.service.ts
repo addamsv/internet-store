@@ -9,11 +9,22 @@ export class UsersService {
     }
 
     async getUsers() {
-        return [{id: 1, name: "Sergey", email: "a@a.a", password: 'aaa'}];
+        return await this.usersRepository.findAll();
+        // return [{id: 1, email: "a@a.a", password: 'aaa'}];
     }
 
     async addUser(userDto: UserDto) {
         console.log(userDto)
-        return ["ok"];
+        return await this.usersRepository.create(userDto);
+    }
+
+    async dellUser() {
+        console.log('remove');
+        return ["remove"];
+    }
+
+    async updateUser() {
+        console.log('update');
+        return ["update"];
     }
 }

@@ -9,7 +9,9 @@ import {Users} from "./users/users";
     controllers: [],
     providers: [],
     imports: [
-        ConfigModule.forRoot(),
+        ConfigModule.forRoot({
+            envFilePath: `.${process.env.NODE_ENV}.env`
+        }),
         SequelizeModule.forRoot({
             dialect: 'postgres',
             host: process.env.POSTGRES_HOST,
