@@ -6,30 +6,30 @@ import {Users} from "./users";
 
 
 @ApiTags("Users")
-@Controller('/api/v1')
+@Controller('/api/v1/users')
 export class UsersController {
     constructor(private usersService: UsersService) {}
 
     @ApiOperation({summary: "Get all users", description: ""})
     @ApiResponse({status: 200, type: [Users]})
-    @Get('/users')
+    @Get()
     get() {
         return this.usersService.getUsers();
     }
 
     @ApiOperation({summary: "Create user"})
     @ApiResponse({status: 201, type: Users})
-    @Post('/users')
+    @Post()
     create(@Body() userDto: UserDto) {
         return this.usersService.addUser(userDto);
     }
 
-    @Delete('/users/:userId')
+    @Delete('/:userId')
     dell() {
         return  this.usersService.dellUser();
     }
 
-    @Put('/users/:userId')
+    @Put('/:userId')
     update() {
         return this.usersService.updateUser();
     }
