@@ -29,6 +29,10 @@ async function nestApp() {
 
   SwaggerModule.setup("/api/v1/docs", app, doc); // 28:40
 
-  await app.listen(PORT, () => console.log("ok -> ", PORT));
+  await app.listen(PORT, () => {
+    console.log(`example: http://localhost:${PORT}/api/v1/users`)
+    console.log(`doc: http://localhost:${PORT}/api/v1/docs`)
+    console.log("ok -> ", PORT)
+  });
 }
 nestApp();

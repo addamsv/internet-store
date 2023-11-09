@@ -24,12 +24,12 @@ export class UsersController {
         return this.usersService.addUser(userDto);
     }
 
-    @Delete('/users/{userId}')
+    @Delete('/users/:userId')
     dell() {
         return  this.usersService.dellUser();
     }
 
-    @Put('/users/{userId}')
+    @Put('/users/:userId')
     update() {
         return this.usersService.updateUser();
     }
