@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +20,14 @@ public class UsersService {
 
 	public List<Users> getUsers() { return usersRepository.findAll(); }
 
-	public void addUser(Users user) {
+	public Users addUser(Users user) {
 		Optional<Users> userCandidate = usersRepository.findUserByEmail(user.getEmail());
 
 		if (userCandidate.isPresent()) {
 			throw new IllegalStateException("email is already taken");
 		}
 
-		usersRepository.save(user);
+		return usersRepository.save(user);
 	}
 
 	public void dellUser(Long userId) {
@@ -40,16 +41,16 @@ public class UsersService {
 	}
 
 	@Transactional
-	public void updateUser(Long userId, String name, String email) {
+	public void updateUser(Long userId, String password, String email) {
 		Users user = usersRepository.findById(userId)
 				.orElseThrow(() -> new IllegalStateException("user does not exist"));
 
 		if (
-				name != null &&
-                !name.isEmpty() &&
-				!Objects.equals(user.getName(), name)
+				password != null &&
+                !password.isEmpty() &&
+				!Objects.equals(user.getPassword(), password)
 		) {
-			user.setName(name);
+			user.setPassword(password);
 		}
 
 		if (
