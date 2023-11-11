@@ -29,5 +29,5 @@ export class Users extends Model<Users, UsersAttrs>{
 
     // many-to-many
     @BelongsToMany(() => Roles, () => UsersRoles)
-    users: Roles[];
+    roles: Roles[];
 }

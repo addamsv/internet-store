@@ -42,4 +42,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+
 </details>
+
+[//]: # (https://medium.com/@chrisbalola/building-a-secure-and-quality-nodejs-rest-api-with-nestjs-34a9aef633e0)

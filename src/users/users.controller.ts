@@ -14,23 +14,23 @@ export class UsersController {
     @ApiResponse({status: 200, type: [Users]})
     @Get()
     get() {
-        return this.usersService.getUsers();
+        return this.usersService.get();
     }
 
     @ApiOperation({summary: "Create user"})
     @ApiResponse({status: 201, type: Users})
     @Post()
     create(@Body() userDto: UserDto) {
-        return this.usersService.addUser(userDto);
+        return this.usersService.create(userDto);
     }
 
     @Delete('/:userId')
     dell() {
-        return  this.usersService.dellUser();
+        return  this.usersService.dell();
     }
 
     @Put('/:userId')
     update() {
-        return this.usersService.updateUser();
+        return this.usersService.update();
     }
 }
