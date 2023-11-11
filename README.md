@@ -1,6 +1,14 @@
+<h1 align="center">Nest Backend API</h1>
+<h2 align="center">Documentation</h2>
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="./README_FILES/swagger_doc.png" width="200" alt="Test" />
 </p>
+
+<br/>
+<br/>
+
+<details align="center">
+<summary>Install and Use Here</summary>
 
 ## Installation
 
@@ -34,3 +42,4 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+</details>

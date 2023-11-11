@@ -15,12 +15,12 @@ export class RolesService {
         return await this.roleRepository.findOne({where: {value}});
     }
 
-    async update(dto: RoleDTO) {
-
-    }
-
     async create(dto: RoleDTO) {
         return await this.roleRepository.create(dto);
+    }
+
+    async update(dto: RoleDTO) {
+
     }
 
     async dell() {

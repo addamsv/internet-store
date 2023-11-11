@@ -23,18 +23,18 @@ export class RolesController {
         return this.rolesService.getByValue(value);
     }
 
-    @ApiOperation({summary: "Update role", description: ""})
-    @ApiResponse({status: 200, type: Roles})
-    @Put()
-    put(@Body() dto: RoleDTO) {
-        return this.rolesService.update(dto);
-    }
-
     @ApiOperation({summary: "Create roles", description: ""})
     @ApiResponse({status: 200, type: Roles})
     @Post()
     post(@Body() dto: RoleDTO) {
         return this.rolesService.create(dto);
+    }
+
+    @ApiOperation({summary: "Update role", description: ""})
+    @ApiResponse({status: 200, type: Roles})
+    @Put()
+    put(@Body() dto: RoleDTO) {
+        return this.rolesService.update(dto);
     }
 
     @ApiOperation({summary: "Remove Role", description: ""})
