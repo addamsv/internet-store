@@ -20,8 +20,8 @@ async function nestApp() {
       .setDescription(APP_DESCRIPTION)
       .setVersion(APP_VERSION)
       // .addTag("Sergy Addam")
-      .setLicense("MIT", "")
-      .setTermsOfService("Terms of Service")
+      // .setLicense("MIT", "")
+      // .setTermsOfService("Terms of Service")
       .addServer("", "dev server")
       .addBearerAuth() // The API will use Bearer Authentication
       .addBasicAuth({ type: 'apiKey', name: 'accessToken', in: 'query' })
