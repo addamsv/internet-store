@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "weather",
-    "slug": "weather",
+    "name": "internet store",
+    "slug": "store",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Weather template",
-    "githubUrl": "https://github.com/addamsv/react-native/tree/weather"
+    "description": "The internet store template",
+    "githubUrl": "https://github.com/addamsv/internet-store/tree/react-native-prod"
   }
 }

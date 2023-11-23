@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export default function Weather({ temp, condition }) {
+export default function InternetStore({ temp, condition }) {
   return (
     <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.container}>
       <StatusBar barStyle='light-content' />
@@ -21,7 +21,7 @@ export default function Weather({ temp, condition }) {
   );
 }
 
-Weather.propTypes = {
+InternetStore.propTypes = {
   temp: PropTypes.number.isRequired,
   condition: PropTypes.oneOf(['Thunderstorm', 'Drizzle', 'Rain', 'Snow', 'Clear', 'Atmosphere', 'Clouds']).isRequired
 }

@@ -2,8 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import * as Location from 'expo-location';
-import Loading from './Loading';
-import Weather from './Weather';
+import Loading from './components/Loading';
+import InternetStore from './components/InternetStore';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
       // const { data } = await axios.get('https://rs-clone-server.herokuapp.com/players/');
       return { data: 'ok' }; // data;
     } catch(error) {
-      Alert.alert('Cant get weather data');
+      Alert.alert('Cant get data');
       return {};
     }
   }
@@ -51,7 +51,7 @@ class App extends React.Component {
   render() {
     const { isLoading, temp, condition } = this.state;
     return (
-      isLoading ? <Loading /> : <Weather temp={ Math.round(temp) } condition={ condition } />
+      isLoading ? <Loading /> : <InternetStore temp={ Math.round(temp) } condition={ condition } />
     );
   }
 }
