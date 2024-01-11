@@ -1,0 +1,14 @@
+.git
+Dockerfile
+
+# OS
+.DS_Store
+
+# IDEs and editors
+.idea
+.vscode
+.project
+.classpath
+
+# compiled output
+node_modules
