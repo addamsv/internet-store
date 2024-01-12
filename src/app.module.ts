@@ -16,7 +16,6 @@ import { DeviceModule } from './device/device.module';
 import { TypeModule } from './type/type.module';
 import { BrandModule } from './brand/brand.module';
 import { RatingModule } from './rating/rating.module';
-import * as path from 'path';
 import { Rating } from './rating/rating.model';
 import { Device } from './device/device.model';
 import { DeviceInfo } from './device/deviceInfo.model';
