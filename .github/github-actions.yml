@@ -1,9 +1,9 @@
 name: Nest.js GitHub Actions
 on:
   push:
-    branches: [backend-prod]
+    branches: [backend-product]
   pull_request:
-    branches: [backend-prod]
+    branches: [backend-product]
 jobs:
   init:
     runs-on: ubuntu-latest
