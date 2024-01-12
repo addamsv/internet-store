@@ -7,7 +7,7 @@ import { Role } from './roles.model';
 export class RolesService {
   constructor(@InjectModel(Role) private roleRepository: typeof Role) {}
 
-  async createRole(dto: CreateRoleDTO) {
+  async create(dto: CreateRoleDTO) {
     const role = await this.roleRepository.create(dto);
     return role;
   }
@@ -21,11 +21,7 @@ export class RolesService {
     throw new Error('Method not implemented.');
   }
 
-  update(dto: Role) {
-    throw new Error('Method not implemented.');
-  }
-
-  create(dto: Role) {
+  update(dto: CreateRoleDTO) {
     throw new Error('Method not implemented.');
   }
 }

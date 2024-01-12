@@ -21,7 +21,7 @@ export class RolesController {
   @ApiResponse({ status: 201, type: Role })
   @Post()
   create(@Body() dto: CreateRoleDTO) {
-    return this.roleService.createRole(dto);
+    return this.roleService.create(dto);
   }
 
   @ApiOperation({ summary: 'Getting role' })
@@ -34,14 +34,14 @@ export class RolesController {
   @ApiOperation({ summary: 'Create roles', description: '' })
   @ApiResponse({ status: 200, type: Role })
   @Post()
-  post(@Body() dto: Role) {
+  post(@Body() dto: CreateRoleDTO) {
     return this.roleService.create(dto);
   }
 
   @ApiOperation({ summary: 'Update role', description: '' })
   @ApiResponse({ status: 200, type: Role })
   @Put()
-  put(@Body() dto: Role) {
+  put(@Body() dto: CreateRoleDTO) {
     return this.roleService.update(dto);
   }
 

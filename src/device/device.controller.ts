@@ -1,9 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
+  Put,
   Query,
   UploadedFile,
   UseInterceptors,
@@ -24,7 +26,7 @@ export class DeviceController {
   @ApiResponse({ status: 201, type: Device })
   @Post()
   @UseInterceptors(FileInterceptor('img'))
-  createDevice(@Body() dto: CreateDeviceDTO, @UploadedFile() img) {
+  create(@Body() dto: CreateDeviceDTO, @UploadedFile() img) {
     return this.deviceService.createDevice(dto, img);
   }
 
@@ -40,5 +42,19 @@ export class DeviceController {
   @Get('/:id')
   getByValue(@Param('id') id: number) {
     return this.deviceService.getDeviceById(id);
+  }
+
+  @ApiOperation({ summary: 'Update device', description: '' })
+  @ApiResponse({ status: 200, type: '' })
+  @Put()
+  put(@Body() dto: CreateDeviceDTO) {
+    return this.deviceService.update(dto);
+  }
+
+  @ApiOperation({ summary: 'Remove device', description: '' })
+  @ApiResponse({ status: 200, type: '' })
+  @Delete()
+  delete() {
+    return this.deviceService.dell();
   }
 }

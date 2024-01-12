@@ -18,4 +18,12 @@ export class PostsService {
 
     return post;
   }
+
+  dell() {
+    throw new Error('Method not implemented.');
+  }
+
+  update(dto: CreatePostDto) {
+    throw new Error('Method not implemented.');
+  }
 }

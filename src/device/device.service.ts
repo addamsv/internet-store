@@ -101,4 +101,12 @@ export class DeviceService {
       return devices;
     }
   }
+
+  dell() {
+    throw new Error('Method not implemented.');
+  }
+
+  update(dto: CreateDeviceDTO) {
+    throw new Error('Method not implemented.');
+  }
 }

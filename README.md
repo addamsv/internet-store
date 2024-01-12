@@ -16,19 +16,23 @@
 <details align="center">
 <summary>Install and Use Here</summary>
 
+### PostgreSQL should be installed, and launched
+
+### DB should be created (see .env)
+
 ## Installation
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## launch
 
 ```bash
-# development
-$ npm run start
+#  watch mode
+$ npm start
 
-# watch mode
+# development
 $ npm run start:dev
 
 # production mode
