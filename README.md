@@ -1,6 +1,57 @@
-# internet-store
-front-product<br>
-  &nbsp;&nbsp;front-dev<br>
-  
-backend-product<br>
-  &nbsp;&nbsp;backend-dev<br>
+<h1 align="center">Nest Backend API</h1>
+<h2 align="center">Documentation</h2>
+<p align="center">
+  <img src="./README_FILES/swagger_doc.png" width="200" alt="Test" />
+</p>
+
+<br/>
+
+<h2 align="center">Model</h2>
+<p align="center">
+  <img src="./README_FILES/model.png" width="200" alt="Test" />
+</p>
+<br/>
+<br/>
+
+<details align="center">
+<summary>Install and Use Here</summary>
+
+### PostgreSQL should be installed, and launched
+
+### DB should be created (see .env)
+
+## Installation
+
+```bash
+$ npm install
+```
+
+## launch
+
+```bash
+#  watch mode
+$ npm start
+
+# development
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod
+```
+
+## Test
+
+```bash
+# unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov
+```
+
+</details>
+
+<br>
