@@ -1,0 +1,23 @@
+name: Nest.js GitHub Actions
+on:
+  push:
+    branches: [backend-product]
+  pull_request:
+    branches: [backend-product]
+jobs:
+  init:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-varsion: [17.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Staring Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: install modules
+      - name: build project
+      - name: unit test
+      - name: e2e test
+      - name: lint code
