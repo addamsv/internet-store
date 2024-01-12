@@ -4,6 +4,14 @@
 
 <h2 align="center">The Backend Node.js Nest.js App</h2>
 <p align="center">
+  <a href="./README_FILES/nest.png">
+    <img src="./README_FILES/nest.png" width="121px" height="267px">
+  </a>
+  <a href="./README_FILES/model.png">
+    <img src="./README_FILES/model.png" width="121px" height="267px">
+  </a>
+  <br>
+  <br>
   <a href="https://github.com/addamsv/internet-store/tree/backend-product">
     <img src="./README_FILES/se_more.png" width="104px" height="43px">
   </a>
