@@ -1,6 +1,18 @@
 <h1 align="center">Internet Store Full Stack Project</h1>
 
-<br><br>
+<br><br><br>
+
+<h2 align="center">Frontend JS TS App</h2>
+<p align="center">
+  in progress...
+  <br>
+  <br>
+  <a href="https://github.com/addamsv/internet-store/tree/front-product">
+    <img src="./README_FILES/se_more.png" width="104px" height="43px">
+  </a>
+</p>
+
+<br><br><br>
 
 <h2 align="center">Backend Node.js Nest.js App</h2>
 <p align="center">
@@ -13,15 +25,6 @@
   <br>
   <br>
   <a href="https://github.com/addamsv/internet-store/tree/backend-product">
-    <img src="./README_FILES/se_more.png" width="104px" height="43px">
-  </a>
-</p>
-
-<br><br><br>
-
-<h2 align="center">Frontend JS TS App</h2>
-<p align="center">
-  <a href="https://github.com/addamsv/internet-store/tree/front-product">
     <img src="./README_FILES/se_more.png" width="104px" height="43px">
   </a>
 </p>
