@@ -34,7 +34,7 @@
 <h2 align="center">Android App</h2>
 <p align="center">
   <a href="./README_FILES/pixel_3_API33.png">
-    <img src="./README_FILES/pixel_3_API33.png" width="121px" height="267px">
+    <img src="./README_FILES/andr_app.png" width="121px" height="267px">
   </a>
   <br><br>
   <a href="https://github.com/addamsv/internet-store/tree/android-product">
