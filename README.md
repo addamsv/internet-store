@@ -8,13 +8,13 @@
   <br>
   <br>
   <a href="https://github.com/addamsv/internet-store/tree/front-product">
-    <img src="./README_FILES/se_more.png" width="104px" height="43px">
+    <img src="./README_FILES/see_more_.png" width="104px" height="43px">
   </a>
 </p>
 
 <br><br><br>
 
-<h2 align="center">Backend Node.js Nest.js App</h2>
+<h2 align="center">Backend Nest.js App</h2>
 <p align="center">
   <a href="./README_FILES/nest.png">
     <img src="./README_FILES/nest.png" width="121px" height="267px">
@@ -25,7 +25,7 @@
   <br>
   <br>
   <a href="https://github.com/addamsv/internet-store/tree/backend-product">
-    <img src="./README_FILES/se_more.png" width="104px" height="43px">
+    <img src="./README_FILES/see_more_.png" width="104px" height="43px">
   </a>
 </p>
 
@@ -38,7 +38,7 @@
   </a>
   <br><br>
   <a href="https://github.com/addamsv/internet-store/tree/android-product">
-    <img src="./README_FILES/se_more.png" width="104px" height="43px">
+    <img src="./README_FILES/see_more_.png" width="104px" height="43px">
   </a>
 </p>
 
@@ -51,7 +51,7 @@
   </a>
   <br><br>
   <a href="https://github.com/addamsv/internet-store/tree/ios-dev">
-    <img src="./README_FILES/se_more.png" width="104px" height="43px">
+    <img src="./README_FILES/see_more_.png" width="104px" height="43px">
   </a>
 </p>
 
