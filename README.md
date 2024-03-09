@@ -1,20 +1,27 @@
-<h1 align="center">Nest Backend API</h1>
-<h2 align="center">Documentation</h2>
-<p align="center">
-  <img src="./README_FILES/swagger_doc.png" width="200" alt="Test" />
-</p>
+<div align="center">
+  <h1>Backend API Nest.js</h1>
+  <p>
+    <img src="./.github/img/swagger.png" width="200" alt="Test" />
+  </p>
 
-<br/>
+<br/> <p>
+<img src="./.github/img/auth.png" width="200" alt="Test" />
 
-<h2 align="center">Model</h2>
-<p align="center">
-  <img src="./README_FILES/model.png" width="200" alt="Test" />
-</p>
-<br/>
-<br/>
+  </p>
 
-<details align="center">
-<summary>Install and Use Here</summary>
+  <br/>
+
+  <h2>Model</h2>
+  <p>
+    <img src="./.github/img/model.png" width="200" alt="Test" />
+  </p>
+
+</div>
+  <br/>
+  <br/>
+
+  <details>
+  <summary>Install and Use Here</summary>
 
 ### PostgreSQL should be installed, and launched
 
@@ -53,5 +60,3 @@ $ npm run test:cov
 ```
 
 </details>
-
-<br>

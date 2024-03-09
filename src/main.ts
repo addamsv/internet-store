@@ -33,9 +33,10 @@ async function bootstrap() {
     // .setLicense("MIT", "")
     // .setTermsOfService("Terms of Service")
     // .addTag('REST API for Magaz')
-    .addServer('', 'dev server')
-    .addBearerAuth() // The API will use Bearer Authentication
-    .addBasicAuth({ type: 'apiKey', name: 'accessToken', in: 'query' })
+    .addServer('http://localhost:5500', 'dev server')
+    .addServer('http://localhost:5500', 'prod server')
+    .addBearerAuth({ type: 'http', name: 'JWT', in: 'header' }) // The API will use Bearer Authentication
+    .addBasicAuth({ type: 'http', name: 'basic', in: 'query' })
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

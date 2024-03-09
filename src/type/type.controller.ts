@@ -1,5 +1,10 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { CreateTypeDTO } from './dto/createType.dto';
 import { Type } from './type.model';
 import { TypeService } from './type.service';
@@ -9,30 +14,33 @@ import { TypeService } from './type.service';
 export class TypeController {
   constructor(private typeService: TypeService) {}
 
-  @ApiOperation({ summary: 'type creation' })
-  @ApiResponse({ status: 201, type: Type })
-  @Post()
-  create(@Body() dto: CreateTypeDTO) {
-    return this.typeService.create(dto);
-  }
-
+  @Get()
   @ApiOperation({ summary: 'Getting type' })
   @ApiResponse({ status: 200, type: Type })
-  @Get()
   getAll() {
     return this.typeService.getAll();
   }
 
+  @Post()
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'type creation' })
+  @ApiResponse({ status: 201, type: Type })
+  create(@Body() dto: CreateTypeDTO) {
+    return this.typeService.create(dto);
+  }
+
+  @Delete()
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Remove Type' })
   @ApiResponse({ status: 200, type: Type })
-  @Delete()
   deleteType(@Body() dto: CreateTypeDTO) {
     return this.typeService.removeType(dto);
   }
 
+  @Put()
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Update Type' })
   @ApiResponse({ status: 200, type: Type })
-  @Put()
   updateType(@Body() dto: CreateTypeDTO) {
     return this.typeService.updateType(dto);
   }
