@@ -1,7 +1,12 @@
 <div align="center">
   <h1>Backend API Nest.js</h1>
   <p>
-    <img src="./.github/img/swagger_doc.png" width="200" alt="Test" />
+    <img src="./.github/img/swagger.png" width="200" alt="Test" />
+  </p>
+
+<br/> <p>
+<img src="./.github/img/auth.png" width="200" alt="Test" />
+
   </p>
 
   <br/>

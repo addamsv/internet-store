@@ -10,7 +10,13 @@ import {
   UsePipes,
   // ValidationPipe,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBasicAuth,
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { Roles } from 'src/roles/roles-auth.decorator';
 import { RolesGuard } from 'src/roles/roles.guard';
@@ -21,6 +27,8 @@ import { User } from './users.model';
 import { UsersService } from './users.service';
 
 @ApiTags('Users')
+@ApiBearerAuth()
+// @ApiBasicAuth()
 @Controller('api/v1/users')
 export class UsersController {
   constructor(private userService: UsersService) {}
