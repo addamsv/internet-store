@@ -1,9 +1,12 @@
 package com.example.demo.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -28,13 +31,33 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         ),
         servers = {
                 @Server(
-                        url = "",
+                        url = "http://localhost:5500",
                         description = "dev server"
                 ),
                 @Server(
-                        url = "",
+                        url = "http://localhost:5500",
                         description = "prod server"
                 )
         }
-) // 27:53
-public class OPenAPIConfig {}
+//        security = {
+//                @SecurityRequirement(
+//                        name = "BearerAuth"
+//                )
+//        }
+)
+@SecurityScheme(
+        name = "BearerAuth",
+        description = "JWT Auth desc",
+        scheme = "bearer",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        in = SecuritySchemeIn.HEADER
+)
+@SecurityScheme(
+        name = "BasicAuth",
+        description = "Login Auth",
+        scheme = "basic",
+        type = SecuritySchemeType.HTTP,
+        in = SecuritySchemeIn.QUERY
+)
+public class OpenAPIConfig {}

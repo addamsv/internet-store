@@ -4,6 +4,7 @@ import java.util.List;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/users")
 @CrossOrigin("*")
+@SecurityRequirement(name = "BearerAuth")
 public class UsersController {
 	private final UsersService usersService;
 
@@ -20,6 +22,7 @@ public class UsersController {
 		this.usersService = usersService;
 	}
 
+	@GetMapping
 	@Operation(
 			description = "Get endpoint",
 			summary = "Get all users",
@@ -31,39 +34,38 @@ public class UsersController {
 					)
 			}
 	)
-	@GetMapping
 	public List<Users> getUsers() {
 		return usersService.getUsers();
 	}
 
+	@PostMapping
 	@Operation(
 			description = "Post",
 			summary = "Create user"
 	)
-	@PostMapping
 	public Users addUser(@RequestBody Users user) {
 		return usersService.addUser(user);
 	}
 
+	@DeleteMapping(path = "{userId}")
 	@Operation(
-			description = "",
+			description = "Delete",
 			summary = "Remove user"
 	)
-	@DeleteMapping(path = "{userId}")
 	public void dellUser(@PathVariable("userId") Long id) {
 		usersService.dellUser(id);
 	}
 
+	@PutMapping(path = "{userId}")
 	@Operation(
-			description = "",
+			description = "Put",
 			summary = "Update User"
 	)
-	@PutMapping(path = "{userId}")
 	public void updateUser(
 			@PathVariable("userId") Long id,
-			@RequestParam(required = false) String name,
+			@RequestParam(required = false) String password,
 			@RequestParam(required = false) String email
 	) {
-		usersService.updateUser(id, name, email);
+		usersService.updateUser(id, password, email);
 	}
 }
