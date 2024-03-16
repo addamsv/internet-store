@@ -5,6 +5,7 @@ import com.example.demo.endpoints.users.UsersRepository;
 import com.example.demo.endpoints.users.UsersService;
 import com.example.demo.jwt.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -28,8 +29,8 @@ public class AuthService {
   }
 
   public AuthResponse login(AuthRequest req) {
-    var user = this.validateUser(req);
-    var jwtToken = jwtService.generateToken(user);
+    Users user = this.validateUser(req);
+    String jwtToken = jwtService.generateToken(user);
     return new AuthResponse(jwtToken);
   }
 
@@ -40,13 +41,13 @@ public class AuthService {
       throw new IllegalStateException("Login/email is already taken (The USER is already exist)");
     }
 
-//    var passHash =  bcrypt.hash(req.password, 5);
+    String passHash = jwtService.getPassHash(req.getPassword());
 
-    Users userEntity = new Users(req.getPassword(), req.getEmail());
-    var user = this.usersService.addUser(userEntity);
+    Users userEntity = new Users(passHash, req.getEmail());
+    Users user = this.usersService.addUser(userEntity);
 
 
-    var jwtToken = jwtService.generateToken(user);
+    String jwtToken = jwtService.generateToken(user);
     return new AuthResponse(jwtToken);
   }
 
@@ -54,23 +55,14 @@ public class AuthService {
     Users userCandidate = this.usersRepository.findUserByEmail(req.getEmail())
             .orElseThrow(() -> new IllegalStateException("User does not exist"));
 
-    if (
-            req.getPassword() != null
-            && !req.getPassword().isEmpty()
-            && !Objects.equals(userCandidate.getPassword(), req.getPassword())
-    ) {
-      throw new IllegalStateException("Wrong password");
+    if (req.getPassword() != null && req.getPassword().isEmpty()) {
+      throw new IllegalStateException("password should not be empty");
     }
 
-    if (
-            req.getEmail() != null
-            && !req.getEmail().isEmpty()
-            && !Objects.equals(userCandidate.getEmail(), req.getEmail())
-    ) {
-      throw new IllegalStateException("Wrong login");
+    if (!jwtService.isPasswordEqual(req.getPassword(), userCandidate.getPassword())) {
+      throw new IllegalStateException("password should not be empty");
     }
-
-//    var isPasswordEqual = bcrypt.compare(users.password);
+// !Objects.equals(userCandidate.getPassword(), req.getPassword())
 
     return userCandidate;
 

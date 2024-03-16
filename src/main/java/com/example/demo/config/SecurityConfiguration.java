@@ -29,8 +29,8 @@ public class SecurityConfiguration {
             "/api/v1/auth/**",
 
 //            "/api/v1/users/**",
-            "/api/v1/brand/**",
-            "/api/v1/type/**",
+//            "/api/v1/brand/**",
+//            "/api/v1/type/**",
             "/api/v1/device/**",
 
             "/v2/api-docs",
@@ -64,6 +64,10 @@ public class SecurityConfiguration {
             .requestMatchers(WHITE_LIST_URL)
                 .permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/device/**")
+                .permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/v1/type/**")
+                .permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/v1/brand/**")
                 .permitAll()
 //            .requestMatchers("/api/v1/users/**")
 //                .hasAnyRole("ADMIN", "MANAGER")

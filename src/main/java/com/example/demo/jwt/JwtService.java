@@ -13,16 +13,26 @@ import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 @Service
 public class JwtService {
     @Value("${application.security.jwt.secret-key}")
     private String secretKey;
+    @Value("${application.security.jwt.salt}")
+    private String salt;
     @Value("${application.security.jwt.expiration}")
     private long jwtExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshExpiration;
+
+    public boolean isPasswordEqual(String stringPw, String hashed) {
+        return BCrypt.checkpw(stringPw, hashed);
+    }
+    public String getPassHash(String password) {
+        return BCrypt.hashpw(password, salt);
+    }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
