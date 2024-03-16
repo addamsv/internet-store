@@ -2,15 +2,12 @@ package com.example.demo.endpoints.device;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class DeviceService {
@@ -25,7 +22,7 @@ public class DeviceService {
     this.deviceRepository = deviceRepository;
   }
 
-  public ResponseEntity<String> create(Device dto) { // , image: any
+  public ResponseEntity<Device> create(Device dto) { // , image: any
     System.out.println(dto);
 //    System.out.println(image);
 
@@ -35,6 +32,7 @@ public class DeviceService {
 //      fileName = this.fileService.createFile(image);
 //    }
 //
+    Device device = deviceRepository.save(dto);
 //    var device = this.deviceRepository.create({
 //      ...dto,
 //      img: fileName,
@@ -53,7 +51,7 @@ public class DeviceService {
 //    }
 //
 //    return device;
-    return ResponseEntity.ok("Created");
+    return ResponseEntity.ok(device);
   }
 
   public Device getById(Long id) {
@@ -71,10 +69,10 @@ public class DeviceService {
       Integer offset = page * limit - limit;
       System.out.println(offset);
 
-    if (brandId != null && typeId != null) {
-        return deviceRepository.findAndCountAll(limit, offset)
-              .orElseThrow(() -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "There are not any devices"));
-    }
+      return deviceRepository.findAndCountAll(limit, offset)
+            .orElseThrow(() -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "There are not any devices"));
+//    if (brandId != null && typeId != null) {
+//    }
 //
 //    if (brandId && !typeId) {
 //      List<Device> devices = deviceRepository.findAndCountAll({
@@ -108,9 +106,9 @@ public class DeviceService {
 //
 //      return devices;
 //    }
-    List<Device> list = new ArrayList<>();
-    list.add(new Device(1L, "fake", 1000, 10, ""));
-    return list;
+//    List<Device> list = new ArrayList<>();
+//    list.add(new Device(1L, "fake", 1000, 10, ""));
+//    return list;
   }
 
   public void dell() {

@@ -1,9 +1,10 @@
 package com.example.demo.endpoints.device.dto;
 
+import com.example.demo.endpoints.device.Device;
 import lombok.Data;
 
 @Data
-public class CreateDeviceDTO {
+public class CreateDeviceDTO extends Device {
   private String name;
 
   private Integer price;

@@ -1,5 +1,6 @@
 package com.example.demo.endpoints.device;
 
+import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -75,7 +76,7 @@ public class DeviceController {
                   )
           }
   )
-  public ResponseEntity<String> create(@RequestBody() Device dto) { // @UploadedFile() Image img
+  public ResponseEntity<Device> create(@RequestBody() Device dto) { // @UploadedFile() Image img
     return this.deviceService.create(dto);//, img
   }
 
