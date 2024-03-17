@@ -12,7 +12,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @OpenAPIDefinition(
         tags = @Tag(
-                name = "Sergy Addam"
+                name = "/api/v1/",
+                description = "endpoints"
         ),
         info = @Info(
                 contact = @Contact(
