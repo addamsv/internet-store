@@ -3,12 +3,13 @@ package com.example.demo.endpoints.auth;
 import com.example.demo.endpoints.users.Users;
 import com.example.demo.endpoints.users.UsersRepository;
 import com.example.demo.endpoints.users.UsersService;
-import com.example.demo.jwt.JwtService;
+import com.example.demo.guard.jwt.JwtService;
+import com.example.demo.guard.roles.RolesGuard;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -16,12 +17,12 @@ public class AuthService {
   private final UsersRepository usersRepository;
   private final JwtService jwtService;
   private final UsersService usersService;
-
   @Autowired
   public AuthService (
           UsersRepository usersRepository,
           UsersService usersService,
-          JwtService jwtService
+          JwtService jwtService,
+          RolesGuard rolesGuard
   ) {
     this.usersRepository = usersRepository;
     this.jwtService = jwtService;
@@ -30,7 +31,9 @@ public class AuthService {
 
   public AuthResponse login(AuthRequest req) {
     Users user = this.validateUser(req);
-    String jwtToken = jwtService.generateToken(user);
+    Map<String, Object> clime = new HashMap<>();
+    clime.put("role", user.getRole());
+    String jwtToken = jwtService.generateToken(clime, user);
     return new AuthResponse(jwtToken);
   }
 
@@ -44,10 +47,13 @@ public class AuthService {
     String passHash = jwtService.getPassHash(req.getPassword());
 
     Users userEntity = new Users(passHash, req.getEmail());
+
     Users user = this.usersService.addUser(userEntity);
 
+    Map<String, Object> clime = new HashMap<>();
+    clime.put("role", user.getRole());
 
-    String jwtToken = jwtService.generateToken(user);
+    String jwtToken = jwtService.generateToken(clime, user);
     return new AuthResponse(jwtToken);
   }
 

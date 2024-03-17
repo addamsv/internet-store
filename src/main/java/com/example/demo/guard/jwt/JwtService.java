@@ -1,4 +1,4 @@
-package com.example.demo.jwt;
+package com.example.demo.guard.jwt;
 
 import com.example.demo.endpoints.users.Users;
 import io.jsonwebtoken.Claims;
@@ -30,12 +30,16 @@ public class JwtService {
     public boolean isPasswordEqual(String stringPw, String hashed) {
         return BCrypt.checkpw(stringPw, hashed);
     }
+
     public String getPassHash(String password) {
         return BCrypt.hashpw(password, salt);
     }
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
+    }
+    public String extractRole(String token) {
+        return extractClaim(token, (Claims claim) -> claim.get("role").toString());
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
