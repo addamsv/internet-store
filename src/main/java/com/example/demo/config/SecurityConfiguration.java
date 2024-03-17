@@ -1,7 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.endpoints.users.UsersRepository;
-import com.example.demo.jwt.JwtAuthenticationFilter;
+import com.example.demo.guard.jwt.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

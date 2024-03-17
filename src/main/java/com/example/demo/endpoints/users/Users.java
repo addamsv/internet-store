@@ -30,7 +30,7 @@ public class Users implements UserDetails {
 	private String email;
 
 	@Schema(example = "ADMIN", description = "Users role")
-	private String role;
+	private String role = "ADMIN";
 
 	@Schema(example = "a@a.a - pass-1-asa", description = "Processing")
 	@Transient

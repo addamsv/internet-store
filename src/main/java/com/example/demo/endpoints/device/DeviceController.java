@@ -98,8 +98,8 @@ public class DeviceController {
                )
           }
   )
-  public void put(@RequestBody() Device dto) {
-    this.deviceService.update(dto);
+  public Device update(@RequestBody() Device dto) {
+    return this.deviceService.update(dto);
   }
 
   @DeleteMapping()

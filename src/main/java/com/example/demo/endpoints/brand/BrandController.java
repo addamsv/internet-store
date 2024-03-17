@@ -1,4 +1,4 @@
-package com.example.demo.endpoints.brand;//import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
+package com.example.demo.endpoints.brand;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -23,7 +23,7 @@ public class BrandController {
 
   @GetMapping
   @Operation(
-          description = "Get endpoint",
+          description = "Get All Brands",
           summary = "Get all Brands",
           responses = {
                   @ApiResponse(
@@ -57,15 +57,11 @@ public class BrandController {
   @PutMapping
   @SecurityRequirement(name = "BearerAuth")
   @Operation(
-          description = "Put endpoint",
-          summary = "Update Brand",
-          responses = {
-                  @ApiResponse(
-                          description = "Success",
-                          responseCode = "200",
-                          useReturnTypeSchema = true
-                  )
-          }
+      description = "Update endpoint", summary = "Update Brand",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Success", useReturnTypeSchema = true),
+          @ApiResponse(description = "Forbidden", responseCode = "403")
+      }
   )
   public void update(@RequestBody Brand dto) {
       this.brandService.update(dto);

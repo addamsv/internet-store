@@ -1,6 +1,6 @@
 package com.example.demo.endpoints.users;
 
-import com.example.demo.jwt.JwtService;
+import com.example.demo.guard.jwt.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

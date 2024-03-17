@@ -1,4 +1,4 @@
-package com.example.demo.jwt;
+package com.example.demo.guard.jwt;
 
 import com.example.demo.endpoints.users.Users;
 import com.example.demo.endpoints.users.UsersRepository;
