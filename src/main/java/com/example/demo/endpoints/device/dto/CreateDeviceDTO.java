@@ -2,9 +2,10 @@ package com.example.demo.endpoints.device.dto;
 
 import com.example.demo.endpoints.device.Device;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
-public class CreateDeviceDTO extends Device {
+public class CreateDeviceDTO {
   private String name;
 
   private Integer price;
@@ -13,19 +14,33 @@ public class CreateDeviceDTO extends Device {
 
   private Long typeId;
 
-  private String img;
+  public Integer getRating() {
+    return rating;
+  }
+
+  public void setRating(Integer rating) {
+    this.rating = rating;
+  }
+
+  private Integer rating;
+
+  private MultipartFile img;
 
   private String deviceInfo;
 
   public CreateDeviceDTO() {}
 
-  public CreateDeviceDTO(String name, Integer price, Long brandId, Long typeId, String img, String deviceInfo) {
+  public CreateDeviceDTO(
+          String name, Integer price, Long brandId, Long typeId, MultipartFile img, String deviceInfo,
+          Integer rating
+  ) {
     this.name = name;
     this.price = price;
     this.brandId = brandId;
     this.typeId = typeId;
     this.img = img;
     this.deviceInfo = deviceInfo;
+    this.rating = rating;
   }
 
 
@@ -61,11 +76,11 @@ public class CreateDeviceDTO extends Device {
     this.typeId = typeId;
   }
 
-  public String getImg() {
+  public MultipartFile getImg() {
     return img;
   }
 
-  public void setImg(String img) {
+  public void setImg(MultipartFile img) {
     this.img = img;
   }
 
@@ -84,7 +99,7 @@ public class CreateDeviceDTO extends Device {
             ", price=" + price +
             ", brandId=" + brandId +
             ", typeId=" + typeId +
-            ", img='" + img + '\'' +
+            ", img='" + img.getOriginalFilename() + '\'' +
             ", deviceInfo='" + deviceInfo + '\'' +
             '}';
   }
