@@ -8,6 +8,13 @@ import jakarta.persistence.*;
 public class Device {
   public Device() {}
 
+  public Device(String name, Integer price, Integer rating, String img) {
+    this.name = name;
+    this.price = price;
+    this.rating = rating;
+    this.img = img;
+  }
+
   public Device(Long id, String name, Integer price, Integer rating, String img) {
     this.id = id;
     this.name = name;

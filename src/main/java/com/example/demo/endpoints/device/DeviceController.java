@@ -8,9 +8,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Map;
 
 @Tag(name = "Device")
 @RestController
@@ -62,9 +64,8 @@ public class DeviceController {
     return this.deviceService.getById(id);
   }
 
-  @PostMapping()
+  @PostMapping()// (params = "img") @UseInterceptors(FileInterceptor('img'))
   @SecurityRequirement(name = "BearerAuth")
-//  @UseInterceptors(FileInterceptor('img'))
   @Operation(
           description = "POST Create",
           summary = "Create Device",
@@ -76,8 +77,12 @@ public class DeviceController {
                   )
           }
   )
-  public ResponseEntity<Device> create(@RequestBody() Device dto) { // @UploadedFile() Image img
-    return this.deviceService.create(dto);//, img
+  public ResponseEntity<Device> create(
+          @ModelAttribute CreateDeviceDTO dto) throws URISyntaxException, IOException {
+//          @RequestBody()
+//          @RequestParam(required = true, name = "img") MultipartFile img // @UploadedFile() Image img
+//  ) throws IOException {
+    return this.deviceService.create(dto);
   }
 
   @PutMapping()

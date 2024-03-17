@@ -1,38 +1,46 @@
 package com.example.demo.endpoints.device;
 
+import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
+import com.example.demo.files.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class DeviceService {
   private final DeviceRepository deviceRepository;
+  private final FilesService fileService;
 
   @Autowired
   public DeviceService(
-    DeviceRepository deviceRepository
+    DeviceRepository deviceRepository,
 //    DeviceInfoRepository deviceInfoRepository,
-//    FilesService fileService
+    FilesService fileService
   ) {
     this.deviceRepository = deviceRepository;
+    this.fileService = fileService;
   }
 
-  public ResponseEntity<Device> create(Device dto) { // , image: any
+  public ResponseEntity<Device> create(CreateDeviceDTO dto) throws IOException {//, MultipartFile img
     System.out.println(dto);
 //    System.out.println(image);
 
-    final String fileName = "";
+    String fileName = "";
 
-//    if (image) {
-//      fileName = this.fileService.createFile(image);
-//    }
-//
-    Device device = deviceRepository.save(dto);
+    if (dto.getImg() != null && !dto.getImg().isEmpty()) {
+      fileName = this.fileService.createFile(dto.getImg());
+    }
+
+    Device deviceDTO = new Device(dto.getName(), dto.getPrice(), dto.getRating(), fileName);
+
+    Device device = deviceRepository.save(deviceDTO);
 //    var device = this.deviceRepository.create({
 //      ...dto,
 //      img: fileName,
