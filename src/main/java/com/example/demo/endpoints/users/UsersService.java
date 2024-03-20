@@ -4,7 +4,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.example.demo.endpoints.DTO.RespDTO;
+import com.example.demo.endpoints.users.dto.CreateUserDTO;
+import com.example.demo.endpoints.users.dto.UpdateUserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,54 +22,100 @@ public class UsersService {
 		this.usersRepository = usersRepository;
 	}
 
-	public List<Users> getUsers() { return usersRepository.findAll(); }
+	public ResponseEntity<RespDTO<Users>> getByLogin(String login) {
+		Users candidate = usersRepository.findUserByEmail(login).orElse(null);
 
-	public Users addUser(Users user) {
-		Optional<Users> userCandidate = usersRepository.findUserByEmail(user.getEmail());
-
-		if (userCandidate.isPresent()) {
-			throw new IllegalStateException("email is already taken");
+		if (candidate == null) {
+			return new ResponseEntity<>(
+					new RespDTO<>("Entity does not exist", null),
+					HttpStatusCode.valueOf(409));
 		}
 
-		return usersRepository.save(user);
+		return new ResponseEntity<>(
+				new RespDTO<>("SUCCESS", candidate),
+				HttpStatusCode.valueOf(200)
+		);
 	}
 
-	public void dellUser(Long userId) {
-		boolean isUserCandidateExist = usersRepository.existsById(userId);
+	public ResponseEntity<RespDTO<List<Users>>> getAll() {
+		return new ResponseEntity<>(
+				new RespDTO<>("SUCCESS", this.usersRepository.findAll()),
+				HttpStatusCode.valueOf(200)
+		);
+	}
 
-		if (!isUserCandidateExist) {
-			throw new IllegalStateException("user does not exist");
+	public ResponseEntity<RespDTO<Users>> create(CreateUserDTO dto) {
+		Optional<Users> candidate = this.usersRepository.findUserByEmail(dto.getEmail());
+
+		if (candidate.isPresent()) {
+			return new ResponseEntity<>(
+					new RespDTO<>("Entity is already exist", null),
+					HttpStatusCode.valueOf(409));
 		}
 
-		usersRepository.deleteById(userId);
+		Users user = new Users(dto.getPassword(), dto.getEmail(), dto.getRole());
+		return new ResponseEntity<>(
+				new RespDTO<>("Created", this.usersRepository.save(user)),
+				HttpStatusCode.valueOf(201)//HttpStatus.CREATED
+		);
 	}
 
 	@Transactional
-	public void updateUser(Long userId, String password, String email) {
-		Users user = usersRepository.findById(userId)
-				.orElseThrow(() -> new IllegalStateException("user does not exist"));
+	public ResponseEntity<String> update(UpdateUserDTO dto) {
+		Users entity = usersRepository.findById(dto.getId()).orElse(null);
+
+		if (entity == null) {
+			return new ResponseEntity<>("Entity does not exist", HttpStatusCode.valueOf(404));
+		}
+
+		boolean isUpdated = false;
 
 		if (
-			password != null &&
-			!password.isEmpty() &&
-			!Objects.equals(user.getPassword(), password)
+			dto.getPassword() != null && ! dto.getPassword().isEmpty()
 		) {
-			user.setPassword(password);
+			/* Hash */
+			entity.setPassword(dto.getPassword());
+			isUpdated = true;
 		}
 
 		if (
-			email != null &&
-			!email.isEmpty() &&
-			!Objects.equals(user.getEmail(), email)
+			dto.getRole() != null && ! dto.getRole().isEmpty()
+			&& ! Objects.equals(entity.getRole(), dto.getRole())
 		) {
+			entity.setRole(dto.getRole());
+			isUpdated = true;
+		}
 
-			Optional<Users> userCandidate = usersRepository.findUserByEmail(email);
+		if (
+			dto.getEmail() != null && ! dto.getEmail().isEmpty()
+			&& ! Objects.equals(entity.getEmail(), dto.getEmail())
+		) {
+			Optional<Users> userCandidate = usersRepository.findUserByEmail(dto.getEmail());
 
 			if (userCandidate.isPresent()) {
-				throw new IllegalStateException("email is already taken");
+				return new ResponseEntity<>("Login/email is already taken", HttpStatusCode.valueOf(400));
 			}
 
-			user.setEmail(email);
+			entity.setEmail(dto.getEmail());
+			isUpdated = true;
 		}
+
+		if (isUpdated) {
+			return new ResponseEntity<>("Successfully Updated", HttpStatusCode.valueOf(200));
+		}
+
+		return new ResponseEntity<>("There is nothing to update", HttpStatusCode.valueOf(400));
+	}
+
+	public ResponseEntity<String> delete(Long id) {
+		boolean isCandidateExist = usersRepository.existsById(id);
+
+		if (! isCandidateExist) {
+			return new ResponseEntity<>("Entity does not exist", HttpStatusCode.valueOf(404));
+		}
+
+		usersRepository.deleteById(id);
+
+		return new ResponseEntity<>("Removed", HttpStatusCode.valueOf(200));
 	}
 }

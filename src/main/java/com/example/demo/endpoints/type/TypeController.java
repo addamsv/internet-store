@@ -1,10 +1,12 @@
 package com.example.demo.endpoints.type;
 
+import com.example.demo.endpoints.DTO.RespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,14 +25,14 @@ public class TypeController {
 
   @GetMapping
   @Operation(
-          description = "Get",
+          description = "Get All Types",
           summary = "Getting type"
   )
   @ApiResponse(
           responseCode = "200",
           useReturnTypeSchema = true
   )
-  public List<Type> getAll() {
+  public ResponseEntity<RespDTO<List<Type>>> getAll() {
     return this.typeService.getAll();
   }
 
@@ -44,23 +46,23 @@ public class TypeController {
           responseCode = "201",
           useReturnTypeSchema = true
   )
-  public Type create(@RequestBody Type type) {
-    return this.typeService.create(type);
+  public ResponseEntity<RespDTO<Type>> create(@RequestBody Type dto) {
+    return this.typeService.create(dto);
   }
 
 
   @DeleteMapping("/{typeId}")
   @SecurityRequirement(name = "BearerAuth")
   @Operation(
-          description = "Delete",
+          description = "Delete Type by ID",
           summary = "Remove Type"
   )
   @ApiResponse(
           responseCode = "200",
           useReturnTypeSchema = true
   )
-  public void delete(@PathVariable("typeId") Long id) {
-    this.typeService.remove(id);
+  public ResponseEntity<String> delete(@PathVariable("typeId") Long id) {
+    return this.typeService.remove(id);
   }
 
   @PutMapping
@@ -73,7 +75,7 @@ public class TypeController {
           responseCode = "200",
           useReturnTypeSchema = true
   )
-  public void update(@RequestBody Type type) {
-    typeService.update(type);
+  public ResponseEntity<String> update(@RequestBody Type type) {
+    return typeService.update(type);
   }
 }

@@ -1,7 +1,10 @@
 package com.example.demo.endpoints.type;
 
+import com.example.demo.endpoints.DTO.RespDTO;
 import com.example.demo.endpoints.brand.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,40 +22,55 @@ public class TypeService {
     this.typeRepository = typeRepository;
   }
 
-  public List<Type> getAll() {
-    return this.typeRepository.findAll();//{ include: { all: true } }
+  public ResponseEntity<RespDTO<List<Type>>> getAll() {
+    return new ResponseEntity<>(
+            new RespDTO<>("All Types", this.typeRepository.findAll()),
+            HttpStatusCode.valueOf(200)
+    );
   }
 
-  public Type create(Type type) {
-    Optional<Type> probe = this.typeRepository.findTypeByName(type.getName());
+  public ResponseEntity<RespDTO<Type>> create(Type dto) {
+    Optional<Type> candidate = this.typeRepository.findTypeByName(dto.getName());
 
-    if (probe.isPresent()) {
-      throw new IllegalStateException("Name is already exist");
+    if (candidate.isPresent()) {
+      return new ResponseEntity<>(
+              new RespDTO<>("Type is already exist", null),
+              HttpStatusCode.valueOf(409));
     }
-    return this.typeRepository.save(type);
+
+    return new ResponseEntity<>(
+            new RespDTO<>("All Brands", this.typeRepository.save(dto)),
+            HttpStatusCode.valueOf(201)//HttpStatus.CREATED
+    );
   }
 
-  public void remove(Long id) {
+  public ResponseEntity<String> remove(Long id) {
     boolean isCandidateExist = typeRepository.existsById(id);
 
-    if (!isCandidateExist) {
-      throw new IllegalStateException("Type does not exist");
+    if (! isCandidateExist) {
+      return new ResponseEntity<>("Type does not exist", HttpStatusCode.valueOf(404));
     }
 
     typeRepository.deleteById(id);
+    return new ResponseEntity<>("Removed", HttpStatusCode.valueOf(200));
   }
 
   @Transactional
-  public void update(Type dto) {
-    Type type = typeRepository.findById(dto.getId())
-            .orElseThrow(() -> new IllegalStateException("Type does not exist"));
+  public ResponseEntity<String> update(Type dto) {
+    Type entity = typeRepository.findById(dto.getId()).orElse(null);
+
+    if (entity == null) {
+      return new ResponseEntity<>("Type does not exist", HttpStatusCode.valueOf(404));
+    }
 
     if (
-      dto.getName() != null
-      && !dto.getName().isEmpty()
-      && !Objects.equals(type.getName(), dto.getName())
+        dto.getName() != null && !dto.getName().isEmpty()
+        && !Objects.equals(entity.getName(), dto.getName())
     ) {
-      type.setName(dto.getName());
+      entity.setName(dto.getName());
+      return new ResponseEntity<>("Successfully Updated", HttpStatusCode.valueOf(200));
     }
+
+    return new ResponseEntity<>("There is nothing to update", HttpStatusCode.valueOf(400));
   }
 }
