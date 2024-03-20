@@ -1,6 +1,9 @@
 package com.example.demo.endpoints.brand;
 
+import com.example.demo.endpoints.DTO.RespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,45 +19,71 @@ public class BrandService {
     this.brandRepository = brandRepository;
   }
 
-  public List<Brand> getAll() {
-    return this.brandRepository.findAll();
+  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
+    return new ResponseEntity<>(
+            new RespDTO<>("SUCCESS", this.brandRepository.findAll()),
+            HttpStatusCode.valueOf(200)
+    );
   }
 
-  public Brand create(Brand brand) {
-    Optional<Brand> probe = this.brandRepository.findBrandByName(brand.getName());
+  public ResponseEntity<RespDTO<Brand>> getByName(String name) {
+    Brand candidate = this.brandRepository.findBrandByName(name).orElse(null);
 
-    if (probe.isPresent()) {
-      throw new IllegalStateException("Name is already exist");
+    if (candidate == null) {
+      return new ResponseEntity<>(
+              new RespDTO<>("Entity does not exist", null),
+              HttpStatusCode.valueOf(409));
     }
 
-    return this.brandRepository.save(brand);
+    return new ResponseEntity<>(
+            new RespDTO<>("SUCCESS", candidate),
+            HttpStatusCode.valueOf(200)
+    );
   }
 
-  public void remove(Long id) {
-    boolean isCandidateExist = brandRepository.existsById(id);
+  public ResponseEntity<RespDTO<Brand>> create(Brand dto) {
+    Optional<Brand> candidate = this.brandRepository.findBrandByName(dto.getName());
 
-    if (!isCandidateExist) {
-      throw new IllegalStateException("Brand does not exist");
+    if (candidate.isPresent()) {
+      return new ResponseEntity<>(
+              new RespDTO<>("Entity is already exist", null),
+              HttpStatusCode.valueOf(409));
     }
 
-    brandRepository.deleteById(id);
+    return new ResponseEntity<>(
+            new RespDTO<>("Created", this.brandRepository.save(dto)),
+            HttpStatusCode.valueOf(201)//HttpStatus.CREATED
+    );
   }
 
   @Transactional
-  public void update(Brand dto) {
-    Brand brand = brandRepository.findById(dto.getId())
-            .orElseThrow(() -> new IllegalStateException("Brand does not exist"));
+  public ResponseEntity<String> update(Brand dto) {
+    Brand entity = brandRepository.findById(dto.getId()).orElse(null);
+
+    if (entity == null) {
+      return new ResponseEntity<>("Entity does not exist", HttpStatusCode.valueOf(404));
+    }
 
     if (
-      dto.getName() != null
-      && !dto.getName().isEmpty()
-      && !Objects.equals(brand.getName(), dto.getName())
+        dto.getName() != null && !dto.getName().isEmpty()
+        && !Objects.equals(entity.getName(), dto.getName())
     ) {
-      brand.setName(dto.getName());
+      entity.setName(dto.getName());
+      return new ResponseEntity<>("Successfully Updated", HttpStatusCode.valueOf(200));
     }
+
+    return new ResponseEntity<>("There is nothing to update", HttpStatusCode.valueOf(400));
   }
 
-  public Brand getBrandByName(String name) {
-    return null;
+  public ResponseEntity<String> delete(Long id) {
+    boolean isCandidateExist = brandRepository.existsById(id);
+
+    if (! isCandidateExist) {
+      return new ResponseEntity<>("Entity does not exist", HttpStatusCode.valueOf(404));
+    }
+
+    brandRepository.deleteById(id);
+
+    return new ResponseEntity<>("Removed", HttpStatusCode.valueOf(200));
   }
 }
