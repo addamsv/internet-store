@@ -1,5 +1,7 @@
 package com.example.demo.guard.jwt;
 
+import com.example.demo.endpoints.roles.Role;
+import com.example.demo.endpoints.roles.RoleRepository;
 import com.example.demo.endpoints.users.Users;
 import com.example.demo.endpoints.users.UsersRepository;
 import jakarta.servlet.FilterChain;
@@ -21,14 +23,17 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final UsersRepository usersRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public JwtAuthenticationFilter(
         JwtService jwtService,
-        UsersRepository usersRepository
+        UsersRepository usersRepository,
+        RoleRepository roleRepository
     ) {
         this.jwtService = jwtService;
         this.usersRepository = usersRepository;
+        this.roleRepository = roleRepository;
     }
     @Override
     protected void doFilterInternal(
@@ -42,6 +47,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String userEmail;
 
+        final String userRole;
+
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -49,6 +56,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUsername(jwt);
+        userRole = jwtService.extractRole(jwt);
 
         if (
                 !userEmail.isEmpty()
@@ -57,14 +65,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Users userDetails = usersRepository.findUserByEmail(userEmail)
                     .orElse(new Users());
 
+            Role role = roleRepository.findRoleByValue(userRole)
+                    .orElse(new Role());
+
+            System.out.println(role);
+
             if (jwtService.isTokenValid(jwt, userDetails)) {
                 SecurityContext context = SecurityContextHolder.createEmptyContext();
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                );
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 context.setAuthentication(authToken);
                 SecurityContextHolder.setContext(context);
-                System.out.println("Зарегался!");
             }
         }
 

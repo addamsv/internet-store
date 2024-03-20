@@ -17,9 +17,9 @@ public class Role {
           generator = "role_sequence"
   )
   @Schema(example = "1", description = "Role ID")
-  private Integer id;
+  private Long id;
 
-  @Schema(example = "ADMIN or USER", description = "unique roles name")
+  @Schema(example = "ROLE_ADMIN", description = "unique roles name")
   @Column(name = "value", nullable = false)
   private String value;
 
@@ -30,17 +30,22 @@ public class Role {
   public Role() {
   }
 
-  public Role(Integer id, String value, String description) {
+  public Role(String value, String description) {
+    this.value = value;
+    this.description = description;
+  }
+
+  public Role(Long id, String value, String description) {
     this.id = id;
     this.value = value;
     this.description = description;
   }
 
-  public Integer getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(Integer id) {
+  public void setId(Long id) {
     this.id = id;
   }
 
@@ -71,4 +76,25 @@ public class Role {
 
 //   @BelongsToMany(() => User, () => UserRoles)
 //   users: User[];
+
+
+
+//   @Table(name = "user_roles")
+//
+//   @Id
+//   @Column({
+//     type: DataType.INTEGER,
+//     unique: true,
+//     autoIncrement: true,
+//     primaryKey: true,
+//   })
+//  Long id;
+//
+//  @ForeignKey(() => Role)
+//  @Column({ type: DataType.INTEGER })
+//  Integer roleId;
+//
+//  @ForeignKey(() => User)
+//  @Column({ type: DataType.INTEGER })
+//  Integer userId;
 }

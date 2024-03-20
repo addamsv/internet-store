@@ -20,13 +20,15 @@ public class UsersConfig {
     CommandLineRunner commandLineRunner(UsersRepository usersRepository) {
         return args -> {
             Users sergey = new Users(
+                    "sergy@a.a",
                     jwtService.getPassHash("Sergey-aaa"),
-                    "sergy@a.a"
+                    "ADMIN"
             );
 
             Users alexandr = new Users(
+                    "alex@a.a",
                     jwtService.getPassHash("Alex-bbb"),
-                    "alex@a.a"
+                    "USER"
             );
 
             usersRepository.saveAll(List.of(sergey, alexandr));

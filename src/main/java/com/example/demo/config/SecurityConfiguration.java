@@ -12,26 +12,36 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+//@EnableMethodSecurity
 public class SecurityConfiguration {
     private static final String[] WHITE_LIST_URL = {
+            "/*",
+//            "/*.htm",
+//            "/*.html",
+            "/images/**",
+            "/js/**",
+            "/css/**",
+
             "/api/v1/auth/**",
 
+            "/api/v1/device/**",
+            "/api/v1/posts/**",
 //            "/api/v1/users/**",
 //            "/api/v1/brand/**",
 //            "/api/v1/type/**",
-            "/api/v1/device/**",
 
             "/v2/api-docs",
             "/v3/api-docs",
@@ -42,7 +52,9 @@ public class SecurityConfiguration {
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html"};
+            "/swagger-ui.html"
+    };
+
     private final JwtAuthenticationFilter jwtAuthFilter;
     private final UsersRepository usersRepository;
 
@@ -58,41 +70,48 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(AbstractHttpConfigurer::disable)
-            .authorizeHttpRequests(req ->
+        .csrf(AbstractHttpConfigurer::disable)
+        .authorizeHttpRequests(req ->
             req
             .requestMatchers(WHITE_LIST_URL)
                 .permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/v1/rating/**")
+                .permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/device/**")
+                .permitAll()
+            .requestMatchers(HttpMethod.GET, "/api/v1/posts/**")
                 .permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/type/**")
                 .permitAll()
             .requestMatchers(HttpMethod.GET, "/api/v1/brand/**")
                 .permitAll()
-//            .requestMatchers("/api/v1/users/**")
-//                .hasAnyRole("ADMIN", "MANAGER")
-//            .requestMatchers(GET, "/api/v1/users/**")
-//                .hasAnyAuthority("ADMIN_READ", "MANAGER_READ")
-//            .requestMatchers(POST, "/api/v1/users/**")
-//                .hasAnyAuthority("ADMIN_CREATE", "MANAGER_CREATE")
-//            .requestMatchers(PUT, "/api/v1/users/**")
-//                .hasAnyAuthority("ADMIN_UPDATE", "MANAGER_UPDATE")
-//            .requestMatchers(DELETE, "/api/v1/users/**")
-//                .hasAnyAuthority("ADMIN_DELETE", "MANAGER_DELETE")
-            .anyRequest()
-            .authenticated()
-            )
+    //            .requestMatchers("/api/v1/users/**")
+    //                .hasAnyRole("ADMIN", "MANAGER")
+    //            .requestMatchers(GET, "/api/v1/users/**")
+    //                .hasAnyAuthority("ADMIN_READ", "MANAGER_READ")
+    //            .requestMatchers(POST, "/api/v1/users/**")
+    //                .hasAnyAuthority("ADMIN_CREATE", "MANAGER_CREATE")
+    //            .requestMatchers(PUT, "/api/v1/users/**")
+    //                .hasAnyAuthority("ADMIN_UPDATE", "MANAGER_UPDATE")
+    //            .requestMatchers(DELETE, "/api/v1/users/**")
+    //                .hasAnyAuthority("ADMIN_DELETE", "MANAGER_DELETE")
+            .anyRequest().authenticated()
+        )
             .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
             .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-//            .logout(logout ->
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+            .logout(LogoutConfigurer::permitAll
 //                logout.logoutUrl("/api/v1/auth/logout")
 //                    .addLogoutHandler(logoutHandler())
 //                    .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-//            );
+            );
 
         return http.build();
     }
+
+//    private LogoutHandler logoutHandler() {
+//        return null;
+//    }
 
 //    @Bean
 //    public LogoutHandler logoutHandler() {
