@@ -24,40 +24,30 @@ public class Users implements UserDetails {
 	private Long id;
 
 	@Schema(example = "pass-1-asa", description = "User Password")
+	@Column(name = "password", nullable = false)
 	private String password;
 
 	@Schema(example = "a@a.a", description = "Users email")
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 
 	@Schema(example = "ADMIN", description = "Users role")
+	@Column(name = "role", nullable = false)
 	private String role = "ADMIN";
-
-	@Schema(example = "a@a.a - pass-1-asa", description = "Processing")
-	@Transient
-	private String field;
 
 	public Users() {}
 
-	public Users(String password, String email) {
+	public Users(String email, String password, String role) {
 		this.password = password;
 		this.email = email;
+		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "Users{" +
-				"id=" + id +
-				", password='" + password + '\'' +
-				", email='" + email + '\'' +
-				", role='" + role + '\'' +
-				", field='" + field + '\'' +
-				'}';
-	}
-
-	public Users(Long id, String password, String email) {
+	public Users(Long id, String email, String password, String role) {
 		this.id = id;
 		this.password = password;
 		this.email = email;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -112,15 +102,22 @@ public class Users implements UserDetails {
 		this.email = email;
 	}
 
-	public String getField() { return "field of " + this.password; }
-
-	public void setField(String field) { this.field = field; }
-
 	public String getRole() {
 		return role;
 	}
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "Users{" +
+				"id=" + id +
+				", password='" + password + '\'' +
+				", email='" + email + '\'' +
+				", role='" + role + '\'' +
+				", authorities='" + getAuthorities().toString() + '\'' +
+				'}';
 	}
 }

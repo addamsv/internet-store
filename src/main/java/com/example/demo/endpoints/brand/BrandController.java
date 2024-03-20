@@ -1,10 +1,12 @@
 package com.example.demo.endpoints.brand;
 
+import com.example.demo.endpoints.DTO.RespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +23,22 @@ public class BrandController {
     this.brandService = brandService;
   }
 
+  @GetMapping(params = "name")
+  @Operation(
+      description = "Get Brand By Name",
+      summary = "Get Brand",
+      responses = {
+          @ApiResponse(
+              description = "Success",
+              responseCode = "200",
+              useReturnTypeSchema = true
+          )
+      }
+  )
+  public ResponseEntity<RespDTO<Brand>> getByName(@RequestParam(value = "name", required = false) String name) {
+    return this.brandService.getByName(name);
+  }
+
   @GetMapping
   @Operation(
           description = "Get All Brands",
@@ -33,15 +51,15 @@ public class BrandController {
                   )
           }
   )
-  public List<Brand> getAll() {
+  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
     return this.brandService.getAll();
   }
 
   @PostMapping
   @SecurityRequirement(name = "BearerAuth")
   @Operation(
-          description = "Post endpoint",
-          summary = "Create Brand",
+          description = "CREATE New Brand",
+          summary = "CreateRoleDTO Brand",
           responses = {
                   @ApiResponse(
                           description = "Success",
@@ -50,8 +68,8 @@ public class BrandController {
                   )
           }
   )
-  public void create(@RequestBody Brand dto ) {
-    this.brandService.create(dto);
+  public ResponseEntity<RespDTO<Brand>> create(@RequestBody Brand dto ) {
+    return this.brandService.create(dto);
   }
 
   @PutMapping
@@ -63,14 +81,14 @@ public class BrandController {
           @ApiResponse(description = "Forbidden", responseCode = "403")
       }
   )
-  public void update(@RequestBody Brand dto) {
-      this.brandService.update(dto);
+  public ResponseEntity<String> update(@RequestBody Brand dto) {
+      return this.brandService.update(dto);
   }
 
   @DeleteMapping(path = "/{brandId}")
   @SecurityRequirement(name = "BearerAuth")
   @Operation(
-          description = "Delete endpoint",
+          description = "DELETE Brand",
           summary = "Remove Brand",
           responses = {
                   @ApiResponse(
@@ -80,7 +98,7 @@ public class BrandController {
                   )
           }
   )
-  public void delete(@PathVariable("brandId") Long id) {
-    this.brandService.remove(id);
+  public ResponseEntity<String> delete(@PathVariable("brandId") Long id) {
+    return this.brandService.delete(id);
   }
 }

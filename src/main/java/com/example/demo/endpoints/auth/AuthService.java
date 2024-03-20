@@ -1,15 +1,19 @@
 package com.example.demo.endpoints.auth;
 
+import com.example.demo.endpoints.DTO.RespDTO;
 import com.example.demo.endpoints.users.Users;
 import com.example.demo.endpoints.users.UsersRepository;
 import com.example.demo.endpoints.users.UsersService;
+import com.example.demo.endpoints.users.dto.CreateUserDTO;
 import com.example.demo.guard.jwt.JwtService;
 import com.example.demo.guard.roles.RolesGuard;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -46,9 +50,10 @@ public class AuthService {
 
     String passHash = jwtService.getPassHash(req.getPassword());
 
-    Users userEntity = new Users(passHash, req.getEmail());
+    CreateUserDTO userEntity = new CreateUserDTO(req.getEmail(), passHash, "USER");
 
-    Users user = this.usersService.addUser(userEntity);
+    ResponseEntity<RespDTO<Users>> resp = this.usersService.create(userEntity);
+    Users user = Objects.requireNonNull(resp.getBody()).getData();
 
     Map<String, Object> clime = new HashMap<>();
     clime.put("role", user.getRole());

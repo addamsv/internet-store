@@ -1,10 +1,8 @@
 package com.example.demo.endpoints.device.dto;
 
-import com.example.demo.endpoints.device.Device;
-import lombok.Data;
+
 import org.springframework.web.multipart.MultipartFile;
 
-@Data
 public class CreateDeviceDTO {
   private String name;
 
@@ -14,19 +12,12 @@ public class CreateDeviceDTO {
 
   private Long typeId;
 
-  public Integer getRating() {
-    return rating;
-  }
-
-  public void setRating(Integer rating) {
-    this.rating = rating;
-  }
-
   private Integer rating;
 
   private MultipartFile img;
 
   private String deviceInfo;
+
 
   public CreateDeviceDTO() {}
 
@@ -44,6 +35,14 @@ public class CreateDeviceDTO {
   }
 
 
+
+  public Integer getRating() {
+    return rating;
+  }
+
+  public void setRating(Integer rating) {
+    this.rating = rating;
+  }
   public String getName() {
     return name;
   }

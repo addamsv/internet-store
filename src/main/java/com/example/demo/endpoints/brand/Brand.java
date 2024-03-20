@@ -16,9 +16,8 @@ public class Brand {
             strategy = GenerationType.SEQUENCE,
             generator = "brand_sequence"
     )
-    @Schema(example = "1", description = "Brand ID")
+    @Schema(example = "5", description = "Brand ID")
     private Long id;
-
 
     @Schema(example = "Mi", description = "Devices Brand")
     @Column(name = "name", nullable = false)
@@ -30,10 +29,10 @@ public class Brand {
 //    @BelongsToMany(() => Type, () => TypeBrand)
 //    types: Type[];
 
-    public Brand(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+//    public Brand(Long id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
     public Brand(String name) {
         this.name = name;
     }

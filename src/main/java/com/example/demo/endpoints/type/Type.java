@@ -6,7 +6,7 @@ import jakarta.persistence.*;;
 
 @Entity
 @Table(name = "type")
-public class Type {// extends Model<Type>
+public class Type {
   @Id
   @SequenceGenerator(
           name = "type_sequence",
@@ -25,11 +25,15 @@ public class Type {// extends Model<Type>
   @Column(name = "name", nullable = false)
   private String name;
 
+  public Type() {}
+
   public Type(String name) {
     this.name = name;
   }
 
-  public Type() {
+  public Type(Long id, String name) {
+    this.id = id;
+    this.name = name;
   }
 
   public Long getId() {
