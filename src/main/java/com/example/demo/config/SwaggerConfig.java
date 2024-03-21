@@ -11,10 +11,10 @@ import io.swagger.v3.oas.annotations.servers.Server;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @OpenAPIDefinition(
-        tags = @Tag(
-                name = "/api/v1/",
-                description = "endpoints"
-        ),
+//        tags = @Tag(
+//                name = "/api/v1/",
+//                description = "endpoints"
+//        ),
         info = @Info(
                 contact = @Contact(
                         name = "Sergy",
