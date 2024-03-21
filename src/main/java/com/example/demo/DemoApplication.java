@@ -8,12 +8,19 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Arrays;
+import java.util.Map;
 
 @SpringBootApplication
 public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
+
+//		Map<String, String> env = System.getenv();
+//		for (String envName : env.keySet()) {
+//			System.out.format("%s=%s%n", envName, env.get(envName));
+//		}
+
 		System.out.println("https://jwt.io/");
 		System.out.println("https://start.spring.io/");
 		System.out.println("http://localhost:5500/swagger-ui/index.html");
