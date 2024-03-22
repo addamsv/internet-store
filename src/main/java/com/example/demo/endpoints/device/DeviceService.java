@@ -1,6 +1,7 @@
 package com.example.demo.endpoints.device;
 
 import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
+import com.example.demo.endpoints.post.dto.CreatePostDto;
 import com.example.demo.files.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -119,11 +120,11 @@ public class DeviceService {
 //    return list;
   }
 
-  public void dell() {
-    throw new Error("Method not implemented.");
+  public ResponseEntity<String> update(Device dto) {
+    return ResponseEntity.ok("UPDATE Method has not implemented.");
   }
 
-  public Device update(Device dto) {
-    throw new Error("Method not implemented.");
+  public ResponseEntity<String> dell(Long id) {
+    return ResponseEntity.ok("DELETE Method has not implemented.");
   }
 }

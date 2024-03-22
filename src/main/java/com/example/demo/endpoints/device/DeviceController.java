@@ -67,17 +67,17 @@ public class DeviceController {
   responses = {
      @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
   })
-  public Device update(@RequestBody() Device dto) {
+  public ResponseEntity<String> update(@RequestBody() Device dto) {
     return this.deviceService.update(dto);
   }
 
-  @DeleteMapping()
+  @DeleteMapping(path = "/{id}")
   @SecurityRequirement(name = "BearerAuth")
   @Operation(description = "DELETE device", summary = "Remove device",
   responses = {
     @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
   })
-  public void delete() {
-    this.deviceService.dell();
+  public ResponseEntity<String> delete(@PathVariable("id") Long id) {
+    return this.deviceService.dell(id);
   }
 }

@@ -1,7 +1,6 @@
 package com.example.demo.endpoints.type;
 
 import com.example.demo.endpoints.DTO.RespDTO;
-import com.example.demo.endpoints.brand.Brand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +38,7 @@ public class TypeService {
     }
 
     return new ResponseEntity<>(
-            new RespDTO<>("All Brands", this.typeRepository.save(dto)),
+            new RespDTO<>("SUCCESS", this.typeRepository.save(dto)),
             HttpStatusCode.valueOf(201)//HttpStatus.CREATED
     );
   }
