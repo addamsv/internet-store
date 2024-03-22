@@ -73,17 +73,10 @@ public class DeviceController {
 
   @DeleteMapping()
   @SecurityRequirement(name = "BearerAuth")
-  @Operation(
-          description = "DELETE",
-          summary = "Remove device",
-          responses = {
-                  @ApiResponse(
-                          description = "Success",
-                          responseCode = "200",
-                          useReturnTypeSchema = true
-                  )
-          }
-  )
+  @Operation(description = "DELETE device", summary = "Remove device",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
+  })
   public void delete() {
     this.deviceService.dell();
   }

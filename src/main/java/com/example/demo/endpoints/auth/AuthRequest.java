@@ -1,9 +1,7 @@
 package com.example.demo.endpoints.auth;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
 
-@Data
 public class AuthRequest {
     @Schema(example = "sergy@a.a", description = "Users email")
     private String email;

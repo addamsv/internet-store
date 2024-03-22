@@ -8,6 +8,15 @@ public class Basket {
   @Id
   Long id;
 
+
+
+
+
+
+
+
+
+
 //   @ForeignKey(() => User)
 //   @Column({ type: DataType.INTEGER })
 //   userId: number;

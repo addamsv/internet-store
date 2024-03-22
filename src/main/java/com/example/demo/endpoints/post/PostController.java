@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-@Tag(name= "Posts")
+@Tag(name= "Post")
 @RestController
-@RequestMapping("api/v1/posts")
+@RequestMapping("api/v1/post")
 @CrossOrigin("*")
 public class PostController {
   private final PostService postService;
@@ -28,7 +28,7 @@ public class PostController {
     this.postService = postService;
   }
 
-  @GetMapping
+  @GetMapping()
   @Operation(description = "Get All Posts", summary = "GET All Posts")
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
   public ResponseEntity<RespDTO<List<Post>>> getAll() {
@@ -50,15 +50,19 @@ public class PostController {
   @SecurityRequirement(name = "BearerAuth")
   @Operation(description = "Update a Post", summary = "UPDATE a Post")
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-  public Post put(@RequestBody() CreatePostDto dto) {
+  public ResponseEntity<String> update(
+        @RequestBody() CreatePostDto dto
+  ) {
     return this.postService.update(dto);
   }
 
-  @DeleteMapping()
+  @DeleteMapping(path = "/{id}")
   @SecurityRequirement(name = "BearerAuth")
   @Operation(description = "Remove a Post", summary = "Remove a Post")
   @ApiResponse(responseCode = "200")
-  public ResponseEntity<String> delete() {
-    return this.postService.dell();
+  public ResponseEntity<String> delete(
+      @PathVariable("id") Long id
+  ) {
+    return this.postService.dell(id);
   }
 }

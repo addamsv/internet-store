@@ -42,11 +42,11 @@ public class PostService {
     return ResponseEntity.ok(post);
   }
 
-  public Post update(CreatePostDto dto) {
-    throw new Error("Method not implemented.");
+  public ResponseEntity<String> update(CreatePostDto dto) {
+    return ResponseEntity.ok("UPDATE Method has not implemented.");
   }
 
-  public ResponseEntity<String> dell() {
-    return ResponseEntity.ok("Method not implemented.");
+  public ResponseEntity<String> dell(Long id) {
+    return ResponseEntity.ok("DELETE Method has not implemented.");
   }
 }

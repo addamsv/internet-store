@@ -1,8 +1,5 @@
 package com.example.demo.endpoints.device.dto;
 
-import lombok.Data;
-
-@Data
 public class GetAllDeviceDTO {
   private Long brandId;
 
