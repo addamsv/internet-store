@@ -30,4 +30,27 @@ public class FilesService {
 
     return fileName;
   }
+
+  public Boolean removeFile(String fileName) throws IOException {
+
+    String fileDir = "src/main/resources/static/images";
+
+    Path uploadPath = Path.of(fileDir);
+
+    Path filePath = uploadPath.resolve(fileName);
+
+    if (!Files.exists(uploadPath)) {
+      Files.createDirectories(uploadPath);
+
+      return false;
+    }
+
+    if (Files.exists(filePath)) {
+      Files.delete(filePath);
+
+      return true;
+    }
+
+    return false;
+  }
 }
