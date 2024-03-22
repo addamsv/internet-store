@@ -1,6 +1,7 @@
 package com.example.demo.endpoints.rating;
 
 import com.example.demo.endpoints.DTO.RespDTO;
+import com.example.demo.endpoints.brand.Brand;
 import com.example.demo.endpoints.post.Post;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -33,7 +34,7 @@ public class RatingController {
     @SecurityRequirement(name = "BearerAuth")
     @Operation(description = "Create Rating", summary = "CREATE Rating")
     @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
-    public Rating create(@RequestBody() Post dto) throws IOException {
+    public ResponseEntity<RespDTO<Rating>> create(@RequestBody() Rating dto) {
         return this.ratingService.create(dto);
     }
 
@@ -41,15 +42,17 @@ public class RatingController {
     @SecurityRequirement(name = "BearerAuth")
     @Operation(description = "Update Rating", summary = "UPDATE Rating")
     @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-    public Rating update(@RequestBody() Post dto) {
+    public ResponseEntity<String> update(@RequestBody Rating dto) {
         return this.ratingService.update(dto);
     }
 
-    @DeleteMapping()
+    @DeleteMapping(path = "/{id}")
     @SecurityRequirement(name = "BearerAuth")
     @Operation(description = "Remove Rating", summary = "REMOVE Rating")
     @ApiResponse(responseCode = "200")
-    public ResponseEntity<String> delete() {
-        return this.ratingService.dell();
+    public ResponseEntity<String> delete(
+            @PathVariable("id") Long id
+    ) {
+        return this.ratingService.delete(id);
     }
 }
