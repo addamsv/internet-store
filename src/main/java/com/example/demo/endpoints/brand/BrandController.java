@@ -74,30 +74,21 @@ public class BrandController {
 
   @PutMapping
   @SecurityRequirement(name = "BearerAuth")
-  @Operation(
-      description = "Update endpoint", summary = "Update Brand",
-      responses = {
-          @ApiResponse(responseCode = "200", description = "Success", useReturnTypeSchema = true),
-          @ApiResponse(description = "Forbidden", responseCode = "403")
-      }
-  )
+  @Operation(description = "Update endpoint", summary = "Update Brand",
+  responses = {
+      @ApiResponse(responseCode = "200", description = "Success", useReturnTypeSchema = true),
+      @ApiResponse(responseCode = "403", description = "Forbidden")
+  })
   public ResponseEntity<String> update(@RequestBody Brand dto) {
       return this.brandService.update(dto);
   }
 
   @DeleteMapping(path = "/{brandId}")
   @SecurityRequirement(name = "BearerAuth")
-  @Operation(
-          description = "DELETE Brand",
-          summary = "Remove Brand",
-          responses = {
-                  @ApiResponse(
-                          description = "Success",
-                          responseCode = "200",
-                          useReturnTypeSchema = true
-                  )
-          }
-  )
+  @Operation(description = "DELETE Brand", summary = "Remove Brand",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
+  })
   public ResponseEntity<String> delete(@PathVariable("brandId") Long id) {
     return this.brandService.delete(id);
   }

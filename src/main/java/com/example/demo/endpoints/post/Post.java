@@ -91,7 +91,7 @@ public class Post {
 
 //  @ForeignKey(() => User)
 //  @Column({ type: DataType.INTEGER })
-//  userId: number;
+//  Long userId;
 //
 //  @BelongsTo(() => User)
 //  author: User;

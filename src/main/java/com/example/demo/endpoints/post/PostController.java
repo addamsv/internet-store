@@ -1,20 +1,16 @@
 package com.example.demo.endpoints.post;
 
 import com.example.demo.endpoints.DTO.RespDTO;
-import com.example.demo.endpoints.device.Device;
-import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
 import com.example.demo.endpoints.post.dto.CreatePostDto;
-import com.example.demo.endpoints.type.Type;
+import com.example.demo.endpoints.post.dto.UpdatePostDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 @Tag(name= "Post")
@@ -42,7 +38,7 @@ public class PostController {
     @ApiResponse(description = "Success", responseCode = "201", useReturnTypeSchema = true)
   })
   @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
-  public ResponseEntity<Post> create(@ModelAttribute CreatePostDto dto) throws IOException {
+  public ResponseEntity<Post> create(@RequestBody CreatePostDto dto) throws IOException {
     return this.postService.create(dto);
   }
 
@@ -51,8 +47,8 @@ public class PostController {
   @Operation(description = "Update a Post", summary = "UPDATE a Post")
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
   public ResponseEntity<String> update(
-        @RequestBody() CreatePostDto dto
-  ) {
+          @RequestBody() UpdatePostDTO dto
+  ) throws IOException {
     return this.postService.update(dto);
   }
 
@@ -62,7 +58,7 @@ public class PostController {
   @ApiResponse(responseCode = "200")
   public ResponseEntity<String> delete(
       @PathVariable("id") Long id
-  ) {
-    return this.postService.dell(id);
+  ) throws IOException {
+    return this.postService.delete(id);
   }
 }

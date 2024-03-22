@@ -1,17 +1,14 @@
 package com.example.demo.endpoints.device;
 
 import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
-import com.example.demo.endpoints.post.dto.CreatePostDto;
 import com.example.demo.files.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,7 +28,6 @@ public class DeviceService {
 
   public ResponseEntity<Device> create(CreateDeviceDTO dto) throws IOException {//, MultipartFile img
     System.out.println(dto);
-//    System.out.println(image);
 
     String fileName = "";
 

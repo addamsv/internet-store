@@ -3,21 +3,21 @@ package com.example.demo.endpoints.post.dto;
 import org.springframework.web.multipart.MultipartFile;
 
 public class CreatePostDto {
+  public Long userId;
+
   public String title;
 
   public String content;
-
-  public Long userId;
 
   public MultipartFile image;
 
   public CreatePostDto() {
   }
 
-  public CreatePostDto(String title, String content, Long userId, MultipartFile image) {
+  public CreatePostDto(Long userId, String title, String content, MultipartFile image) {
+    this.userId = userId;
     this.title = title;
     this.content = content;
-    this.userId = userId;
     this.image = image;
   }
 
