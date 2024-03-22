@@ -1,6 +1,9 @@
 <div align="center">
-    <h1>Java Spring Boot Backend API</h1>
-    <p>
+    <h1>Backend API: Java Spring Boot</h1>
+        <p>
+            Tech: Spring Boot, Hibernate, RDBMS: Postgresql, Auth: Jsonwebtoken, spring-boot-security, Documentation: Swagger
+        </p>    
+        <p>
         <h2>Documentation</h2>
         <img src="./.github/swagger.png" width="200" alt="Doc" />
     </p>
