@@ -34,10 +34,10 @@ public class SecurityConfig {
             "/css/**",
 
             "/api/v1/auth/**",
-            "/api/v1/order/**",
 
+            "/api/v1/order/**",
             "/api/v1/device/**",
-            "/api/v1/posts/**",
+            "/api/v1/post/**",
 //            "/api/v1/users/**",
 //            "/api/v1/brand/**",
 //            "/api/v1/type/**",
