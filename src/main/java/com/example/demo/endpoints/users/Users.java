@@ -1,5 +1,6 @@
 package com.example.demo.endpoints.users;
 
+import com.example.demo.endpoints.address.Address;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,15 +12,8 @@ import java.util.Collection;
 @Table(name = "users")
 public class Users implements UserDetails {
 	@Id
-	@SequenceGenerator(
-			name = "users_sequence",
-			sequenceName = "users_sequence",
-			allocationSize = 1
-	)
-	@GeneratedValue(
-			strategy = GenerationType.SEQUENCE,
-			generator = "users_sequence"
-	)
+	@SequenceGenerator(name = "users_sequence", sequenceName = "users_sequence", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_sequence")
 	@Schema(example = "1", description = "User ID")
 	private Long id;
 
@@ -34,6 +28,29 @@ public class Users implements UserDetails {
 	@Schema(example = "ADMIN", description = "Users role")
 	@Column(name = "role", nullable = false)
 	private String role = "ADMIN";
+
+
+
+
+	/* One-to-one or unidirectional rel-p */
+	@OneToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Users{" +
+				"id=" + id +
+				", password='" + password + '\'' +
+				", email='" + email + '\'' +
+				", role='" + role + '\'' +
+				", address=" + address +
+				'}';
+	}
 
 	public Users() {}
 
@@ -55,6 +72,14 @@ public class Users implements UserDetails {
 	}
 
 	public void setId(Long id) { this.id = id; }
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -110,14 +135,4 @@ public class Users implements UserDetails {
 		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "Users{" +
-				"id=" + id +
-				", password='" + password + '\'' +
-				", email='" + email + '\'' +
-				", role='" + role + '\'' +
-				", authorities='" + getAuthorities().toString() + '\'' +
-				'}';
-	}
 }
