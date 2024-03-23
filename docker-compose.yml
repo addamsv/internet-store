@@ -3,8 +3,9 @@ services:
     container_name: postgres-sql
     image: postgres
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgress
+      POSTGRES_PASSWORD: javascript
+      POSTGRES_DB: spring_db
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
