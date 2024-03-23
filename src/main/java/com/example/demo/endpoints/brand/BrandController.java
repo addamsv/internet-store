@@ -40,34 +40,20 @@ public class BrandController {
   }
 
   @GetMapping
-  @Operation(
-          description = "Get All Brands",
-          summary = "Get all Brands",
-          responses = {
-                  @ApiResponse(
-                          description = "Success",
-                          responseCode = "200",
-                          useReturnTypeSchema = true
-                  )
-          }
-  )
+  @Operation(description = "Get All Brands", summary = "Get all Brands",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
+  })
   public ResponseEntity<RespDTO<List<Brand>>> getAll() {
     return this.brandService.getAll();
   }
 
   @PostMapping
   @SecurityRequirement(name = "BearerAuth")
-  @Operation(
-          description = "CREATE New Brand",
-          summary = "CreateRoleDTO Brand",
-          responses = {
-                  @ApiResponse(
-                          description = "Success",
-                          responseCode = "201",
-                          useReturnTypeSchema = true
-                  )
-          }
-  )
+  @Operation(description = "CREATE New Brand", summary = "CreateRoleDTO Brand",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "201", useReturnTypeSchema = true)
+  })
   public ResponseEntity<RespDTO<Brand>> create(@RequestBody Brand dto ) {
     return this.brandService.create(dto);
   }
