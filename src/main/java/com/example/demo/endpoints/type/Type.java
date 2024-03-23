@@ -1,7 +1,9 @@
 package com.example.demo.endpoints.type;
 
+import com.example.demo.endpoints.brand.Brand;
+import com.example.demo.endpoints.device.Device;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.*;;
+import jakarta.persistence.*;;import java.util.List;
 
 
 @Entity
@@ -24,6 +26,37 @@ public class Type {
   @Schema(example = "Laptop", description = "Type of the Device")
   @Column(name = "name", nullable = false)
   private String name;
+
+  @OneToMany(mappedBy = "type")
+  private List<Device> devices;
+  //  @HasMany(() => Device)
+  //  device: Device[];
+
+  /* Owner */
+  @ManyToMany
+  @JoinTable(
+      name = "type_brand",
+      joinColumns = @JoinColumn(name = "type_id"),
+      inverseJoinColumns = @JoinColumn(name = "brand_id")
+  )
+  private List<Brand> brands;
+  //  @BelongsToMany(() => Brand, () => TypeBrand)
+  //  brands: Brand[];
+
+  //  @Table({ tableName: 'type_brand', createdAt: false, updatedAt: false })
+  //  export class TypeBrand extends Model<TypeBrand> {
+  //    @Column({type: DataType.INTEGER,unique: true, autoIncrement: true,primaryKey: true })
+  //    id: number;
+  //
+  //    @ForeignKey(() => Type)
+  //    @Column({ type: DataType.INTEGER })
+  //    typeId: number;
+  //
+  //    @ForeignKey(() => Brand)
+  //    @Column({ type: DataType.INTEGER })
+  //    brandId: number;
+  //  }
+
 
   public Type() {}
 
@@ -52,35 +85,29 @@ public class Type {
     this.name = name;
   }
 
+  public List<Device> getDevices() {
+    return devices;
+  }
+
+  public void setDevices(List<Device> devices) {
+    this.devices = devices;
+  }
+
+  public List<Brand> getBrands() {
+    return brands;
+  }
+
+  public void setBrands(List<Brand> brands) {
+    this.brands = brands;
+  }
+
   @Override
   public String toString() {
     return "Type{" +
             "id=" + id +
             ", name='" + name + '\'' +
+            ", devices=" + devices +
+            ", brands=" + brands +
             '}';
   }
-
-//  @Table({ tableName: 'type_brand', createdAt: false, updatedAt: false })
-//  export class TypeBrand extends Model<TypeBrand> {
-//    @Column({
-//            type: DataType.INTEGER,
-//            unique: true,
-//            autoIncrement: true,
-//            primaryKey: true,
-//            })
-//    id: number;
-//
-//    @ForeignKey(() => Type)
-//    @Column({ type: DataType.INTEGER })
-//    typeId: number;
-//
-//    @ForeignKey(() => Brand)
-//    @Column({ type: DataType.INTEGER })
-//    brandId: number;
-//  }
-//  @HasMany(() => Device)
-//  device: Device[];
-//
-//  @BelongsToMany(() => Brand, () => TypeBrand)
-//  brands: Brand[];
 }

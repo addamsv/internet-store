@@ -1,5 +1,7 @@
 package com.example.demo.endpoints.device;
 
+import com.example.demo.endpoints.brand.Brand;
+import com.example.demo.endpoints.type.Type;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
@@ -52,6 +54,39 @@ public class Device {
   @Column(name = "img", nullable = false)
   private String img;
 
+  @ManyToOne
+  @JoinColumn(name = "type_id")
+  private Type type;
+//  @ForeignKey(() => Type)
+//  @Column( type: DataType.INTEGER )
+//  Long typeId;
+//  @BelongsTo(() => Type)
+//  Type type;
+
+  @ManyToOne
+  @JoinColumn(name = "brand_id")
+  private Brand brand;
+//  @ForeignKey(() => Brand)
+//  @Column( type: DataType.INTEGER )
+//  Long brandId;
+//  @BelongsTo(() => Brand)
+//  Brand brand;
+
+
+  @Override
+  public String toString() {
+    return "Device{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", price=" + price +
+            ", rating=" + rating +
+            ", img='" + img + '\'' +
+            ", type=" + type +
+            ", brand=" + brand +
+            '}';
+  }
+
+
   public Long getId() {
     return id;
   }
@@ -66,17 +101,6 @@ public class Device {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  @Override
-  public String toString() {
-    return "Device{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", price=" + price +
-            ", rating=" + rating +
-            ", img='" + img + '\'' +
-            '}';
   }
 
   public Integer getPrice() {
@@ -103,28 +127,31 @@ public class Device {
     this.img = img;
   }
 
-//  @ForeignKey(() => Type)
-//  @Column( type: DataType.INTEGER )
-//  typeId: number;
-//
-//  @ForeignKey(() => Brand)
-//  @Column( type: DataType.INTEGER )
-//  brandId: number;
-//
+  public Type getType() {
+    return type;
+  }
+
+  public void setType(Type type) {
+    this.type = type;
+  }
+
+  public Brand getBrand() {
+    return brand;
+  }
+
+  public void setBrand(Brand brand) {
+    this.brand = brand;
+  }
 //  @HasMany(() => DeviceInfo)
 //  deviceInfo: DeviceInfo[];
-//
+
 //  @HasMany(() => Rating)
 //  rate: Rating[];
-//
+
 //  @HasMany(() => BasketDevice)
 //  basketDevice: BasketDevice[];
-//
-//  @BelongsTo(() => Type)
-//  type: Type;
-//
-//  @BelongsTo(() => Brand)
-//  brand: Brand;
+
+
 
 
 
