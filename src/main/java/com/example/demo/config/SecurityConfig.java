@@ -12,12 +12,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
@@ -25,6 +31,19 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @EnableWebSecurity
 //@EnableMethodSecurity
 public class SecurityConfig {
+    private static final List<String> CORS_LIST_URL = List.of(
+            "http://localhost:3000"
+    );
+
+    private static final String[] GET_WHITE_LIST_URL = {
+            "/api/v1/rating/**",
+            "/api/v1/device/**",
+            "/api/v1/posts/**",
+            "/api/v1/type/**",
+            "/api/v1/brand/**",
+            "/api/v1/users/check/**"
+    };
+
     private static final String[] WHITE_LIST_URL = {
             "/*",
 //            "/*.htm",
@@ -66,23 +85,30 @@ public class SecurityConfig {
         this.usersRepository = usersRepository;
     }
 
+
+    public CorsConfigurationSource corsConf() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        //Make the below setting as * to allow connection from any hos
+        corsConfiguration.setAllowedOrigins(CORS_LIST_URL);
+        corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setMaxAge(3600L);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
         .csrf(AbstractHttpConfigurer::disable)
+        .cors(conf -> conf.configurationSource(corsConf()))
         .authorizeHttpRequests(req ->
             req
-            .requestMatchers(WHITE_LIST_URL)
+              .requestMatchers(WHITE_LIST_URL)
                 .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/rating/**")
-                .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/device/**")
-                .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/posts/**")
-                .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/type/**")
-                .permitAll()
-            .requestMatchers(HttpMethod.GET, "/api/v1/brand/**")
+              .requestMatchers(HttpMethod.GET, GET_WHITE_LIST_URL)
                 .permitAll()
     //            .requestMatchers("/api/v1/users/**")
     //                .hasAnyRole("ADMIN", "MANAGER")
@@ -99,44 +125,31 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
             .authenticationProvider(authenticationProvider())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-            .logout(LogoutConfigurer::permitAll
-//                logout.logoutUrl("/api/v1/auth/logout")
-//                    .addLogoutHandler(logoutHandler())
-//                    .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+            .logout((logOut) ->
+              logOut
+                .logoutUrl("/api/v1/auth/logout").permitAll()
+                  .invalidateHttpSession(true)
+                    .deleteCookies("I-STORE")
+                      .logoutSuccessHandler((req, resp, auth) -> SecurityContextHolder.clearContext())
             );
 
         return http.build();
     }
 
-//    private LogoutHandler logoutHandler() {
-//        return null;
-//    }
 
-//    @Bean
-//    public LogoutHandler logoutHandler() {
-//        return new LogoutHandler() {
-//            @Override
-//            public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-//                return;
-//            }
-//        };
-//    }
-
-    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    @Bean
+
     public UserDetailsService userDetailsService() {
         return username -> usersRepository.findUserByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService());//
-        authProvider.setPasswordEncoder(passwordEncoder());//
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 }
