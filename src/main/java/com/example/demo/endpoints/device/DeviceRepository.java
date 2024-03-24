@@ -17,6 +17,6 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
     @Query("SELECT d FROM Device d WHERE d.id = ?1")
     Optional<Device> findByIdPlusDeviceInfo(Long id);
 
-    @Query("SELECT d FROM Device d")
-    Optional<List<Device>> findAndCountAll(Integer limit, Integer offset);
+    @Query("SELECT d FROM Device d ORDER BY d.id ASC LIMIT ?1 OFFSET ?2")
+    List<Device> findAndCountAll(Integer limit, Integer offset);
 }

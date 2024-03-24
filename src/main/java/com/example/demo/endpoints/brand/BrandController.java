@@ -44,7 +44,8 @@ public class BrandController {
   responses = {
     @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
   })
-  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
+//  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
+  public ResponseEntity<List<Brand>> getAll() {
     return this.brandService.getAll();
   }
 

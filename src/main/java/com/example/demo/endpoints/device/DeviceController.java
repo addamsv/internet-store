@@ -1,5 +1,6 @@
 package com.example.demo.endpoints.device;
 
+import com.example.demo.endpoints.DTO.RespRows;
 import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -25,16 +26,16 @@ public class DeviceController {
     this.deviceService = deviceService;
   }
 
-  @GetMapping(params = {"typeId", "brandId", "page", "limit"})
+  @GetMapping()//params = {"typeId", "brandId", "page", "limit"}
   @Operation(description = "Get All", summary = "Getting all devices",
   responses = {
       @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
   })
-  public List<Device> getAll(
-    @RequestParam(required = true, name = "typeId", defaultValue = "0") Long typeId,
-    @RequestParam(required = true, name = "brandId", defaultValue = "0") Long brandId,
-    @RequestParam(required = true, name = "limit", defaultValue = "0") Integer limit,
-    @RequestParam(required = true, name = "page", defaultValue = "0") Integer page
+  public ResponseEntity<RespRows<List<Device>>> getAll(
+    @RequestParam(name = "typeId", defaultValue = "0") Long typeId,
+    @RequestParam(name = "brandId", defaultValue = "0") Long brandId,
+    @RequestParam(name = "limit", defaultValue = "10") Integer limit,
+    @RequestParam(name = "page", defaultValue = "1") Integer page
 //          @RequestParam Map<String, String> reqParam
   ) {
     return this.deviceService.getAll(typeId, brandId, limit, page);

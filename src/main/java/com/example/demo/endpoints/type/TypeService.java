@@ -2,6 +2,7 @@ package com.example.demo.endpoints.type;
 
 import com.example.demo.endpoints.DTO.RespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,11 @@ public class TypeService {
     this.typeRepository = typeRepository;
   }
 
-  public ResponseEntity<RespDTO<List<Type>>> getAll() {
+//  public ResponseEntity<RespDTO<List<Type>>> getAll() {
+  public ResponseEntity<List<Type>> getAll() {
     return new ResponseEntity<>(
-            new RespDTO<>("All Types", this.typeRepository.findAll()),
-            HttpStatusCode.valueOf(200)
+        this.typeRepository.findAll(),
+        HttpStatus.OK
     );
   }
 

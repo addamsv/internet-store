@@ -19,9 +19,11 @@ public class BrandService {
     this.brandRepository = brandRepository;
   }
 
-  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
+//  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
+  public ResponseEntity<List<Brand>> getAll() {
     return new ResponseEntity<>(
-            new RespDTO<>("SUCCESS", this.brandRepository.findAll()),
+//            new RespDTO<>("SUCCESS", this.brandRepository.findAll()),
+            this.brandRepository.findAll(),
             HttpStatusCode.valueOf(200)
     );
   }

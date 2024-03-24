@@ -16,7 +16,7 @@ public class DeviceConfig {
                     "Telipon",
                     1000,
                     10,
-                    "x"
+                    "5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
             );
 
             Device d2 = new Device(
@@ -24,7 +24,7 @@ public class DeviceConfig {
                     "Smartphone",
                     1200,
                     10,
-                    "x"
+                    "5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
             );
 
             deviceRepository.saveAll(List.of(d1, d2));

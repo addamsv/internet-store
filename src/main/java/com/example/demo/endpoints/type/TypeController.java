@@ -27,7 +27,7 @@ public class TypeController {
   @GetMapping
   @Operation(description = "Get All Types", summary = "Getting type")
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-  public ResponseEntity<RespDTO<List<Type>>> getAll() {
+  public ResponseEntity<List<Type>> getAll() {
     return this.typeService.getAll();
   }
 

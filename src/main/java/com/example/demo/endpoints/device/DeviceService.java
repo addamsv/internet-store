@@ -1,5 +1,6 @@
 package com.example.demo.endpoints.device;
 
+import com.example.demo.endpoints.DTO.RespRows;
 import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
 import com.example.demo.files.FilesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,22 +65,17 @@ public class DeviceService {
             .orElseThrow(() -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Device with ID " + id + " not found"));
   }
 
-  public List<Device> getAll(
-          Long typeId, Long brandId, Integer limit, Integer page
+  public ResponseEntity<RespRows<List<Device>>> getAll(
+      Long typeId, Long brandId, Integer limit, Integer page
   ) {
-      System.out.println(typeId);
-      System.out.println(brandId);
-      System.out.println(limit);
-      System.out.println(page);
-      Integer offset = page * limit - limit;
-      System.out.println(offset);
+      int offset = (page * limit) - limit;
+      System.out.println("offset: " + offset);
+      System.out.println("typeId: " + typeId);
+      System.out.println("brandId: " + brandId);
+      System.out.println("limit: " + limit);
+      System.out.println("page: " + page);
 
-      return deviceRepository.findAndCountAll(limit, offset)
-            .orElseThrow(() -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "There are not any devices"));
-//    if (brandId != null && typeId != null) {
-//    }
-//
-//    if (brandId && !typeId) {
+    if (brandId > 0 && typeId == 0) {
 //      List<Device> devices = deviceRepository.findAndCountAll({
 //        include: { all: true },
 //        where: { brandId },
@@ -88,20 +84,22 @@ public class DeviceService {
 //      });
 //
 //      return devices;
-//    }
-//
-//    if (!brandId && typeId) {
+      return null;
+    }
+
+    if (brandId == 0 && typeId > 0) {
 //      List<Device> devices = deviceRepository.findAndCountAll({
 //        include: { all: true },
 //        where: { typeId },
 //        limit,
-//        offset,
-//      });
-//
+//        offset});
+
 //      return devices;
-//    }
-//
-//    if (brandId && typeId) {
+      return null;
+    }
+
+    if (brandId > 0 && typeId > 0) {
+//      return deviceRepository.findAndCountAll(limit, offset);
 //      List<Device> devices = deviceRepository.findAndCountAll({
 //        include: { all: true },
 //        where: { brandId, typeId },
@@ -110,7 +108,21 @@ public class DeviceService {
 //      });
 //
 //      return devices;
-//    }
+      return null;
+    }
+    Long count = deviceRepository.count();
+
+    System.out.println("count: " + count);
+
+    return new ResponseEntity<>(
+        new RespRows<>(
+            "SUCCESS",
+            count + "",
+            deviceRepository.findAndCountAll(limit, offset) // .findAll();
+        ),
+        HttpStatus.OK
+    );
+
 //    List<Device> list = new ArrayList<>();
 //    list.add(new Device(1L, "fake", 1000, 10, ""));
 //    return list;
