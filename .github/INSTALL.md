@@ -29,3 +29,16 @@ short way:
 ```
 $ java -jar demo-0.0.1-SNAPSHOT.jar --server.port=5500
 ```
+or:
+```
+$ ./mvnw package
+```
+if make and test:
+```
+$ ./mvnw package && java -jar demo-0.0.1-SNAPSHOT.jar
+```
+build Docker image:
+```
+docker build -t demo-0.0.1 .
+```
+https://skillbox.ru/media/base/kak_rabotat_s_docker_upakovka_spring_boot_prilozheniya_v_konteyner/
