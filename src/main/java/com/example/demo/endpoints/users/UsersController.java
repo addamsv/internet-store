@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,17 @@ public class UsersController {
 	@Autowired
 	public UsersController(UsersService usersService) {
 		this.usersService = usersService;
+	}
+
+	@GetMapping(path = "/check")
+	@Operation(description = "check User By jwt", summary = "check User By jwt",
+	responses = {
+		@ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
+	})
+	public boolean check(//ResponseEntity<RespDTO<Users>>
+			HttpServletRequest req
+	) {
+		return usersService.check(req);
 	}
 
 	@GetMapping(path = "/{login}")//params = "login"

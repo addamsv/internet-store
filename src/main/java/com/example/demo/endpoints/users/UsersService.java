@@ -1,5 +1,6 @@
 package com.example.demo.endpoints.users;
 
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -7,6 +8,7 @@ import java.util.Optional;
 import com.example.demo.endpoints.DTO.RespDTO;
 import com.example.demo.endpoints.users.dto.CreateUserDTO;
 import com.example.demo.endpoints.users.dto.UpdateUserDTO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -117,5 +119,11 @@ public class UsersService {
 		usersRepository.deleteById(id);
 
 		return new ResponseEntity<>("Removed", HttpStatusCode.valueOf(200));
+	}
+
+	public boolean check(HttpServletRequest req) {//ResponseEntity<RespDTO<Users>>
+		System.out.println(req.getHeader("Authorization"));
+		return false;
+//		return new ResponseEntity<>(new RespDTO<>("Success", null), HttpStatus.OK);
 	}
 }
