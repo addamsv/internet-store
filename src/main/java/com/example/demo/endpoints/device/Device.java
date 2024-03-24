@@ -72,6 +72,11 @@ public class Device {
 //  @BelongsTo(() => Brand)
 //  Brand brand;
 
+//  @HasMany(() => Rating)
+//  rate: Rating[];
+
+  //  @HasMany(() => BasketDevice)
+//  basketDevice: BasketDevice[];
 
   @Override
   public String toString() {
@@ -142,28 +147,12 @@ public class Device {
   public void setBrand(Brand brand) {
     this.brand = brand;
   }
+
+
 //  @HasMany(() => DeviceInfo)
 //  deviceInfo: DeviceInfo[];
 
-//  @HasMany(() => Rating)
-//  rate: Rating[];
-
-//  @HasMany(() => BasketDevice)
-//  basketDevice: BasketDevice[];
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //@Table(name = "device_info")
+//@Table(name = "device_info")
 //  @ApiProperty({ example: '1', description: 'Unique ID' })
 //  @Column({
 //    type: DataType.INTEGER,
