@@ -1,4 +1,4 @@
-package com.example.demo.endpoints.roles.dto;
+package com.example.demo.endpoints.role.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

@@ -14,27 +14,15 @@ public class AuthController {
   public AuthController (AuthService authService) { this.authService = authService; }
 
   @PostMapping("/login")
-  @ApiResponse(
-          responseCode = "201",
-          useReturnTypeSchema = true
-  )
-  @Operation(
-          description = "Post",
-          summary = "Login"
-  )
+  @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
+  @Operation(description = "Post", summary = "Login")
   public AuthResponse login(@RequestBody AuthRequest req) {
     return this.authService.login(req);
   }
 
   @PostMapping("/registration")
-  @ApiResponse(
-          responseCode = "201",
-          useReturnTypeSchema = true
-  )
-  @Operation(
-          description = "Post",
-          summary = "Registration"
-  )
+  @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
+  @Operation(description = "Post", summary = "Registration")
   public AuthResponse registration(@RequestBody AuthRequest req) {
     return this.authService.registration(req);
   }

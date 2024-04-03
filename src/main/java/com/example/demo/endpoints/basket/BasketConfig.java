@@ -10,11 +10,7 @@ public class BasketConfig {
     @Bean
     CommandLineRunner basketCommandLineRunner(BasketRepository basketRepository) {
         return args -> {
-            Basket d1 = new Basket();
-
-            Basket d2 = new Basket();
-
-            basketRepository.saveAll(List.of(d1, d2));
+            basketRepository.saveAll(List.of(new Basket()));
         };
     }
 }

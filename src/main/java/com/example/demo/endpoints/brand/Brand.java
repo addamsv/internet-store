@@ -27,10 +27,15 @@ public class Brand {
     @Column(name = "name", nullable = false)
     private String name;
 
+
+
+
     @OneToMany(mappedBy = "brand")
     private List<Device> devices;
 //    @HasMany(() => Device)
 //    device: Device[];
+
+
 
     @ManyToMany(mappedBy = "brands")
     private List<Type> types;

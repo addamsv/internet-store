@@ -1,7 +1,7 @@
 package com.example.demo.endpoints.brand;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,43 +19,28 @@ public class BrandService {
     this.brandRepository = brandRepository;
   }
 
-//  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
   public ResponseEntity<List<Brand>> getAll() {
-    return new ResponseEntity<>(
-//            new RespDTO<>("SUCCESS", this.brandRepository.findAll()),
-            this.brandRepository.findAll(),
-            HttpStatusCode.valueOf(200)
-    );
+    return new ResponseEntity<>(this.brandRepository.findAll(), HttpStatus.OK);
   }
 
-  public ResponseEntity<RespDTO<Brand>> getByName(String name) {
+  public ResponseEntity<Brand> getByName(String name) {
     Brand candidate = this.brandRepository.findBrandByName(name).orElse(null);
 
     if (candidate == null) {
-      return new ResponseEntity<>(
-              new RespDTO<>("Entity does not exist", null),
-              HttpStatusCode.valueOf(409));
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    return new ResponseEntity<>(
-            new RespDTO<>("SUCCESS", candidate),
-            HttpStatusCode.valueOf(200)
-    );
+    return new ResponseEntity<>(candidate, HttpStatus.OK);
   }
 
-  public ResponseEntity<RespDTO<Brand>> create(Brand dto) {
+  public ResponseEntity<Brand> create(Brand dto) {
     Optional<Brand> candidate = this.brandRepository.findBrandByName(dto.getName());
 
     if (candidate.isPresent()) {
-      return new ResponseEntity<>(
-              new RespDTO<>("Entity is already exist", null),
-              HttpStatusCode.valueOf(409));
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    return new ResponseEntity<>(
-            new RespDTO<>("Created", this.brandRepository.save(dto)),
-            HttpStatusCode.valueOf(201)//HttpStatus.CREATED
-    );
+    return new ResponseEntity<>(this.brandRepository.save(dto), HttpStatus.CREATED);
   }
 
   @Transactional
@@ -63,7 +48,7 @@ public class BrandService {
     Brand entity = brandRepository.findById(dto.getId()).orElse(null);
 
     if (entity == null) {
-      return new ResponseEntity<>("Entity does not exist", HttpStatusCode.valueOf(404));
+      return new ResponseEntity<>("Entity does not exist", HttpStatus.NOT_FOUND);
     }
 
     if (
@@ -71,7 +56,7 @@ public class BrandService {
         && !Objects.equals(entity.getName(), dto.getName())
     ) {
       entity.setName(dto.getName());
-      return new ResponseEntity<>("Successfully Updated", HttpStatusCode.valueOf(200));
+      return new ResponseEntity<>("Successfully Updated", HttpStatus.OK);
     }
 
     return new ResponseEntity<>("There is nothing to update", HttpStatusCode.valueOf(400));
@@ -81,11 +66,11 @@ public class BrandService {
     boolean isCandidateExist = brandRepository.existsById(id);
 
     if (! isCandidateExist) {
-      return new ResponseEntity<>("Entity does not exist", HttpStatusCode.valueOf(404));
+      return new ResponseEntity<>("Entity does not exist", HttpStatus.NOT_FOUND);
     }
 
     brandRepository.deleteById(id);
 
-    return new ResponseEntity<>("Removed", HttpStatusCode.valueOf(200));
+    return new ResponseEntity<>("Removed", HttpStatus.OK);
   }
 }

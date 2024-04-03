@@ -1,6 +1,5 @@
 package com.example.demo.endpoints.basket;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import com.example.demo.endpoints.type.Type;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -26,7 +25,7 @@ public class BasketController {
     @GetMapping
     @Operation(description = "Get All Basket Devices", summary = "Get All Basket Devices")
     @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-    public ResponseEntity<RespDTO<List<Basket>>> getAll() {
+    public ResponseEntity<List<Basket>> getAll() {
         return this.basketService.getAll();
     }
 
@@ -34,7 +33,7 @@ public class BasketController {
     @SecurityRequirement(name = "BearerAuth")
     @Operation(description = "ADD new device", summary = "ADD new device")
     @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
-    public ResponseEntity<RespDTO<Type>> create(@RequestBody Basket dto) {
+    public ResponseEntity<Type> create(@RequestBody Basket dto) {
         return this.basketService.create(dto);
     }
 

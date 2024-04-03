@@ -1,6 +1,5 @@
 package com.example.demo.endpoints.brand;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -24,18 +23,11 @@ public class BrandController {
   }
 
   @GetMapping(params = "name")
-  @Operation(
-      description = "Get Brand By Name",
-      summary = "Get Brand",
-      responses = {
-          @ApiResponse(
-              description = "Success",
-              responseCode = "200",
-              useReturnTypeSchema = true
-          )
-      }
-  )
-  public ResponseEntity<RespDTO<Brand>> getByName(@RequestParam(value = "name", required = false) String name) {
+  @Operation(description = "GET Brand By Name", summary = "GET Brand By Name",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
+  })
+  public ResponseEntity<Brand> getByName(@RequestParam(value = "name", required = false) String name) {
     return this.brandService.getByName(name);
   }
 
@@ -44,7 +36,6 @@ public class BrandController {
   responses = {
     @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
   })
-//  public ResponseEntity<RespDTO<List<Brand>>> getAll() {
   public ResponseEntity<List<Brand>> getAll() {
     return this.brandService.getAll();
   }
@@ -55,7 +46,7 @@ public class BrandController {
   responses = {
     @ApiResponse(description = "Success", responseCode = "201", useReturnTypeSchema = true)
   })
-  public ResponseEntity<RespDTO<Brand>> create(@RequestBody Brand dto ) {
+  public ResponseEntity<Brand> create(@RequestBody Brand dto ) {
     return this.brandService.create(dto);
   }
 
