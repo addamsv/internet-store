@@ -1,12 +1,17 @@
 package com.example.demo.endpoints.users.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 public class CreateUserDTO {
     @Schema(example = "pass-1-asa", description = "User Password")
+    @NotBlank(message = "Pass is mandatory")
     private String password;
 
     @Schema(example = "a@a.a", description = "Users email")
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "should be email")
     private String email;
 
     @Schema(example = "ADMIN", description = "Users role")
