@@ -10,24 +10,33 @@ import java.util.List;
 public class DeviceConfig {
     @Bean
     CommandLineRunner deviceCommandLineRunner(DeviceRepository deviceRepository) {
-        return args -> {
-            Device d1 = new Device(
-                    1L,
-                    "Telipon",
+        return (args) -> {
+            deviceRepository.saveAll(List.of(
+                new Device(
+                    "iPhone 12",
                     1000,
                     10,
-                    "5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
-            );
-
-            Device d2 = new Device(
-                    2L,
-                    "Smartphone",
+                    "images/5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
+                ),
+                new Device(
+                    "Mi 5",
                     1200,
                     10,
-                    "5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
-            );
-
-            deviceRepository.saveAll(List.of(d1, d2));
+                    "images/4c50ddf1-5c4c-4f94-93d8-feac2d6a5877.jpg"
+                ),
+                new Device(
+                    "Xi 1",
+                    1200,
+                    10,
+                    "images/5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
+                ),
+                new Device(
+                    "Samsung S1",
+                    1200,
+                    10,
+                    "images/5b9669b2-fa1b-40d6-a479-a1785c513dd6.jpg"
+                )
+            ));
         };
     }
 }
