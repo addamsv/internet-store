@@ -1,28 +1,30 @@
 package com.example.demo.endpoints.address;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "Address")
 @RestController
 @RequestMapping("api/v1/address")
 @CrossOrigin("*")
 public class AddressController {
-    private AddressService addressService;
+    private final AddressService addressService;
 
+    @Autowired
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
     }
 
     @GetMapping
-    public ResponseEntity<String>get() {
-        return new ResponseEntity<>("Address", HttpStatus.OK);
+    public ResponseEntity<List<Address>>get() {
+        return this.addressService.get();
     }
 
     @PostMapping
@@ -31,7 +33,7 @@ public class AddressController {
     responses = {
         @ApiResponse(description = "Success", responseCode = "201", useReturnTypeSchema = true)
     })
-    public ResponseEntity<RespDTO<Address>> create(@RequestBody Address dto ) {
+    public ResponseEntity<Address> create(@RequestBody Address dto ) {
         return this.addressService.create(dto);
     }
 

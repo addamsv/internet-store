@@ -10,11 +10,10 @@ public class AddressConfig {
     @Bean
     CommandLineRunner addressCommandLineRunner(AddressRepository addressRepository) {
         return args -> {
-            Address d1 = new Address("Pravda", "60", "2220116");
-
-            Address d2 = new Address("Pravda", "30", "2220116");
-
-            addressRepository.saveAll(List.of(d1, d2));
+            addressRepository.saveAll(List.of(
+                new Address("Pravda", "60", "2220116"),
+                new Address("Pravda", "30", "2220116")
+            ));
         };
     }
 }
