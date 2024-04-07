@@ -2,6 +2,7 @@ package com.example.demo.endpoints.device;
 
 import com.example.demo.endpoints.brand.Brand;
 import com.example.demo.endpoints.type.Type;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
@@ -47,7 +48,7 @@ public class Device {
   private Integer price;
 
   @Schema(example = "10", description = "Rating of the Device")
-  @Column(name = "rating", nullable = false)
+  @Column(name = "rating", nullable = true)
   private Integer rating = 0;
 
   @Schema(example = "image.png", description = "Image File Name")
@@ -55,6 +56,8 @@ public class Device {
   private String img;
 
   @ManyToOne
+  /* in order to get rid of jackson mistake */
+  @JsonIgnore
   @JoinColumn(name = "type_id")
   private Type type;
 //  @ForeignKey(() => Type)
@@ -64,6 +67,8 @@ public class Device {
 //  Type type;
 
   @ManyToOne
+  /* in order to get rid of jackson mistake */
+  @JsonIgnore
   @JoinColumn(name = "brand_id")
   private Brand brand;
 //  @ForeignKey(() => Brand)
