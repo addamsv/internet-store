@@ -2,7 +2,10 @@ package com.example.demo.endpoints.device;
 
 import com.example.demo.endpoints.DTO.RespRows;
 import com.example.demo.endpoints.device.dto.CreateDeviceDTO;
+import com.example.demo.endpoints.device.dto.DeviceInfoDTO;
 import com.example.demo.files.FilesService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,36 +30,32 @@ public class DeviceService {
     this.fileService = fileService;
   }
 
-  public ResponseEntity<Device> create(CreateDeviceDTO dto) throws IOException {//, MultipartFile img
+  public ResponseEntity<Device> create(CreateDeviceDTO dto) throws IOException {
     System.out.println(dto);
 
     String fileName = "";
 
     if (dto.getImg() != null && !dto.getImg().isEmpty()) {
-      fileName = this.fileService.createFile(dto.getImg());
+      fileName = "images/" + this.fileService.createFile(dto.getImg());
     }
 
     Device deviceDTO = new Device(dto.getName(), dto.getPrice(), dto.getRating(), fileName);
 
     Device device = deviceRepository.save(deviceDTO);
-//    var device = this.deviceRepository.create({
-//      ...dto,
-//      img: fileName,
-//    });
-//
-//    if (dto.deviceInfo) {
-//      const info = JSON.parse(dto.deviceInfo);
-//
-//      info.forEach((inf) => {
-//        this.deviceInfoRepository.create({
-//          title: inf.title,
-//          description: inf.description,
-//          deviceId: device.id,
-//        });
-//      });
-//    }
-//
-//    return device;
+
+    if (dto.getDeviceInfo() != null && ! dto.getDeviceInfo().isEmpty()) {
+      ObjectMapper mapper = new ObjectMapper();
+      List<DeviceInfoDTO> deviceInfoArr = mapper.readValue(dto.getDeviceInfo(), new TypeReference<>() {});
+
+     for (DeviceInfoDTO deviceInfo : deviceInfoArr) {
+       System.out.println(deviceInfo.getDevice_id());
+       System.out.println(deviceInfo.getTitle());
+       System.out.println(deviceInfo.getDescription());
+//         this.deviceInfoRepository.create(deviceInfo.getTitle(), deviceInfo.getDescription(), device.getId());
+     }
+
+    }
+
     return ResponseEntity.ok(device);
   }
 
@@ -75,57 +74,53 @@ public class DeviceService {
       System.out.println("limit: " + limit);
       System.out.println("page: " + page);
 
-    if (brandId > 0 && typeId == 0) {
-//      List<Device> devices = deviceRepository.findAndCountAll({
-//        include: { all: true },
-//        where: { brandId },
-//        limit,
-//        offset,
-//      });
-//
-//      return devices;
-      return null;
-    }
-
-    if (brandId == 0 && typeId > 0) {
-//      List<Device> devices = deviceRepository.findAndCountAll({
-//        include: { all: true },
-//        where: { typeId },
-//        limit,
-//        offset});
-
-//      return devices;
-      return null;
-    }
-
-    if (brandId > 0 && typeId > 0) {
-//      return deviceRepository.findAndCountAll(limit, offset);
-//      List<Device> devices = deviceRepository.findAndCountAll({
-//        include: { all: true },
-//        where: { brandId, typeId },
-//        limit,
-//        offset,
-//      });
-//
-//      return devices;
-      return null;
-    }
     Long count = deviceRepository.count();
 
     System.out.println("count: " + count);
 
-    return new ResponseEntity<>(
+      /* WHERE BRAND */
+    if (brandId > 0 && typeId == 0) {
+      return new ResponseEntity<>(
         new RespRows<>(
-            "SUCCESS",
-            count + "",
-            deviceRepository.findAndCountAll(limit, offset) // .findAll();
+          "SUCCESS",
+          count,
+          deviceRepository.findAndCountByBrand(brandId, limit, offset)
         ),
         HttpStatus.OK
-    );
+      );
+    }
 
-//    List<Device> list = new ArrayList<>();
-//    list.add(new Device(1L, "fake", 1000, 10, ""));
-//    return list;
+    /* WHERE TYPE */
+    if (brandId == 0 && typeId > 0) {
+      return new ResponseEntity<>(
+        new RespRows<>(
+          "SUCCESS",
+          count,
+          deviceRepository.findAndCountByType(typeId, limit, offset)
+        ),
+        HttpStatus.OK
+      );
+    }
+
+    if (brandId > 0 && typeId > 0) {
+      return new ResponseEntity<>(
+        new RespRows<>(
+          "SUCCESS",
+          count,
+          deviceRepository.findAndCountByBrandAndType(brandId, typeId, limit, offset) // .findAll();
+        ),
+        HttpStatus.OK
+      );
+    }
+
+    return new ResponseEntity<>(
+      new RespRows<>(
+        "SUCCESS",
+        count,
+        deviceRepository.findAndCountAll(limit, offset) // .findAll();
+      ),
+      HttpStatus.OK
+    );
   }
 
   public ResponseEntity<String> update(Device dto) {
