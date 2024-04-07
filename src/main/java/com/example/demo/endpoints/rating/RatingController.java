@@ -1,8 +1,5 @@
 package com.example.demo.endpoints.rating;
 
-import com.example.demo.endpoints.DTO.RespDTO;
-import com.example.demo.endpoints.brand.Brand;
-import com.example.demo.endpoints.post.Post;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -10,7 +7,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 
 @Tag(name = "Rating")
@@ -26,7 +22,7 @@ public class RatingController {
     @GetMapping
     @Operation(description = "Get All Rating", summary = "GET All Rating")
     @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-    public ResponseEntity<RespDTO<List<Rating>>> getAll() {
+    public ResponseEntity<List<Rating>> getAll() {
         return this.ratingService.getAll();
     }
 
@@ -34,7 +30,7 @@ public class RatingController {
     @SecurityRequirement(name = "BearerAuth")
     @Operation(description = "Create Rating", summary = "CREATE Rating")
     @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
-    public ResponseEntity<RespDTO<Rating>> create(@RequestBody() Rating dto) {
+    public ResponseEntity<Rating> create(@RequestBody() Rating dto) {
         return this.ratingService.create(dto);
     }
 

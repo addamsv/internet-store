@@ -1,6 +1,5 @@
 package com.example.demo.endpoints.post;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import com.example.demo.endpoints.post.dto.CreatePostDto;
 import com.example.demo.endpoints.post.dto.UpdatePostDTO;
 import com.example.demo.files.FilesService;
@@ -29,21 +28,18 @@ public class PostService {
     this.postRepository = postRepository;
   }
 
-  public ResponseEntity<RespDTO<Post>> getById(Long id) {
+  public ResponseEntity<Post> getById(Long id) {
     Post post = this.postRepository.findById(id).orElse(null);
 
     if (post == null) {
-      return new ResponseEntity<>(new RespDTO<>("BAD_REQUEST: post doesn't exist", null), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    return new ResponseEntity<>(new RespDTO<>("SUCCESS", post), HttpStatus.OK);
+    return new ResponseEntity<>(post, HttpStatus.OK);
   }
 
-  public ResponseEntity<RespDTO<List<Post>>> getAll() {
-    return new ResponseEntity<>(
-            new RespDTO<>("SUCCESS", this.postRepository.findAll()),
-            HttpStatus.OK
-    );
+  public ResponseEntity<List<Post>> getAll() {
+    return new ResponseEntity<>(this.postRepository.findAll(), HttpStatus.OK);
   }
 
   public ResponseEntity<Post> create(CreatePostDto dto) throws IOException {

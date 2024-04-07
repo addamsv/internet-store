@@ -1,6 +1,6 @@
 package com.example.demo.endpoints.DTO;
 
-public record RespRows<T>(String message, String count, T rows) {
+public record RespRows<T>(String message, Long count, T rows) {
 
     @Override
     public String toString() {

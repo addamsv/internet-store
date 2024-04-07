@@ -1,6 +1,5 @@
 package com.example.demo.endpoints.post;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import com.example.demo.endpoints.post.dto.CreatePostDto;
 import com.example.demo.endpoints.post.dto.UpdatePostDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +26,7 @@ public class PostController {
   @GetMapping()
   @Operation(description = "Get All Posts", summary = "GET All Posts")
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-  public ResponseEntity<RespDTO<List<Post>>> getAll() {
+  public ResponseEntity<List<Post>> getAll() {
     return this.postService.getAll();
   }
 
@@ -46,9 +45,7 @@ public class PostController {
   @SecurityRequirement(name = "BearerAuth")
   @Operation(description = "Update a Post", summary = "UPDATE a Post")
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
-  public ResponseEntity<String> update(
-          @RequestBody() UpdatePostDTO dto
-  ) throws IOException {
+  public ResponseEntity<String> update(@RequestBody() UpdatePostDTO dto) throws IOException {
     return this.postService.update(dto);
   }
 
@@ -56,9 +53,7 @@ public class PostController {
   @SecurityRequirement(name = "BearerAuth")
   @Operation(description = "Remove a Post", summary = "Remove a Post")
   @ApiResponse(responseCode = "200")
-  public ResponseEntity<String> delete(
-      @PathVariable("id") Long id
-  ) throws IOException {
+  public ResponseEntity<String> delete(@PathVariable("id") Long id) throws IOException {
     return this.postService.delete(id);
   }
 }
