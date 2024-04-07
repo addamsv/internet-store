@@ -1,21 +1,18 @@
-package com.example.demo.endpoints.roles;
+package com.example.demo.endpoints.role;
 
+import com.example.demo.endpoints.users.Users;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
 public class Role {
   @Id
-  @SequenceGenerator(
-          name = "role_sequence",
-          sequenceName = "role_sequence",
-          allocationSize = 1
-  )
-  @GeneratedValue(
-          strategy = GenerationType.SEQUENCE,
-          generator = "role_sequence"
-  )
+  @SequenceGenerator(name = "role_sequence", sequenceName = "role_sequence", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_sequence")
   @Schema(example = "1", description = "Role ID")
   private Long id;
 
@@ -27,7 +24,43 @@ public class Role {
   @Column(name = "description", nullable = false)
   private String description;
 
+
+  @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
+  /* in order to avoid a circular calls */
+  @JsonBackReference
+  private List<Users> users;
+
+      /* ---NestJS version--- */
+//   @BelongsToMany(() => User, () => UserRoles)
+//   users: User[];
+
+//   @Table(name = "user_roles")
+//   @Id
+//   @Column({
+//     type: DataType.INTEGER,
+//     unique: true,
+//     autoIncrement: true,
+//     primaryKey: true,
+//   })
+//  Long id;
+//
+//  @ForeignKey(() => Role)
+//  @Column({ type: DataType.INTEGER })
+//  Integer roleId;
+//
+//  @ForeignKey(() => User)
+//  @Column({ type: DataType.INTEGER })
+//  Integer userId;
+
+
+
+
+
   public Role() {
+  }
+
+  public Role(Long id) {
+    this.id = id;
   }
 
   public Role(String value, String description) {
@@ -65,36 +98,22 @@ public class Role {
     this.description = description;
   }
 
+
+  public List<Users> getUsers() {
+    return users;
+  }
+
+  public void setUsers(List<Users> users) {
+    this.users = users;
+  }
+
   @Override
   public String toString() {
     return "Role{" +
             "id=" + id +
             ", value='" + value + '\'' +
             ", description='" + description + '\'' +
+            ", users=" + users +
             '}';
   }
-
-//   @BelongsToMany(() => User, () => UserRoles)
-//   users: User[];
-
-
-
-//   @Table(name = "user_roles")
-//
-//   @Id
-//   @Column({
-//     type: DataType.INTEGER,
-//     unique: true,
-//     autoIncrement: true,
-//     primaryKey: true,
-//   })
-//  Long id;
-//
-//  @ForeignKey(() => Role)
-//  @Column({ type: DataType.INTEGER })
-//  Integer roleId;
-//
-//  @ForeignKey(() => User)
-//  @Column({ type: DataType.INTEGER })
-//  Integer userId;
 }
