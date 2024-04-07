@@ -1,11 +1,7 @@
-package com.example.demo.endpoints.roles;
+package com.example.demo.endpoints.role;
 
-import com.example.demo.endpoints.DTO.RespDTO;
-import com.example.demo.endpoints.roles.dto.CreateRoleDTO;
-import com.example.demo.exceptions.ErrorResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.PatternProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -14,6 +10,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Tag(name = "Role")
 @SecurityRequirement(name = "BearerAuth")
@@ -30,37 +28,48 @@ public class RoleController {
 
   @PostMapping()
   @ApiResponses(value = {
-          @ApiResponse(responseCode = "201", description = "Successfully created"),
-          @ApiResponse(responseCode = "404", description = "Not found - The entity was not found")
+    @ApiResponse(responseCode = "201", description = "Successfully created"),
+    @ApiResponse(responseCode = "404", description = "Not found - The entity was not found")
   })
-  @Operation(
-      description = "Create ROLE",
-      summary = "Returns Created Role"
-  )
-  public ResponseEntity<RespDTO<Role>> create(@RequestBody() Role dto) {
+  @Operation(description = "Create ROLE", summary = "Returns Created Role")
+  public ResponseEntity<Role> create(@RequestBody() Role dto) {
     return roleService.create(dto);
   }
 
   @GetMapping(path = "/{value}")
-  @Operation(
-      description = "GET Role By Value in PATH", summary = "Get Role",
-      responses = {
-          @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true),
-          @ApiResponse(description = "Forbidden", responseCode = "403", useReturnTypeSchema = false)
-      }
-  )
-  public ResponseEntity<RespDTO<Role>> getByValue(@PathVariable("value") String value) {
+  @Operation(description = "GET Role By Value in PATH", summary = "Get Role",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true),
+    @ApiResponse(description = "Forbidden", responseCode = "403", useReturnTypeSchema = false)
+  })
+  public ResponseEntity<Role> getByValue(@PathVariable("value") String value) {
     return roleService.getRoleByValue(value);
   }
 
+  @GetMapping(params = "usersId")
+  @Operation(description = "GET Role By Value in PATH", summary = "Get Role",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true),
+    @ApiResponse(description = "Forbidden", responseCode = "403", useReturnTypeSchema = false)
+  })
+  public ResponseEntity<List<Role>> getByUserId(@RequestParam(value = "usersId") Long userId) {
+    return roleService.getRoleByUserId(userId);
+  }
+
+  @GetMapping
+  @Operation(description = "GET All", summary = "GET All",
+  responses = {
+    @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true),
+  })
+  public ResponseEntity<List<Role>> get() {
+    return roleService.getAll();
+  }
+
   @PutMapping()
-  @Operation(
-      description = "Update endpoint",
-      summary = "Update a Role",
-      responses = {
-          @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
-      }
-  )
+  @Operation(description = "Update endpoint", summary = "Update a Role",
+  responses = {
+      @ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
+  })
   public ResponseEntity<String> update(@RequestBody() Role dto) {
     return roleService.update(dto);
   }
