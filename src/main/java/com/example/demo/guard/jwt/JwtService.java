@@ -1,5 +1,6 @@
 package com.example.demo.guard.jwt;
 
+import com.example.demo.endpoints.role.Role;
 import com.example.demo.endpoints.users.Users;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -8,7 +9,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -18,11 +19,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class JwtService {
-    @Value("${application.security.jwt.secret-key}")
+    @Value("${application.security.jwt.token.secret-key}")
     private String secretKey;
+    @Value("${application.security.jwt.refresh-token.secret-key}")
+    private String refreshSecretKey;
     @Value("${application.security.jwt.salt}")
     private String salt;
-    @Value("${application.security.jwt.expiration}")
+    @Value("${application.security.jwt.token.expiration}")
     private long jwtExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshExpiration;
@@ -39,8 +42,8 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    public String extractRole(String token) {
-        return extractClaim(token, (Claims claim) -> claim.get("role").toString());
+    public List<Role> extractRole(String token) {
+        return extractClaim(token, (Claims claim) -> (List<Role>) claim.get("roles"));
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -48,9 +51,9 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public String generateToken(Users userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
-    }
+//    public String generateToken(Users userDetails) {
+//        return generateToken(new HashMap<>(), userDetails);
+//    }
 
     public String generateToken(
             Map<String, Object> extraClaims,
@@ -59,14 +62,22 @@ public class JwtService {
         return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 
-    public String generateRefreshToken(Users userDetails) {
-        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
+    public String generateRefreshToken(Map<String, Object> extraClaims, Users userDetails) {
+        return buildToken(extraClaims, userDetails, refreshExpiration);
     }
 
     public boolean isTokenValid(String token, Users userDetails) {
         final String username = extractUsername(token);
-        return (username.equals(userDetails.getEmail())) && !isTokenExpired(token);
+        return (username.equals(userDetails.getEmail())) && ! isTokenExpired(token);
     }
+
+    public boolean isRefreshTokenValid(String token, Users userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getEmail())) && ! isTokenExpired(token);
+    }
+
+
+    /** --=== PRIVATE METHODS ===-- */
 
     private String buildToken(
             Map<String, Object> extraClaims,
