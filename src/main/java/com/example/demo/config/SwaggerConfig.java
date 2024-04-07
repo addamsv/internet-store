@@ -22,7 +22,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
                         url = "https://github.com/addamsv"
                 ),
                 title = "The Internet Store",
-                description = "Enhance my spring boot && nest tech skills",
+                description = "Enhance my spring boot skills",
                 version = "1.0.0",
                 license = @License(
                         name = "MIT",
@@ -54,11 +54,18 @@ import io.swagger.v3.oas.annotations.tags.Tag;
         bearerFormat = "JWT",
         in = SecuritySchemeIn.HEADER
 )
-@SecurityScheme(
-        name = "BasicAuth",
-        description = "Login Auth",
-        scheme = "basic",
-        type = SecuritySchemeType.HTTP,
-        in = SecuritySchemeIn.QUERY
-)
+//@SecurityScheme(
+//        name = "BasicAuth",
+//        description = "Login Auth",
+//        scheme = "basic",
+//        type = SecuritySchemeType.HTTP,
+//        in = SecuritySchemeIn.QUERY
+//)
+//@SecurityScheme(
+//        name = "CookieAuth",
+//        description = "JWT Cookie Auth",
+//        type = SecuritySchemeType.APIKEY,
+//        in = SecuritySchemeIn.HEADER,
+//        paramName = "token"
+//)
 public class SwaggerConfig {}

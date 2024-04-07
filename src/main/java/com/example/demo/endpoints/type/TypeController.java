@@ -1,7 +1,5 @@
 package com.example.demo.endpoints.type;
 
-import com.example.demo.endpoints.DTO.Resp;
-import com.example.demo.endpoints.DTO.RespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -35,7 +33,7 @@ public class TypeController {
   @SecurityRequirement(name = "BearerAuth")
   @Operation(description = "CREATE type", summary = "CREATE type")
   @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
-  public ResponseEntity<RespDTO<Type>> create(@RequestBody Type dto) {
+  public ResponseEntity<Type> create(@RequestBody Type dto) {
     return this.typeService.create(dto);
   }
 

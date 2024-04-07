@@ -11,7 +11,6 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,7 +37,7 @@ public class SecurityConfig {
     private static final String[] GET_WHITE_LIST_URL = {
             "/api/v1/rating/**",
             "/api/v1/device/**",
-            "/api/v1/posts/**",
+            "/api/v1/post/**",
             "/api/v1/type/**",
             "/api/v1/brand/**",
             "/api/v1/users/check/**"
@@ -54,9 +53,11 @@ public class SecurityConfig {
 
             "/api/v1/auth/**",
 
-            "/api/v1/order/**",
-            "/api/v1/device/**",
-            "/api/v1/post/**",
+//            "/api/v1/role/**",
+//            "/api/v1/address/**",
+//            "/api/v1/order/**",
+//            "/api/v1/device/**",
+//            "/api/v1/post/**",
 //            "/api/v1/users/**",
 //            "/api/v1/brand/**",
 //            "/api/v1/type/**",
@@ -93,7 +94,7 @@ public class SecurityConfig {
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         corsConfiguration.setAllowCredentials(true);
         corsConfiguration.setAllowedHeaders(List.of("*"));
-        corsConfiguration.setMaxAge(3600L);
+//        corsConfiguration.setMaxAge(3600L);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfiguration);
         return source;
@@ -110,8 +111,8 @@ public class SecurityConfig {
                 .permitAll()
               .requestMatchers(HttpMethod.GET, GET_WHITE_LIST_URL)
                 .permitAll()
-    //            .requestMatchers("/api/v1/users/**")
-    //                .hasAnyRole("ADMIN", "MANAGER")
+              .requestMatchers("/api/v1/users/**")
+                .hasAnyRole("ADMIN", "MANAGER")
     //            .requestMatchers(GET, "/api/v1/users/**")
     //                .hasAnyAuthority("ADMIN_READ", "MANAGER_READ")
     //            .requestMatchers(POST, "/api/v1/users/**")

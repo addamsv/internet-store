@@ -10,15 +10,8 @@ import jakarta.persistence.*;;import java.util.List;
 @Table(name = "type")
 public class Type {
   @Id
-  @SequenceGenerator(
-          name = "type_sequence",
-          sequenceName = "type_sequence",
-          allocationSize = 1
-  )
-  @GeneratedValue(
-          strategy = GenerationType.SEQUENCE,
-          generator = "type_sequence"
-  )
+  @SequenceGenerator(name = "type_sequence", sequenceName = "type_sequence", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "type_sequence")
   @Schema(example = "3", description = "Type ID")
   private Long id;
 
@@ -27,10 +20,12 @@ public class Type {
   @Column(name = "name", nullable = false)
   private String name;
 
+
   @OneToMany(mappedBy = "type")
   private List<Device> devices;
   //  @HasMany(() => Device)
   //  device: Device[];
+
 
   /* Owner */
   @ManyToMany

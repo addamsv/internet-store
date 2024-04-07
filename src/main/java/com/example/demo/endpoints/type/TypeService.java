@@ -1,6 +1,5 @@
 package com.example.demo.endpoints.type;
 
-import com.example.demo.endpoints.DTO.RespDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -22,7 +21,6 @@ public class TypeService {
     this.typeRepository = typeRepository;
   }
 
-//  public ResponseEntity<RespDTO<List<Type>>> getAll() {
   public ResponseEntity<List<Type>> getAll() {
     return new ResponseEntity<>(
         this.typeRepository.findAll(),
@@ -30,30 +28,26 @@ public class TypeService {
     );
   }
 
-  public ResponseEntity<RespDTO<Type>> create(Type dto) {
+  public ResponseEntity<Type> create(Type dto) {
     Optional<Type> candidate = this.typeRepository.findTypeByName(dto.getName());
 
     if (candidate.isPresent()) {
-      return new ResponseEntity<>(
-              new RespDTO<>("Type is already exist", null),
-              HttpStatusCode.valueOf(409));
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    return new ResponseEntity<>(
-            new RespDTO<>("SUCCESS", this.typeRepository.save(dto)),
-            HttpStatusCode.valueOf(201)//HttpStatus.CREATED
-    );
+    return new ResponseEntity<>(this.typeRepository.save(dto), HttpStatus.CREATED);
   }
 
   public ResponseEntity<String> remove(Long id) {
     boolean isCandidateExist = typeRepository.existsById(id);
 
     if (! isCandidateExist) {
-      return new ResponseEntity<>("Type does not exist", HttpStatusCode.valueOf(404));
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     typeRepository.deleteById(id);
-    return new ResponseEntity<>("Removed", HttpStatusCode.valueOf(200));
+
+    return new ResponseEntity<>("Removed", HttpStatus.OK);
   }
 
   @Transactional
@@ -61,7 +55,7 @@ public class TypeService {
     Type entity = typeRepository.findById(dto.getId()).orElse(null);
 
     if (entity == null) {
-      return new ResponseEntity<>("Type does not exist", HttpStatusCode.valueOf(404));
+      return new ResponseEntity<>("Type does not exist", HttpStatus.BAD_REQUEST);
     }
 
     if (
@@ -69,7 +63,7 @@ public class TypeService {
         && !Objects.equals(entity.getName(), dto.getName())
     ) {
       entity.setName(dto.getName());
-      return new ResponseEntity<>("Successfully Updated", HttpStatusCode.valueOf(200));
+      return new ResponseEntity<>("Successfully Updated", HttpStatus.OK);
     }
 
     return new ResponseEntity<>("There is nothing to update", HttpStatusCode.valueOf(400));
