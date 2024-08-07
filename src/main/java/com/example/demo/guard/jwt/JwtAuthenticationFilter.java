@@ -2,6 +2,8 @@ package com.example.demo.guard.jwt;
 
 import com.example.demo.endpoints.users.Users;
 import com.example.demo.endpoints.users.UsersRepository;
+import com.example.demo.exceptions.AuthException;
+import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+
+import static com.example.demo.utils.PrintEx.printTitle;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -48,8 +52,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         jwt = authHeader.substring(7);
+        printTitle("JwtAuthenticationFilter");
+        System.out.println(jwt);
 
-        userEmail = jwtService.extractUsername(jwt);
+        if (jwt.equals("null") || jwt.equals("undefined")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        try {
+            userEmail = jwtService.extractUsername(jwt);
+        } catch (ExpiredJwtException e) {
+            throw new AuthException(e.getMessage());
+        }
 
         if (
             userEmail != null && ! userEmail.isEmpty()
@@ -58,17 +73,22 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             Users userDetails = usersRepository.findUserByEmail(userEmail)
                     .orElse(new Users());
 
-            if (jwtService.isTokenValid(jwt, userDetails)) {
-                SecurityContext context = SecurityContextHolder.createEmptyContext();
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    userDetails,
-                    null,
-                    userDetails.getAuthorities()
-                );
+            try {
+                if (jwtService.isTokenValid(jwt, userDetails)) {
+                    SecurityContext context = SecurityContextHolder.createEmptyContext();
 
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                context.setAuthentication(authToken);
-                SecurityContextHolder.setContext(context);
+                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                    );
+
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    context.setAuthentication(authToken);
+                    SecurityContextHolder.setContext(context);
+                }
+            } catch (ExpiredJwtException e) {
+                throw new AuthException(e.getMessage());
             }
         }
 
