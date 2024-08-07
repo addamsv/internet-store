@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-@DisplayName("Print in Console Utils TEST")
+@DisplayName("PrintEx (Console) Utils TEST")
 public class PrintExTest {
     @Test
     @DisplayName("Header Test")

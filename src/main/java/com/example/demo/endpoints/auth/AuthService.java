@@ -7,6 +7,7 @@ import com.example.demo.endpoints.users.UsersRepository;
 import com.example.demo.guard.jwt.JwtService;
 import com.example.demo.guard.roles.RolesGuard;
 import com.example.demo.mail.MailService;
+import com.example.demo.utils.PrintEx;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,7 @@ public class AuthService {
     return new AuthRegResponse(jwtToken, jwtRefreshToken);
   }
 
+  @Transactional
   public AuthRegResponse registration(AuthRequest req) {
     Optional<Users> userCandidate = usersRepository.findUserByEmail(req.getEmail());
 
@@ -105,6 +107,8 @@ public class AuthService {
     String jwtToken = jwtService.generateToken(clime, user);
 
     String jwtRefreshToken = jwtService.generateRefreshToken(clime, user);
+
+    user.setRefreshToken(jwtRefreshToken);
 
     return new AuthRegResponse(jwtToken, jwtRefreshToken);
   }
@@ -156,12 +160,20 @@ public class AuthService {
   @Transactional
   public AuthRegResponse refresh(String refreshToken) {
     if (refreshToken == null || refreshToken.isEmpty()) {
+
+      PrintEx.printTitle("User is not authorized [1]");
+
       throw new IllegalStateException("User is not authorized");
     }
+
+    PrintEx.printTitle(refreshToken);
 
     Users user = this.usersRepository.findByRefreshToken(refreshToken).orElseThrow(() -> new IllegalStateException("User is not authorized"));
 
     if (! jwtService.isRefreshTokenValid(refreshToken, user)) {
+
+      PrintEx.printTitle("User is not authorized [2]");
+
       throw new IllegalStateException("User is not authorized");
     }
 
@@ -187,8 +199,8 @@ public class AuthService {
 
     cookie.setMaxAge(604800000); // 7 days
     cookie.setHttpOnly(true);
+    cookie.setPath("/api/v1/auth");
 //    cookie.setSecure(true);
-//    cookie.setPath("/user/");
 //    cookie.setDomain("example.com");
 
     response.addCookie(cookie);
@@ -199,8 +211,8 @@ public class AuthService {
 
     cookie.setMaxAge(0); // 0 millisecond
     cookie.setHttpOnly(true);
-//    cookie.setSecure(true);
     cookie.setPath("/api/v1/auth");
+//    cookie.setSecure(true);
 //    cookie.setDomain("example.com");
 
     response.addCookie(cookie);

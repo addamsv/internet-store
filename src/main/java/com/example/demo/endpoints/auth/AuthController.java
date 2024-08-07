@@ -1,5 +1,6 @@
 package com.example.demo.endpoints.auth;
 
+import com.example.demo.utils.PrintEx;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -43,9 +44,8 @@ public class AuthController {
   @ApiResponse(responseCode = "200", useReturnTypeSchema = true)
   @Operation(description = "GET  Logout", summary = "GET Logout")
   public ResponseEntity<String> logout(@CookieValue("refresh-token") String refreshToken, HttpServletResponse response) {
-    System.out.println("+=========================================================+");
-    System.out.println("|                refreshToken logout                      |");
-    System.out.println("+=========================================================+");
+
+    PrintEx.printTitle("refreshToken logout");
     System.out.println(refreshToken);
 
     this.authService.remRefreshToken(response);
@@ -66,19 +66,17 @@ public class AuthController {
   @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
   @Operation(description = "REFRESH TOKEN", summary = "REFRESH TOKEN")
   public AuthRegResponse refresh(@CookieValue("refresh-token") String refreshToken, HttpServletResponse response) {
-    System.out.println("+=========================================================+");
-    System.out.println("|                      old refreshToken                   |");
-    System.out.println("+=========================================================+");
+
+    PrintEx.printTitle("old refreshToken");
     System.out.println(refreshToken);
 
     AuthRegResponse authRegResponse = this.authService.refresh(refreshToken);
 
     this.authService.setRefreshToken(authRegResponse.getRefreshToken(), response);
 
-    System.out.println("+=========================================================+");
-    System.out.println("|                      new refreshToken                   |");
-    System.out.println("+=========================================================+");
+    PrintEx.printTitle("new refreshToken");
     System.out.println(authRegResponse.getRefreshToken());
+
     return authRegResponse;
   }
 
@@ -95,9 +93,8 @@ public class AuthController {
     AuthRegResponse authRegResponse = this.authService.login(request);
 
     this.authService.setRefreshToken(authRegResponse.getRefreshToken(), response);
-    System.out.println("+=========================================================+");
-    System.out.println("|                      refreshToken                       |");
-    System.out.println("+=========================================================+");
+
+    PrintEx.printTitle("refreshToken");
     System.out.println(authRegResponse.getRefreshToken());
 
     return authRegResponse;
@@ -117,6 +114,9 @@ public class AuthController {
     AuthRegResponse authRegResponse = this.authService.registration(request);
 
     this.authService.setRefreshToken(authRegResponse.getRefreshToken(), response);
+
+    PrintEx.printTitle("registration refreshToken");
+    System.out.println(authRegResponse.getRefreshToken());
 
     return authRegResponse;
   }
