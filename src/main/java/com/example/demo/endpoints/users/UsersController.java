@@ -54,7 +54,7 @@ public class UsersController {
 	responses = {
 		@ApiResponse(description = "Success", responseCode = "200", useReturnTypeSchema = true)
 	})
-	public ResponseEntity<List<Users>> getAll() {System.out.println(" ======== refreshToken ========== ");
+	public ResponseEntity<List<Users>> getAll() {
 		return usersService.getAll();
 	}
 

@@ -15,6 +15,7 @@ import java.util.UUID;
 @Configuration
 public class UsersConfig {
     private final JwtService jwtService;
+
     @Autowired
     public UsersConfig(JwtService jwtService) {
         this.jwtService = jwtService;
@@ -27,21 +28,37 @@ public class UsersConfig {
                 new Role("ADMIN", "Administrator")
             );
 
-            Users users = new Users(
+            Users user = new Users(
                 "sergy@a.a",
                 jwtService.getPassHash("Sergey-aaa")
             );
 
-            users.setRoles(List.of(role));
-            users.setActivationLink(UUID.randomUUID().toString());
+            user.setRoles(List.of(role));
+            user.setActivationLink(UUID.randomUUID().toString());
 
             // Next line will insert on USERS and ROLE_USERS tables
-            users = usersRepository.saveAndFlush(users);
+            user = usersRepository.saveAndFlush(user);
 
             // We add the category to the ad object to keep both sides in sync
-            role.setUsers(List.of(users));
+            role.setUsers(List.of(user));
 
 
+
+
+
+            user = new Users(
+                    "a",
+                    jwtService.getPassHash("a")
+            );
+
+            user.setRoles(List.of(role));
+            user.setActivationLink(UUID.randomUUID().toString());
+
+            // Next line will insert on USERS and ROLE_USERS tables
+            user = usersRepository.saveAndFlush(user);
+
+            // We add the category to the ad object to keep both sides in sync
+            role.setUsers(List.of(user));
 
 
 
@@ -50,19 +67,19 @@ public class UsersConfig {
                     new Role("USER", "Average User")
             );
 
-            users = new Users(
+            user = new Users(
                     "alex@a.a",
                     jwtService.getPassHash("aaa")
             );
 
-            users.setRoles(List.of(role));
-            users.setActivationLink(UUID.randomUUID().toString());
+            user.setRoles(List.of(role));
+            user.setActivationLink(UUID.randomUUID().toString());
 
             // Next line will insert on USERS and ROLE_USERS tables
-            users = usersRepository.saveAndFlush(users);
+            user = usersRepository.saveAndFlush(user);
 
             // We add the category to the ad object to keep both sides in sync
-            role.setUsers(List.of(users));
+            role.setUsers(List.of(user));
 
         };
     }
