@@ -1,8 +1,20 @@
 <div align="center">
     <h1>Backend API: Java Spring Boot</h1>
     <p>
-        Tech: Spring Boot, Hibernate, RDBMS: Postgresql, Auth: Jsonwebtoken, Email login activation, spring-boot-security, Documentation: Swagger
-    </p>    
+        FRAMEWORK: Spring Boot, Hibernate
+    </p>
+    <p>
+        RDBMS: Postgresql
+    </p>
+    <p>
+        AUTH: Jsonwebtoken, Email login activation, spring-boot-security
+    </p>
+    <p>
+        DOCUMENTATION: Swagger
+    </p>
+    <p>
+        TEST: JUnit5, Mockito, MockMVC
+    </p>
     <p>
         <h2>Model</h2>
         <img src=".github/images/model.png" width="200" alt="Model" />

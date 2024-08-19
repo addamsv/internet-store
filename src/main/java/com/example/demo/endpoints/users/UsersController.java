@@ -2,7 +2,6 @@ package com.example.demo.endpoints.users;
 
 import java.util.List;
 
-import com.example.demo.endpoints.users.dto.BanDTO;
 import com.example.demo.endpoints.users.dto.CreateUserDTO;
 import com.example.demo.endpoints.users.dto.UpdateUserDTO;
 import io.swagger.v3.oas.annotations.Operation;
