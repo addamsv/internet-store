@@ -8,20 +8,32 @@ public class PrintEx {
     }
 
     public static String printHeader(String title) {
-        String out = "+---";
+        String out = "╭───";
+
+        out = out + stringLength(title);
+
+        return out + "───╮";
+    }
+
+    public static String stringLength(String title) {
+        String out = "";
 
         for (int i = 0; i < title.length(); i++) {
-            out = out + "-";
+            out = out + "─";
         }
 
-        return out + "---+";
+        return out;
     }
 
     public static String printFooter(String title) {
-        return printHeader(title);
+        String out = "╰───";
+
+        out = out + stringLength(title);
+
+        return out + "───╯";
     }
 
     public static String printContent(String title) {
-        return "|   " + title + "   |";
+        return "│   " + title + "   │";
     }
 }
