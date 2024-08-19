@@ -65,39 +65,39 @@ public class AuthController {
   @PostMapping("/refresh")
   @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
   @Operation(description = "REFRESH TOKEN", summary = "REFRESH TOKEN")
-  public AuthRegResponse refresh(@CookieValue("refresh-token") String refreshToken, HttpServletResponse response) {
+  public AuthResponse refresh(@CookieValue("refresh-token") String refreshToken, HttpServletResponse response) {
 
     PrintEx.printTitle("old refreshToken");
     System.out.println(refreshToken);
 
-    AuthRegResponse authRegResponse = this.authService.refresh(refreshToken);
+    AuthResponse authResponse = this.authService.refresh(refreshToken);
 
-    this.authService.setRefreshToken(authRegResponse.getRefreshToken(), response);
+    this.authService.setRefreshToken(authResponse.getRefreshToken(), response);
 
     PrintEx.printTitle("new refreshToken");
-    System.out.println(authRegResponse.getRefreshToken());
+    System.out.println(authResponse.getRefreshToken());
 
-    return authRegResponse;
+    return authResponse;
   }
 
   /**
    * POST login
    *
    * @param request AuthRequest (RequestBody)
-   * @return AuthRegResponse
+   * @return AuthResponse
    */
   @PostMapping("/login")
   @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
   @Operation(description = "Post", summary = "Login")
-  public AuthRegResponse login(@RequestBody AuthRequest request, HttpServletResponse response) {
-    AuthRegResponse authRegResponse = this.authService.login(request);
+  public AuthResponse login(@RequestBody AuthRequest request, HttpServletResponse response) {
+    AuthResponse authResponse = this.authService.login(request);
 
-    this.authService.setRefreshToken(authRegResponse.getRefreshToken(), response);
+    this.authService.setRefreshToken(authResponse.getRefreshToken(), response);
 
     PrintEx.printTitle("refreshToken");
-    System.out.println(authRegResponse.getRefreshToken());
+    System.out.println(authResponse.getRefreshToken());
 
-    return authRegResponse;
+    return authResponse;
   }
 
 
@@ -105,19 +105,19 @@ public class AuthController {
    * POST registration
    *
    * @param request AuthRequest (RequestBody)
-   * @return AuthRegResponse
+   * @return AuthResponse
    */
   @PostMapping("/registration")
   @ApiResponse(responseCode = "201", useReturnTypeSchema = true)
   @Operation(description = "Post", summary = "Registration")
-  public AuthRegResponse registration(@RequestBody AuthRequest request, HttpServletResponse response) {
-    AuthRegResponse authRegResponse = this.authService.registration(request);
+  public AuthResponse registration(@RequestBody AuthRequest request, HttpServletResponse response) {
+    AuthResponse authResponse = this.authService.registration(request);
 
-    this.authService.setRefreshToken(authRegResponse.getRefreshToken(), response);
+    this.authService.setRefreshToken(authResponse.getRefreshToken(), response);
 
     PrintEx.printTitle("registration refreshToken");
-    System.out.println(authRegResponse.getRefreshToken());
+    System.out.println(authResponse.getRefreshToken());
 
-    return authRegResponse;
+    return authResponse;
   }
 }

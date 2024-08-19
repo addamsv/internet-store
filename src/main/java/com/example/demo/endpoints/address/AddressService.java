@@ -24,7 +24,12 @@ public class AddressService {
     }
 
     public ResponseEntity<Address> create(Address dto) {
-        Optional<Address> candidate = this.addressRepository.findByAddress(dto.getZipCode(), dto.getStreet(), dto.getHouseNumber());
+        Optional<Address> candidate = this.addressRepository
+                .findByAddress(
+                        dto.getZipCode(),
+                        dto.getStreet(),
+                        dto.getHouseNumber()
+                );
 
         if (candidate.isPresent()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

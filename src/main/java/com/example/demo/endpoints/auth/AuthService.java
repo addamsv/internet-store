@@ -46,7 +46,7 @@ public class AuthService {
     this.mailService = mailService;
   }
 
-  public AuthRegResponse login(AuthRequest req) {
+  public AuthResponse login(AuthRequest req) {
     Users user = this.validateUser(req);
 
     //   {id: 8, email: "admin2@a.a", roles: [ { id: 1, value: "ADMIN", description: "Administrator" } ] }
@@ -65,11 +65,11 @@ public class AuthService {
 
     usersRepository.save(user);
 
-    return new AuthRegResponse(jwtToken, jwtRefreshToken);
+    return new AuthResponse(jwtToken, jwtRefreshToken);
   }
 
   @Transactional
-  public AuthRegResponse registration(AuthRequest req) {
+  public AuthResponse registration(AuthRequest req) {
     Optional<Users> userCandidate = usersRepository.findUserByEmail(req.getEmail());
 
     if (userCandidate.isPresent()) {
@@ -110,7 +110,7 @@ public class AuthService {
 
     user.setRefreshToken(jwtRefreshToken);
 
-    return new AuthRegResponse(jwtToken, jwtRefreshToken);
+    return new AuthResponse(jwtToken, jwtRefreshToken);
   }
 
   private Users validateUser(AuthRequest req) {
@@ -158,7 +158,7 @@ public class AuthService {
   }
 
   @Transactional
-  public AuthRegResponse refresh(String refreshToken) {
+  public AuthResponse refresh(String refreshToken) {
     if (refreshToken == null || refreshToken.isEmpty()) {
 
       PrintEx.printTitle("User is not authorized [1]");
@@ -191,7 +191,7 @@ public class AuthService {
 
     user.setRefreshToken(jwtRefreshToken);
 
-    return new AuthRegResponse(jwtToken, jwtRefreshToken);
+    return new AuthResponse(jwtToken, jwtRefreshToken);
   }
 
   public void setRefreshToken(String token, HttpServletResponse response) {
