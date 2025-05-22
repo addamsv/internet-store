@@ -1,0 +1,17 @@
+.Tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tabItem {
+  padding: 0 10px;
+  box-shadow: var(--shadow);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.active {
+  border-radius: 4px;
+  border: 1px solid var(--primary-color);
+}

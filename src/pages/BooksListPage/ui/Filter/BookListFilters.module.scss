@@ -1,0 +1,31 @@
+.BookListFilters {
+  position: fixed;
+  max-width: 800px;
+  width: 100%;
+  left: 50%;
+  top: 50px;
+  transform: translate(-50%, 0%);
+  padding: 0 16px;
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  backdrop-filter: blur(16px) saturate(120%);
+  z-index: 1;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.inputClearBtn {
+  padding-top: 7px;
+}
+
+.sortFilter {
+  padding: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.switcher {
+  height: 17px;
+}

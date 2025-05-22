@@ -1,0 +1,17 @@
+.COMPACT {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  margin: 12px auto;
+  flex-wrap: wrap;
+}
+
+.STANDARD {
+  display: block;
+  margin: 15px auto;
+  max-width: 800px;
+}
+
+.List {
+  margin-top: 110px;
+}

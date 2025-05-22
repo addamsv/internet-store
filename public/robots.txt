@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+Disallow: /**.html$
+
+Sitemap: https://internet-store.netlify.app/sitemap.xml
