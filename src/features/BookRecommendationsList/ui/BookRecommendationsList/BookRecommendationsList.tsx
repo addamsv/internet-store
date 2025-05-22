@@ -18,7 +18,7 @@ export const BookRecommendationsList = memo(({ className }: IProps) => {
 
   const { data, isLoading, error } = useBooksRecommendationsList(4);
 
-  if (isLoading || error) {
+  if (isLoading || error || !data) {
     return null;
   }
 

@@ -1,8 +1,16 @@
+import { IBook } from "entities/Book";
 import { RTK } from "resources/lib/restApi/RTK";
+
+interface ICustomReturnDataWithBooks {
+  isSuccess: boolean,
+  statusCode: number,
+  message: string,
+  data: IBook[]
+}
 
 const api = RTK.injectEndpoints({
   endpoints: (build) => ({
-    getBooksRecommendationsList: build.query({
+    getBooksRecommendationsList: build.query<ICustomReturnDataWithBooks, number>({
       query: (limit) => ({
         url: "/books",
         params: {

@@ -7,27 +7,7 @@ import { Text, TextAlign, TextSize } from "shared/Text";
 import { Card } from "shared/Card/Card";
 import { useHelpStepsList } from "../../api/helpStepsAPI";
 import cls from "./HelpStepsList.module.scss";
-
-interface IHelpStepItem {
-  id: number;
-  link: string;
-  title?: string;
-  description?: string;
-}
-
-// const list: IHelpStepItem[] = [
-//   { id: 1, link: "/images/step_1.jpg", title: "step 1", description: "" },
-//   { id: 2, link: "/images/step_2.jpg", title: "step 2", description: "" },
-//   { id: 3, link: "/images/step_3.jpg", title: "step 3", description: "" },
-//   { id: 4, link: "/images/step_4.jpg", title: "step 4", description: "" },
-//   { id: 5, link: "/images/step_5.jpg", title: "step 5", description: "" },
-//   { id: 6, link: "/images/step_6.jpg", title: "step 6", description: "" },
-//   { id: 7, link: "/images/step_7.jpg", title: "step 7", description: "" },
-//   { id: 8, link: "/images/step_8.jpg", title: "step 8", description: "" },
-//   { id: 9, link: "/images/step_9.jpg", title: "step 9", description: "" },
-//   { id: 10, link: "/images/step_10.jpg", title: "step 10", description: "" },
-//   { id: 11, link: "/images/step_11.jpg", title: "step 11", description: "" }
-// ];
+import { IHelpStepItem } from "../../types";
 
 const render = (item: IHelpStepItem) => {
   if (!item.id) {
@@ -45,16 +25,10 @@ const render = (item: IHelpStepItem) => {
   );
 };
 
-interface IProps {
-  className?: string;
-}
+export const HelpStepsList = memo(() => {
+  const { data, isLoading, error } = useHelpStepsList(undefined);
 
-export const HelpStepsList = memo(({ className }: IProps) => {
-  const { t } = useTranslation();
-
-  const { data, isLoading, error } = useHelpStepsList("HelpList");
-
-  if (isLoading || error) {
+  if (isLoading || error || !data) {
     return null;
   }
 
