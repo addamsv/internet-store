@@ -59,7 +59,7 @@ export const BookDetails = memo(({ className, bookId }: IBookDetailsProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (__PROJECT_TYPE__ !== "storybook") {
+    if (__PROJECT_TYPE__ !== "storybook" && __PROJECT_TYPE__ !== "jest") {
       dispatch(fetchBookById({ bookId }));
     }
   }, [bookId, dispatch]);

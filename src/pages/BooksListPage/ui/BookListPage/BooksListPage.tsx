@@ -45,7 +45,7 @@ const BooksListPage = ({ className }: IBooksListPageProps) => {
 
   /** FOR INIT STATE ONLY */
   useEffect(() => {
-    if (__PROJECT_TYPE__ !== "storybook") {
+    if (__PROJECT_TYPE__ !== "storybook" && __PROJECT_TYPE__ !== "jest") {
       dispatch(initBookListPage(searchParams));
     }
   }, [dispatch, isStateInit, searchParams]);

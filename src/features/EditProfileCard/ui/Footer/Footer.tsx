@@ -45,7 +45,13 @@ export const Footer = ({ className }: FooterProps) => {
       <HFlex max justify="center">
         <HFlex max justify="end" className={cls.FooterWrapper}>
           {isEditable && (
-          <Button onClick={onEditClickHandler} theme={ButtonTheme.GREEN}>{t("Редактировать")}</Button>
+          <Button
+            data-testid="EditProfileCard.Button.Edit"
+            onClick={onEditClickHandler}
+            theme={ButtonTheme.GREEN}
+          >
+            {t("Редактировать")}
+          </Button>
           )}
         </HFlex>
       </HFlex>
@@ -57,8 +63,20 @@ export const Footer = ({ className }: FooterProps) => {
       <HFlex max justify="end" gap="8" className={cls.FooterWrapper}>
         {isEditable && (
         <>
-          <Button onClick={onSaveClickHandler} theme={ButtonTheme.GREEN}>{t("Сохранить")}</Button>
-          <Button onClick={onCancelClickHandler} theme={ButtonTheme.RED}>{t("Отмена")}</Button>
+          <Button
+            data-testid="EditProfileCard.Button.Save"
+            onClick={onSaveClickHandler}
+            theme={ButtonTheme.GREEN}
+          >
+            {t("Сохранить")}
+          </Button>
+          <Button
+            data-testid="EditProfileCard.Button.Cancel"
+            onClick={onCancelClickHandler}
+            theme={ButtonTheme.RED}
+          >
+            {t("Отмена")}
+          </Button>
         </>
         )}
       </HFlex>

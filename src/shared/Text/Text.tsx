@@ -12,6 +12,8 @@ interface ITextProps {
   theme?: TextTheme;
   textAlign?: TextAlign;
   textSize?: TextSize;
+
+  "data-testid"?: string;
 }
 
 export const Text = memo(({
@@ -20,7 +22,8 @@ export const Text = memo(({
   title,
   theme = TextTheme.PRIMARY,
   textAlign = TextAlign.CENTER,
-  textSize = TextSize.M
+  textSize = TextSize.M,
+  "data-testid": dataTestId
 }: ITextProps) => {
   const headerMapping: Record<TextSize, THeaderTag> = {
     [TextSize.XXS]: "h6",
@@ -41,8 +44,22 @@ export const Text = memo(({
 
   return (
     <>
-      {title && <Header className={classes(cls.title, mods, [className])}>{title}</Header>}
-      {text && <p className={classes(cls.text, mods, [className])}>{text}</p>}
+      {title && (
+      <Header
+        data-testid={`${dataTestId}.Title`}
+        className={classes(cls.title, mods, [className])}
+      >
+        {title}
+      </Header>
+      )}
+      {text && (
+      <p
+        data-testid={`${dataTestId}.Text`}
+        className={classes(cls.text, mods, [className])}
+      >
+        {text}
+      </p>
+      )}
     </>
   );
 });

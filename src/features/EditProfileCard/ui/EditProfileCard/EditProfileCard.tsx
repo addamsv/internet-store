@@ -83,7 +83,7 @@ export const EditProfileCard = memo(({ className, id }: IProps) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (__PROJECT_TYPE__ !== "storybook") {
+    if (__PROJECT_TYPE__ !== "storybook" && __PROJECT_TYPE__ !== "jest") {
       dispatch(fetchProfile({ userId: Number(id) }));
     }
   }, [dispatch, id]);
@@ -97,7 +97,13 @@ export const EditProfileCard = memo(({ className, id }: IProps) => {
         <Footer />
 
         {validateErr?.length && validateErr.map((err) => (
-          <Text key={err} theme={TextTheme.ERROR} title={t("Ошибка")} text={errTranslateMapping[err]} />
+          <Text
+            key={err}
+            theme={TextTheme.ERROR}
+            title={t("Ошибка")}
+            text={errTranslateMapping[err]}
+            data-testid="EditProfileCardError"
+          />
         ))}
 
         <ProfileCard

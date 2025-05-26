@@ -33,7 +33,7 @@ export const BookDetailsComments = memo(({ className, bookId }: IBookDetailsComm
   }, [dispatch]);
 
   useEffect(() => {
-    if (__PROJECT_TYPE__ !== "storybook") {
+    if (__PROJECT_TYPE__ !== "storybook" && __PROJECT_TYPE__ !== "jest") {
       dispatch(fetchCommentsByBookId({ bookId }));
     }
   }, [dispatch, bookId]);
