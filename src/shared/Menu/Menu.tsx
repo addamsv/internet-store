@@ -3,17 +3,18 @@ import { classes } from "resources/lib/classNames/classes";
 import { Fragment } from "react/jsx-runtime";
 import { ReactNode } from "react";
 import { AppLink } from "shared/AppLink/AppLink";
+import { HFlex } from "shared/Flex/HFlex";
 import cls from "./Menu.module.scss";
 
 type TMenuDropdownDirection = "top" | "right" | "bottom" | "left" | "topRight"
 | "topLeft" | "bottomLeft" | "bottomRight";
 
 export interface IMenuItem {
+  id: number;
   onClick?: () => void;
   href?: string;
   disabled?: boolean;
   content?: ReactNode;
-  id: number;
 }
 
 interface IMenuProps {className?: string;
@@ -27,7 +28,20 @@ export function Menu({ className, items, trigger, direction = "bottom" }: IMenuP
     <M as="div" className={classes(cls.Menu, {}, [className])}>
       <M.Button className={cls.menuButton}>{trigger}</M.Button>
       <M.Items className={classes(cls.menuItems, {}, [cls[direction]])}>
-        {items.map((item) => {
+        {items.map((link) => (
+          <button
+            key={link.id}
+            type="button"
+            disabled={link.disabled}
+            onClick={link.onClick}
+            className={classes(cls.menuItem, { [cls.unavailable]: link.disabled }, [])}
+          >
+            <M.Item key={link.id}>
+              {(link.href) ? (<a href={link.href}>{link.content}</a>) : (<p>{link.content}</p>)}
+            </M.Item>
+          </button>
+        ))}
+        {/* {items.map((item) => {
           const itemFn = ({ active }: {active: boolean}) => (
             <button
               type="button"
@@ -52,7 +66,7 @@ export function Menu({ className, items, trigger, direction = "bottom" }: IMenuP
               {itemFn}
             </M.Item>
           );
-        })}
+        })} */}
         {/* <M.Item disabled>
           <li className={classes(cls.menuItem, { [cls.unavailable]: true }, [])}>*</li>
         </M.Item> */}

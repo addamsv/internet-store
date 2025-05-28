@@ -32,6 +32,12 @@
   color: var(--primary-color);
   opacity: 0.8;
   cursor: pointer;
+  font-weight: bold;
+
+  a {
+    text-decoration: none;
+    color: var(--primary-color);
+  }
 }
 
 .active {

@@ -15,6 +15,7 @@ import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { useNavigate } from "react-router-dom";
 import { RoutePath } from "resources/router/routeConfig/routeConfig";
 import { VFlex } from "shared/Flex/VFlex";
+import { EUserRoles } from "entities/User/model/types/IUserSchema";
 import cls from "./Sidebar.module.scss";
 
 interface SidebarProps {
@@ -93,7 +94,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
 
           <ChangeLangBtn className={cls.sidebarSpacing} />
 
-          {user?.user.roles?.includes("ROLE_ADMIN") && (
+          {user?.user.roles?.includes(EUserRoles.ADMIN) && (
             <Button
               theme={ButtonTheme.GREEN}
               className={classes(cls.DarkThemeBtn, {}, [className])}

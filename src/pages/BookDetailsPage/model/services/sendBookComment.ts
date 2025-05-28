@@ -30,8 +30,6 @@ export const sendBookComment = createAsyncThunk<IComment, string, IThunkConf<str
 
     const body = { bookId: bookDetails?.id, text };
 
-    console.log(body);
-
     try {
       const response = await extra.axios.post<ICustomReturnedData>(
         "/comments",

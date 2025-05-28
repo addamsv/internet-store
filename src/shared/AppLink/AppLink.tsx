@@ -12,6 +12,7 @@ interface AppLinkProps extends LinkProps {
   className?: string;
   theme?: AppLinkTheme;
   children?: ReactNode;
+  ref?: any;
 }
 
 export const AppLink = memo((props: AppLinkProps) => {

@@ -1,16 +1,15 @@
 import { Counter } from "entities/Counter";
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { Page } from "widgets/Page/Page";
 
-const TermsOfUse = () => {
-  const { t } = useTranslation("termsOfUse");
+const AdminPage = () => {
+  const { t } = useTranslation();
   return (
     <Page>
-      <h2 className="App-link">{t("Terms Of Use")}</h2>
+      <h2 className="App-link">{t("Админ панель")}</h2>
       <Counter />
     </Page>
   );
 };
 
-export default TermsOfUse;
+export default AdminPage;

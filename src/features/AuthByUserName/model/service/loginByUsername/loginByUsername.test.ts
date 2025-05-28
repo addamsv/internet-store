@@ -2,6 +2,7 @@ import axios, { AxiosStatic } from "axios";
 import { Dispatch } from "@reduxjs/toolkit";
 import { IStateSchema } from "resources/store/StoreProvider";
 import { userActions } from "entities/User";
+import { EUserRoles } from "entities/User/model/types/IUserSchema";
 import { loginByUsername } from "./loginByUsername";
 
 jest.mock("axios");
@@ -51,7 +52,7 @@ describe("loginByUsername.test", () => {
       user: {
         id: 1,
         name: "john",
-        roles: "ADMIN",
+        roles: [EUserRoles.ADMIN],
         enabled: true
       },
       token: "kjhkj.kjjhkjhuysadx.pppoiysx"

@@ -1,6 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { getBookDetailsData } from "entities/Book";
 import { getUserAuthData } from "entities/User";
+import { EUserRoles } from "entities/User/model/types/IUserSchema";
 
 export const getBookDetailsEditAbility = createSelector(
   getBookDetailsData,
@@ -11,6 +12,6 @@ export const getBookDetailsEditAbility = createSelector(
     }
 
     // return book.owner === user.user.id;
-    return user.user.roles?.includes("ROLE_ADMIN");
+    return user.user.roles?.includes(EUserRoles.ADMIN);
   }
 );

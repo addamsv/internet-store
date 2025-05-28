@@ -3,14 +3,14 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { Page } from "widgets/Page/Page";
 
-const Disclaimer = () => {
-  const { t } = useTranslation("disclaimer");
+const ForbiddenPage = () => {
+  const { t } = useTranslation("");
   return (
     <Page>
-      <h2 className="App-link">{t("Disclaimer")}</h2>
+      <h2 className="App-link">{t("Forbidden")}</h2>
       <Counter />
     </Page>
   );
 };
 
-export default Disclaimer;
+export default ForbiddenPage;

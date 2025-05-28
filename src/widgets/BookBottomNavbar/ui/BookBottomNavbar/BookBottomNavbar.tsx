@@ -19,18 +19,6 @@ const itemsArr: IBookBottomNavbarItem[] = [
     path: RoutePath.dmca_report,
     text: "DMCA_Rep"
   },
-  {
-    path: RoutePath.disclaimer,
-    text: "Disclaimer"
-  },
-  {
-    path: RoutePath.privacy_policy,
-    text: "Privacy Policy"
-  },
-  {
-    path: RoutePath.terms_of_use,
-    text: "Terms of Use"
-  },
 ];
 
 const NavbarItemList = itemsArr.map((item: INavbarItem) => (

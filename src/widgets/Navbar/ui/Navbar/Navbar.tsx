@@ -7,7 +7,7 @@ import { INavbarItem } from "widgets/Navbar/model/types";
 
 import { useTranslation } from "react-i18next";
 import { HFlex } from "shared/Flex/HFlex";
-import { getUserAuthData, userActions } from "entities/User";
+import { getUserAuthData, isUserAdminSelector, isUserManagerSelector, userActions } from "entities/User";
 import UserProfile from "resources/assets/icons/user-profile.svg";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { IMenuItem, Menu } from "shared/Menu/Menu";
@@ -15,6 +15,7 @@ import { ImageJpg } from "shared/ImageJpg/ImageJpg";
 import { RoutePath } from "resources/router/routeConfig/routeConfig";
 import { LoginModal } from "features/AuthByUserName";
 import { useTheme } from "resources/store/ThemeProvider";
+import { EUserRoles } from "entities/User/model/types/IUserSchema";
 import { getNavbarItemsArr } from "../../model/selectors";
 import cls from "./Navbar.module.scss";
 import { NavbarItem } from "../NavbarItem/NavbarItem";
@@ -34,6 +35,10 @@ export const Navbar = memo(({ className }: INavbarProps) => {
   const [isAuthModalWinOpen, setAuthModalWin] = useState(false);
 
   const authData = useSelector(getUserAuthData);
+
+  const isUserAdmin = useSelector(isUserAdminSelector);
+
+  const isUserManager = useSelector(isUserManagerSelector);
 
   const navbarArr = useSelector(getNavbarItemsArr);
 
@@ -84,8 +89,10 @@ export const Navbar = memo(({ className }: INavbarProps) => {
       { content: t("Выйти"), onClick: onLogout, id: 4 }
     );
 
-    if (user?.user.roles?.includes("ROLE_ADMIN")) {
+    // if (user?.user.roles?.includes(EUserRoles.ADMIN)) {
+    if (isUserAdmin || isUserManager) {
       menuProfileList.push(
+        { content: t("админка"), href: RoutePath.admin, id: 7 },
         { content: t("добавить"), href: RoutePath.book_add, id: 5 } // , onClick: onAddBook }
       );
     }
