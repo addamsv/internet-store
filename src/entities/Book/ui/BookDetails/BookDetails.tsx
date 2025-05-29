@@ -7,13 +7,13 @@ import { useSelector } from "react-redux";
 import { Text } from "shared/Text/Text";
 import { TextAlign, TextSize } from "shared/Text";
 import { Skeleton } from "shared/Skeleton/Skeleton";
-import { ImageJpg } from "shared/ImageJpg/ImageJpg";
 import { Button, ButtonTheme } from "shared/Button/Button";
 import EyeIon from "resources/assets/icons/eye.svg";
 import CalendarIon from "resources/assets/icons/calendar.svg";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import { AppLink } from "shared/AppLink/AppLink";
 import { HFlex } from "shared/Flex/HFlex";
+import { CImg } from "shared/CImg";
 import { EBlockOfBookType, TBookBlock } from "../../model/types";
 import { getBookDetailsData,
   getBookDetailsError, getBookDetailsIsLoading
@@ -84,10 +84,16 @@ export const BookDetails = memo(({ className, bookId }: IBookDetailsProps) => {
       <>
         <div className={cls.topWrapper}>
           <div className={cls.image}>
-            <div
+            <CImg
+              className={classes(cls.imageBgImg, {}, [cls.imageBackgroundAnimation])}
+              src={data?.img}
+              fallback={<Skeleton className={classes(cls.imageBgImg, {}, [cls.imageBackgroundAnimation])} />}
+              // errorFallback={<Error />}
+            />
+            {/* <div
               className={classes(cls.imageBgImg, {}, [cls.imageBackgroundAnimation])}
               style={{ backgroundImage: `url("${data?.img}")` }}
-            />
+            /> */}
             {/* ${baseURL} */}
           </div>
           {/* <ImageJpg

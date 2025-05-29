@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { memo } from "react";
 import { IBlockOfBookImage } from "entities/Book/model/types";
 import { Text } from "shared/Text/Text";
+import { CImg } from "shared/CImg";
+import { Skeleton } from "shared/Skeleton/Skeleton";
 import cls from "./BlockOfBookImage.module.scss";
 
 interface IBlockOfBookImageProps {
@@ -15,7 +17,13 @@ const BlockOfBookImage = ({ className, block }: IBlockOfBookImageProps) => {
 
   return (
     <div className={classes(cls.BlockOfBookImage, {}, [className])}>
-      <img src={block.src || "image"} alt={block.title} className={cls.image} />
+      <CImg
+        src={block.src || "image"}
+        alt={block.title}
+        className={cls.image}
+        fallback={<Skeleton className={cls.image} />}
+      />
+      {/* <img src={block.src || "image"} alt={block.title} className={cls.image} /> */}
       {block.title && <Text text={block.title} />}
     </div>
   );

@@ -1,7 +1,6 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { HTMLAttributeAnchorTarget, memo, useCallback, useMemo } from "react";
-import { ImageJpg } from "shared/ImageJpg/ImageJpg";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import EyeIon from "resources/assets/icons/eye.svg";
 import DownloadIon from "resources/assets/icons/download.svg";
@@ -14,6 +13,8 @@ import { AppLink } from "shared/AppLink/AppLink";
 import { Card } from "shared/Card/Card";
 import { VFlex } from "shared/Flex/VFlex";
 import { HFlex } from "shared/Flex/HFlex";
+import { CImg } from "shared/CImg";
+import { Skeleton } from "shared/Skeleton/Skeleton";
 import { EBookListView, EBookOfHashTagType, IBook } from "../../model/types";
 import cls from "./Item.module.scss";
 
@@ -80,7 +81,13 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
           to={`${RoutePath.book_details}${book.id}`}
         >
           <div className={cls.imageWrapper}>
-            <img className={cls.img} src={`${book.img}`} alt="*" />
+            <CImg
+              className={cls.img}
+              src={`${book.img}`}
+              alt="*"
+              fallback={<Skeleton className={cls.img} />}
+            />
+            {/* <img className={cls.img} src={`${book.img}`} alt="*" /> */}
             <p className={cls.createdAt}>{book.PublicationDate}</p>
           </div>
           {/* ${baseURL} */}
@@ -119,7 +126,13 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
         target={target}
         to={`${RoutePath.book_details}${book.id}`}
       >
-        <ImageJpg className={cls.bookImage} alt="*" src={`${book.img}`} />
+        <CImg
+          className={cls.bookImage}
+          src={`${book.img}`}
+          alt="*"
+          fallback={<Skeleton className={cls.bookImage} />}
+        />
+        {/* <ImageJpg className={cls.bookImage} alt="*" src={`${book.img}`} /> */}
         {/* ${baseURL} */}
       </AppLink>
 

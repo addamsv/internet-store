@@ -7,11 +7,12 @@ import { Input } from "shared/Input/Input";
 import { IProfile } from "entities/Profile/model/type/IProfile";
 import { Loader } from "shared/Loader/Loader";
 
-import { ImageJpg } from "shared/ImageJpg/ImageJpg";
+// import { ImageJpg } from "shared/ImageJpg/ImageJpg";
 import { Currency, ECurrency } from "entities/Currency/";
 import { Country, ECountry } from "entities/Country";
 import { VFlex } from "shared/Flex/VFlex";
 import { HFlex } from "shared/Flex/HFlex";
+import { CImg } from "shared/CImg";
 import cls from "./ProfileCard.module.scss";
 
 interface ProfileCardProps {
@@ -55,7 +56,8 @@ export const ProfileCard = ({
     <HFlex max className={classes(cls.ProfileCard, {}, [className])}>
       <VFlex max className={cls.ProfileWrapper}>
 
-        {profileCardData?.image && <ImageJpg src={profileCardData?.image} w={320} />}
+        {/* {profileCardData?.image && <ImageJpg src={profileCardData?.image} w={320} />} */}
+        {profileCardData?.image && <CImg src={profileCardData?.image} style={{ width: 320 }} />}
 
         <Input
           value={profileCardData?.image}

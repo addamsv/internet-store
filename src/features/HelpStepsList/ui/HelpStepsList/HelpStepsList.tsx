@@ -5,6 +5,8 @@ import { HFlex } from "shared/Flex/HFlex";
 import { VFlex } from "shared/Flex/VFlex";
 import { Text, TextAlign, TextSize } from "shared/Text";
 import { Card } from "shared/Card/Card";
+import { CImg } from "shared/CImg";
+import { Skeleton } from "shared/Skeleton/Skeleton";
 import { useHelpStepsList } from "../../api/helpStepsAPI";
 import cls from "./HelpStepsList.module.scss";
 import { IHelpStepItem } from "../../types";
@@ -20,7 +22,13 @@ const render = (item: IHelpStepItem) => {
     <VFlex key={item.id}>
       <Text text={item.title} />
       <Text text={item.description} />
-      <img key={item.link} width={280} height={480} src={`${baseURL}${item.link}`} alt={item.title} />
+      {/* <img key={item.link} width={280} height={480} src={`${baseURL}${item.link}`} alt={item.title} /> */}
+      <CImg
+        style={{ width: 280, height: 480 }}
+        src={`${baseURL}${item.link}`}
+        alt={item.title}
+        fallback={<Skeleton />}
+      />
     </VFlex>
   );
 };

@@ -16,6 +16,8 @@ import { RoutePath } from "resources/router/routeConfig/routeConfig";
 import { LoginModal } from "features/AuthByUserName";
 import { useTheme } from "resources/store/ThemeProvider";
 import { EUserRoles } from "entities/User/model/types/IUserSchema";
+import { CImg } from "shared/CImg";
+import { Skeleton } from "shared/Skeleton/Skeleton";
 import { getNavbarItemsArr } from "../../model/selectors";
 import cls from "./Navbar.module.scss";
 import { NavbarItem } from "../NavbarItem/NavbarItem";
@@ -115,7 +117,15 @@ export const Navbar = memo(({ className }: INavbarProps) => {
           direction="bottomLeft"
           items={menuProfileList}
           trigger={user?.avatar
-            ? <ImageJpg w={18} h={18} src={user?.avatar} className={cls.avatar} />
+            // ? <ImageJpg w={18} h={18} src={user?.avatar} className={cls.avatar} />
+            ? (
+              <CImg
+                style={{ width: 18, height: 18 }}
+                src={user?.avatar}
+                className={cls.avatar}
+                fallback={<Skeleton className={cls.avatar} />}
+              />
+            )
             : <UserProfile width={22} height={22} className={cls.loginSVG} />}
         />
         {/* </HFlex> */}
