@@ -7,7 +7,6 @@
   
   <h2>Frontend App TS React Redux RTK query</h2>
   <p>
-    in progress...
     <br>
     <br>
     <a href="https://github.com/addamsv/internet-store/tree/front-prod">
