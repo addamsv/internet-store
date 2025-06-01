@@ -5,12 +5,12 @@
 
   <br><br>
   
-  <h2>Frontend JavaScript App</h2>
+  <h2>Frontend App TS React Redux RTK query</h2>
   <p>
     in progress...
     <br>
     <br>
-    <a href="https://github.com/addamsv/internet-store/tree/front-product">
+    <a href="https://github.com/addamsv/internet-store/tree/front-prod">
       <img src="./.github/see_more_.png" width="104px" height="43px">
     </a>
   </p>
