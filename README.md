@@ -11,7 +11,7 @@
 - возможность сортировки по типу, бренду
 - возможность поиска товара
 
-<!-- <img src="./.github/projectDescription/images/app.png"> -->
+<img src="./.github/projectDescription/images/app.png">
 
 ## О товаре подробнее
 
