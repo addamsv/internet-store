@@ -62,8 +62,7 @@ const data: IBook = {
 const Template: ComponentStory<typeof BookDetailsPage> = (args) => <BookDetailsPage {...args} />;
 
 export const Light = Template.bind({});
-Light.args = {
-};
+Light.args = {};
 Light.decorators = [ThemeDecorator(Theme.LIGHT), StoreDecorator({
   bookDetails: {
     data
@@ -71,8 +70,7 @@ Light.decorators = [ThemeDecorator(Theme.LIGHT), StoreDecorator({
 })];
 
 export const Dark = Template.bind({});
-Dark.args = {
-};
+Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
   bookDetails: {
     data

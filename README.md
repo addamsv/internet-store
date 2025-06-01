@@ -34,7 +34,7 @@
 
 <br><br>
 
-## Basic и JSON Web Token аутентификация
+## OAUTH2 JWT и Basic аутентификация
 
 <img src="./.github/projectDescription/images/basicAuth.png" width="300px">
 
@@ -43,10 +43,16 @@
 ## FRONT:
 
 Typescript, React, Thunk (async), RTK query, Webpack, FSD, Redux Toolkit;
-<br>
-jest, integration, ui, screenshot tests, ts lint, style lint; Storybook;
-<br>
-CI/CD
+
+## Tests
+
+jest, integration, ui, screenshot tests, ts lint, style lint;
+
+## Storybook:
+
+<img src="./.github/projectDescription/images/storybook.png">
+
+## CI/CD
 
 ## BACK:
 
@@ -99,7 +105,7 @@ npm start
 npm run sb
 ```
 
-# ТEST:
+# Запуск ТEST:
 
 ```bash
 npm run lint

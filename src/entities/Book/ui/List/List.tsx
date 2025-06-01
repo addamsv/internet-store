@@ -17,6 +17,13 @@ interface IListProps {
   onSearchQueryChange?: (query: string) => void;
 }
 
+const Skeletons = (listView: EBookListView) => new Array(listView === EBookListView.COMPACT ? 12 : 5)
+  .fill(0)
+  .map((_, ind) => (
+    // eslint-disable-next-line react/no-array-index-key
+    <ItemSkeleton key={ind} listView={listView} />
+  ));
+
 export const List = memo(({
   className,
   bookArr,
@@ -27,13 +34,6 @@ export const List = memo(({
   onSearchQueryChange
 }: IListProps) => {
   const { t } = useTranslation();
-
-  const Skeletons = (listView: EBookListView) => new Array(listView === EBookListView.COMPACT ? 12 : 5)
-    .fill(0)
-    .map((_, ind) => (
-      // eslint-disable-next-line react/no-array-index-key
-      <ItemSkeleton key={ind} listView={listView} />
-    ));
 
   const render = (book: IBook) => (
     <Item
@@ -57,6 +57,7 @@ export const List = memo(({
   return (
     <div className={classes(cls.List, {}, [className, cls[listView]])}>
       {bookArr.length ? bookArr.map(render) : null}
+
       {isLoading && Skeletons(listView)}
     </div>
   );

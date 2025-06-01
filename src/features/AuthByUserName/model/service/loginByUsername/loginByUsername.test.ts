@@ -34,7 +34,7 @@ describe("loginByUsername.test", () => {
             user: {
               id: 1,
               name: "john",
-              roles: "ADMIN",
+              roles: [EUserRoles.ADMIN],
               enabled: true
             },
             token: "kjhkj.kjjhkjhuysadx.pppoiysx"

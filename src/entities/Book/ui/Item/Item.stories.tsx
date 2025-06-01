@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
+import img from "resources/assets/images/img.png";
 import { EBlockOfBookType, EBookListView, EBookOfHashTagType, IBook } from "../../model/types";
 import { Item } from "./Item";
 
@@ -22,7 +23,7 @@ const book: IBook = {
   Title: "Fahrenheit 451",
   Author: ["Ray Bradbury"],
   link: "https://fake.url",
-  img: "http://localhost:3000/images/Fahrenheit451.jpg",
+  img,
   views: 1,
   PublicationDate: "1.12.2025",
   Genres: [

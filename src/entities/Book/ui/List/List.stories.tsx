@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { EBlockOfBookType, EBookListView, EBookOfHashTagType, IBook } from "entities/Book/model/types";
+import img from "resources/assets/images/img.png";
 import { List } from "./List";
 
 export default {
@@ -23,7 +24,7 @@ const books: IBook[] = [
     Title: "Fahrenheit 451",
     Author: ["Ray Bradbury"],
     link: "https://fake.url",
-    img: "http://localhost:3000/images/Fahrenheit451.jpg",
+    img,
     views: 1,
     PublicationDate: "1.12.2025",
     Genres: [
@@ -69,7 +70,7 @@ const books: IBook[] = [
     Title: "Dandelion Wine",
     Author: ["Ray Bradbury"],
     link: "https://fake.url",
-    img: "http://localhost:3000/images/DandelionWine.jpg",
+    img,
     views: 1,
     PublicationDate: "1.12.2025",
     Genres: [
@@ -100,7 +101,7 @@ const books: IBook[] = [
     Title: "Dandelion Wine",
     Author: ["Ray Bradbury"],
     link: "https://fake.url",
-    img: "http://localhost:3000/images/DandelionWine.jpg",
+    img,
     views: 1,
     PublicationDate: "1.12.2025",
     Genres: [
@@ -131,7 +132,7 @@ const books: IBook[] = [
     Title: "Dandelion Wine",
     Author: ["Ray Bradbury"],
     link: "https://fake.url",
-    img: "http://localhost:3000/images/DandelionWine.jpg",
+    img,
     views: 1,
     PublicationDate: "1.12.2025",
     Genres: [

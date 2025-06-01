@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { IComment } from "entities/Comment/model/types";
+import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreDecorator";
 import { CommentItem } from "./CommentItem";
 
 export default {
@@ -31,15 +32,16 @@ export const Light = Template.bind({});
 Light.args = {
   comment
 };
+Light.decorators = [StoreDecorator({})];
 
 export const Dark = Template.bind({});
 Dark.args = {
   comment
 };
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];
 
 export const DarkLoading = Template.bind({});
 DarkLoading.args = {
   isLoading: true
 };
-DarkLoading.decorators = [ThemeDecorator(Theme.DARK)];
+DarkLoading.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];

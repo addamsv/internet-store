@@ -1,4 +1,3 @@
-import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import App from "app/App";
 import { ThemeProvider } from "resources/store/ThemeProvider";
@@ -7,7 +6,17 @@ import { ErrorBoundary } from "shared/Error";
 import { StoreProvider } from "resources/store/StoreProvider";
 import { ErrorWidget } from "widgets/Error";
 
-render(
+import { createRoot } from "react-dom/client";
+
+const container = document.getElementById("root");
+
+if (!container) {
+  throw new Error("Could not found root container");
+}
+
+const root = createRoot(container);
+
+root.render(
   <StoreProvider>
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ErrorBoundary WidgetOfError={ErrorWidget}>
@@ -16,7 +25,5 @@ render(
         </ThemeProvider>
       </ErrorBoundary>
     </BrowserRouter>
-  </StoreProvider>,
-
-  document.getElementById("root")
+  </StoreProvider>
 );
