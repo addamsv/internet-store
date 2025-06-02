@@ -22,7 +22,7 @@ import { Footer } from "../Footer/Footer";
 
 interface IProps {
   className?: string;
-  id: string;
+  id: string | undefined;
 }
 
 const reducers: ReducerListT = {

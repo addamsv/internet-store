@@ -25,13 +25,13 @@ const BookDetailsPage = ({ className }: IBookDetailsPageProps) => {
 
   const { id } = useParams<{id: string}>();
 
-  if (!id) {
-    return (
-      <Page className={classes(cls.BookDetailsPage, {}, [className])}>
-        {t("ничего не найдено")}
-      </Page>
-    );
-  }
+  // if (!id) {
+  //   return (
+  //     <Page className={classes(cls.BookDetailsPage, {}, [className])}>
+  //       {t("ничего не найдено")}
+  //     </Page>
+  //   );
+  // }
 
   return (
     <AsyncModule reducers={reducerList} isRemoveAfterUnmount>

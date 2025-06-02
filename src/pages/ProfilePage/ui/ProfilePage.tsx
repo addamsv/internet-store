@@ -7,10 +7,6 @@ import { Text } from "shared/Text";
 const ProfilePage = () => {
   const { id } = useParams<{id: string}>();
 
-  if (!id) {
-    return <Text text="Error with profile ID" />;
-  }
-
   return (
     <Page>
       <EditProfileCard id={id} />

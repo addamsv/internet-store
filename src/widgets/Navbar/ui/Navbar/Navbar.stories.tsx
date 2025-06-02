@@ -4,6 +4,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreDecorator";
+import { EUserRoles } from "entities/User";
 import { Navbar } from "./Navbar";
 
 export default {
@@ -33,5 +34,5 @@ export const RegisteredUser = Template.bind({});
 RegisteredUser.args = {};
 RegisteredUser.decorators = [
   ThemeDecorator(Theme.DARK),
-  StoreDecorator({ user: { authData: {} } })
+  StoreDecorator({ user: { authData: { user: { roles: [EUserRoles.ADMIN] } } } })
 ];

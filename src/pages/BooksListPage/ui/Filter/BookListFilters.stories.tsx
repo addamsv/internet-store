@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
+import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreDecorator";
 import { BookListFilters } from "./BookListFilters";
 
 export default {
@@ -16,12 +17,9 @@ export default {
 const Template: ComponentStory<typeof BookListFilters> = (args) => <BookListFilters {...args} />;
 
 export const Light = Template.bind({});
-Light.args = {
-  // children: "Text",
-};
+Light.args = {};
+Light.decorators = [StoreDecorator({})];
 
 export const Dark = Template.bind({});
-Dark.args = {
-  // children: "Text",
-};
-Dark.decorators = [ThemeDecorator(Theme.DARK)];
+Dark.args = {};
+Dark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];

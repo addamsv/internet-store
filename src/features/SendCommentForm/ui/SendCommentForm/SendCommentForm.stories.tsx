@@ -1,6 +1,4 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-// import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { action } from "@storybook/addon-actions";
@@ -21,10 +19,10 @@ export const Light = Template.bind({});
 Light.args = {
   onSendCommentHandler: action("onSendComment")
 };
-Light.decorators = [StoreDecorator({}), ThemeDecorator(Theme.LIGHT)];
+Light.decorators = [StoreDecorator({ user: { authData: {} } }), ThemeDecorator(Theme.LIGHT)];
 
 export const Dark = Template.bind({});
 Dark.args = {
   onSendCommentHandler: action("onSendComment")
 };
-Dark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [StoreDecorator({ user: { authData: {} } }), ThemeDecorator(Theme.DARK)];

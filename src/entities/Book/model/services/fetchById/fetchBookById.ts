@@ -4,7 +4,7 @@ import { getCredentials } from "resources/lib/auth/getCredentials";
 import { IBook } from "../../types";
 
 interface IFetchBookByIdProps {
-  bookId: number;
+  bookId: number | undefined;
 }
 
 interface ICustomReturnedData {
@@ -21,6 +21,10 @@ export const fetchBookById = createAsyncThunk<
     const { extra, dispatch, rejectWithValue, } = thunkAPI;
 
     try {
+      if (!bookId) {
+        throw new Error("fetchBookById: no bookId");
+      }
+
       const response = await extra.axios.get<ICustomReturnedData>(
         `/books/${bookId}`,
         { headers: { Authorization: `Bearer ${getCredentials()?.token || ""}` } }

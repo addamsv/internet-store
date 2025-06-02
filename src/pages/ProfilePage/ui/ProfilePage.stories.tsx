@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
+import image from "resources/assets/images/img.png";
 // import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
@@ -39,7 +40,7 @@ Light.decorators = [StoreDecorator({
       city: "Erevan",
       address: "Mira, 1-23",
       currency: ECurrency.USD,
-      // image
+      image
     }
   }
 })];
@@ -56,7 +57,7 @@ Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
       city: "Erevan",
       address: "Mira, 1-23",
       currency: ECurrency.USD,
-      // image
+      image
     }
   }
 })];

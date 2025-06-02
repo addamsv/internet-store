@@ -4,7 +4,7 @@ import { getCredentials } from "resources/lib/auth/getCredentials";
 import { IProfile } from "entities/Profile";
 
 interface IFetchProfileProps {
-  userId: number;
+  userId: number | undefined;
 }
 
 interface ICustomReturnedData {
@@ -19,6 +19,10 @@ export const fetchProfile = createAsyncThunk<
   "profile/fetchProfile",
   async ({ userId }, thunkAPI) => {
     const { extra, dispatch, rejectWithValue, } = thunkAPI;
+
+    if (!userId) {
+      return rejectWithValue("fetchProfile: no userId");
+    }
 
     const response = await extra.axios.get<ICustomReturnedData>(
       `/profiles/${userId}`,

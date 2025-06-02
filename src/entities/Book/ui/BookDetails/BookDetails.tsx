@@ -27,7 +27,7 @@ import BlockOfBookText from "../BlockOfBookText/BlockOfBookText";
 
 interface IBookDetailsProps {
   className?: string;
-  bookId: number;
+  bookId?: number;
 }
 
 const reducers: ReducerListT = {

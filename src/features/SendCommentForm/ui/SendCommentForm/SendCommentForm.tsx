@@ -8,6 +8,7 @@ import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
 // import { sendComment } from "../../model/services/sendComment";
 import { Text } from "shared/Text";
+import { getUserAuthData } from "entities/User";
 import { sendCommentFormActions, sendCommentFormReducer } from "../../model/slices";
 import { getErrorTextFromSendCommentForm, getTextFromSendCommentForm } from "../../model/selectors";
 import cls from "./SendCommentForm.module.scss";
@@ -24,6 +25,8 @@ const reducers: ReducerListT = {
 const SendCommentForm = memo(({ className, onSendCommentHandler }: ISendCommentFormProps) => {
   const { t } = useTranslation();
 
+  const user = useSelector(getUserAuthData);
+
   const comment = useSelector(getTextFromSendCommentForm);
 
   const error = useSelector(getErrorTextFromSendCommentForm);
@@ -38,6 +41,10 @@ const SendCommentForm = memo(({ className, onSendCommentHandler }: ISendCommentF
     onSendCommentHandler(comment);
     onChangeHandler("");
   }, [comment, onChangeHandler, onSendCommentHandler]);
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <AsyncModule reducers={reducers} isRemoveAfterUnmount>
