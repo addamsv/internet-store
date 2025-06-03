@@ -4,12 +4,22 @@ import { svgLoader } from "./loaders/svgLoader";
 import { cssLoader } from "./loaders/cssLoader";
 import { fileLoader } from "./loaders/fileLoader";
 import { typescriptLoader } from "./loaders/tsLoader";
+import { babelLoader } from "./loaders/babelLoader";
 
-export function loaders({ isDev }: IOptions): webpack.RuleSetRule[] {
+export function loaders(options: IOptions): webpack.RuleSetRule[] {
+  const { isDev } = options;
+
   return [
-    typescriptLoader,
-    cssLoader(isDev),
+    fileLoader,
+
     svgLoader(),
-    fileLoader
+
+    babelLoader(isDev, false), // tsx
+
+    babelLoader(isDev, true), // ts
+
+    // typescriptLoader,
+
+    cssLoader(isDev),
   ];
 }
