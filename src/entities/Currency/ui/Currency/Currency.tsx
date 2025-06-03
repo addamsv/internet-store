@@ -1,11 +1,9 @@
-import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
-import { Select } from "shared/Select/Select";
 import { memo, useCallback } from "react";
 import { ListBox } from "shared/ListBox/ListBox";
-import { Text, TextSize } from "shared/Text";
+import { Text, ETextSize } from "shared/Text";
 import cls from "./Currency.module.scss";
-import { ECurrency } from "../../model/types/currency";
+import { ECurrency } from "../../model/consts/currency";
 
 interface ICurrencyProps {
   className?: string;
@@ -31,7 +29,7 @@ export const Currency = memo(({ className, defaultValue, isReadOnly, onChange }:
   return (
     <>
       <Text
-        textSize={TextSize.S}
+        textSize={ETextSize.S}
         text={t("Валюта")}
       />
 

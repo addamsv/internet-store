@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { Text } from "./Text";
-import { TextAlign, TextSize, TextTheme } from ".";
+import { ETextAlign, ETextSize, ETextTheme } from "../consts";
 
 export default {
   title: "shared/Text",
@@ -54,14 +54,14 @@ export const Error = Template.bind({});
 Error.args = {
   title: "Awesome Title",
   text: "Lorem ipsum",
-  theme: TextTheme.ERROR
+  theme: ETextTheme.ERROR
 };
 
 export const TextLarge = Template.bind({});
 TextLarge.args = {
   title: "Awesome Title",
   text: "Lorem ipsum super popular text",
-  textAlign: TextAlign.LEFT,
-  textSize: TextSize.L
+  textAlign: ETextAlign.LEFT,
+  textSize: ETextSize.L
 };
 TextLarge.decorators = [ThemeDecorator(Theme.DARK)];

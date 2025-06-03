@@ -6,8 +6,7 @@ const AdminPage = () => {
   const { t } = useTranslation();
   return (
     <Page>
-      <h2 className="App-link">{t("Админ панель")}</h2>
-      <Counter />
+      <h2 className="App-link">{t("админка")}</h2>
     </Page>
   );
 };

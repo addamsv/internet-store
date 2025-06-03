@@ -4,8 +4,7 @@ import { Button, ButtonTheme } from "shared/Button/Button";
 import { Input, InputTheme } from "shared/Input/Input";
 import { useSelector } from "react-redux";
 import { memo, useCallback, useEffect } from "react";
-import { Text } from "shared/Text/Text";
-import { TextTheme } from "shared/Text";
+import { Text, ETextTheme } from "shared/Text";
 import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { getLoginUsername } from "../../model/selectors/getLoginUsername/getLoginUsername";
@@ -60,9 +59,9 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   return (
     <AsyncModule reducers={reducerList}>
       <div className={classes(cls.LoginForm, {}, [className])}>
-        <Text title={t("Аутентификация")} theme={TextTheme.LIGHT} />
+        <Text title={t("Аутентификация")} theme={ETextTheme.LIGHT} />
 
-        {error && <Text text={error} theme={TextTheme.ERROR} />}
+        {error && <Text text={error} theme={ETextTheme.ERROR} />}
 
         <Input
           placeholder={t("имя пользователя")}

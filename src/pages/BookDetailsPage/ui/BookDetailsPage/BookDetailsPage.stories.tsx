@@ -5,7 +5,7 @@ import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { IBook } from "entities/Book";
 import img from "resources/assets/images/img.png";
-import { EBookOfHashTagType, EBlockOfBookType } from "entities/Book/model/types";
+import { EBookOfHashTagType, EBlockOfBookType } from "entities/Book/model/consts";
 import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreDecorator";
 import BookDetailsPage from "./BookDetailsPage";
 

@@ -5,8 +5,7 @@ import { IconSVG } from "shared/IconSVG/IconSVG";
 import EyeIon from "resources/assets/icons/eye.svg";
 import DownloadIon from "resources/assets/icons/download.svg";
 import CalendarIon from "resources/assets/icons/calendar.svg";
-import { Text } from "shared/Text/Text";
-import { TextAlign, TextSize } from "shared/Text";
+import { Text, ETextAlign, ETextSize } from "shared/Text";
 import { Button, ButtonTheme } from "shared/Button/Button";
 import { RoutePath } from "resources/router/routeConfig/routeConfig";
 import { AppLink } from "shared/AppLink/AppLink";
@@ -15,7 +14,8 @@ import { VFlex } from "shared/Flex/VFlex";
 import { HFlex } from "shared/Flex/HFlex";
 import { CImg } from "shared/CImg";
 import { Skeleton } from "shared/Skeleton/Skeleton";
-import { EBookListView, EBookOfHashTagType, IBook } from "../../model/types";
+import { IBook } from "../../model/types";
+import { EBookListView, EBookOfHashTagType, } from "../../model/consts";
 import cls from "./Item.module.scss";
 
 interface IItemProps {
@@ -99,17 +99,17 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
 
           {/* <Text
                 className={cls.hashTagType}
-                textAlign={TextAlign.LEFT}
-                textSize={TextSize.XS}
+                textAlign={ETextAlign.LEFT}
+                textSize={ETextSize.XS}
                 // text={book.hashTagType.join(", ")}
                 text={book?.Genres?.join(", ")}
               /> */}
 
           <IconSVG className={cls.views} w={12} h={12} Svg={EyeIon} />
-          <Text textSize={TextSize.XS} text={String(book.views)} />
+          <Text textSize={ETextSize.XS} text={String(book.views)} />
         </HFlex>
 
-        <Text className={cls.title} textSize={TextSize.S} textAlign={TextAlign.LEFT} text={String(book.Title)} />
+        <Text className={cls.title} textSize={ETextSize.S} textAlign={ETextAlign.LEFT} text={String(book.Title)} />
       </VFlex>
     );
   }
@@ -139,7 +139,7 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
       <VFlex justify="center" className={cls.contentWrapper}>
         <Text
           key="TitleSTD"
-          textAlign={TextAlign.LEFT}
+          textAlign={ETextAlign.LEFT}
           title={book.Title}
         />
 
@@ -148,54 +148,54 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
         <HFlex gap="8" className={cls.info}>
           <HFlex gap="4">
             <IconSVG Svg={EyeIon} />
-            <Text textAlign={TextAlign.LEFT} textSize={TextSize.S} text={String(book.views)} />
+            <Text textAlign={ETextAlign.LEFT} textSize={ETextSize.S} text={String(book.views)} />
           </HFlex>
           <HFlex gap="4">
             <IconSVG Svg={CalendarIon} />
-            <Text textAlign={TextAlign.LEFT} textSize={TextSize.S} text={book.PublicationDate} />
+            <Text textAlign={ETextAlign.LEFT} textSize={ETextSize.S} text={book.PublicationDate} />
           </HFlex>
         </HFlex>
 
         {Genres}
         {/* <Text
             className={cls.hashTagType}
-            textSize={TextSize.S}
-            textAlign={TextAlign.LEFT}
+            textSize={ETextSize.S}
+            textAlign={ETextAlign.LEFT}
             text={book.Genres?.join(", ")}
           /> */}
 
         {/* {paragraph && (
-        <Text textAlign={TextAlign.LEFT}  className={cls.paragraph} text={paragraph.paragraphs[0]} />
+        <Text textAlign={ETextAlign.LEFT}  className={cls.paragraph} text={paragraph.paragraphs[0]} />
         )} */}
         <VFlex gap="4" className={cls.extraInfo}>
           <Text
             key="Format"
-            textSize={TextSize.S}
-            textAlign={TextAlign.LEFT}
+            textSize={ETextSize.S}
+            textAlign={ETextAlign.LEFT}
             text={book.Format}
           />
           <Text
             key="Language"
-            textSize={TextSize.S}
-            textAlign={TextAlign.LEFT}
+            textSize={ETextSize.S}
+            textAlign={ETextAlign.LEFT}
             text={book.Language}
           />
           <Text
             key="Length"
-            textSize={TextSize.S}
-            textAlign={TextAlign.LEFT}
+            textSize={ETextSize.S}
+            textAlign={ETextAlign.LEFT}
             text={book.Length}
           />
           <Text
             key="Narrated"
-            textSize={TextSize.S}
-            textAlign={TextAlign.LEFT}
+            textSize={ETextSize.S}
+            textAlign={ETextAlign.LEFT}
             text={book.Narrated?.join(", ")}
           />
           <Text
             key="Publisher"
-            textSize={TextSize.S}
-            textAlign={TextAlign.LEFT}
+            textSize={ETextSize.S}
+            textAlign={ETextAlign.LEFT}
             text={book.Publisher}
           />
         </VFlex>

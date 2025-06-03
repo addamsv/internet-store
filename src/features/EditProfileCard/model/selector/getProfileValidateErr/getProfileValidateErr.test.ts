@@ -1,6 +1,6 @@
 import { IStateSchema } from "resources/store/StoreProvider";
 import { getProfileValidateErr } from "./getProfileValidateErr";
-import { EnumValidateProfileErrs } from "../../types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../../consts";
 
 describe("getProfileValidateErr.test", () => {
   test("должно вернуть profile", () => {

@@ -1,5 +1,5 @@
 import { IProfile } from "entities/Profile";
-import { EnumValidateProfileErrs } from "../../types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../../consts";
 
 export const validateProfile = (profile?: IProfile) => {
   if (!profile) {

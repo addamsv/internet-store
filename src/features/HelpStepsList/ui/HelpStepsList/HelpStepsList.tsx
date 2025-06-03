@@ -1,9 +1,7 @@
-import { classes } from "resources/lib/classNames/classes";
-import { useTranslation } from "react-i18next";
 import { memo } from "react";
 import { HFlex } from "shared/Flex/HFlex";
 import { VFlex } from "shared/Flex/VFlex";
-import { Text, TextAlign, TextSize } from "shared/Text";
+import { Text, ETextAlign, ETextSize } from "shared/Text";
 import { Card } from "shared/Card/Card";
 import { CImg } from "shared/CImg";
 import { Skeleton } from "shared/Skeleton/Skeleton";
@@ -47,9 +45,9 @@ export const HelpStepsList = memo(() => {
     <Card className={cls.contentWrapper}>
       <VFlex gap="8">
 
-        <Text textAlign={TextAlign.LEFT} textSize={TextSize.L} title="FAQ" />
+        <Text textAlign={ETextAlign.LEFT} textSize={ETextSize.L} title="FAQ" />
 
-        <Text textAlign={TextAlign.LEFT} text="How to download a link?" />
+        <Text textAlign={ETextAlign.LEFT} text="How to download a link?" />
 
         <HFlex className={cls.flexWrap} gap="16">
           {list.length ? list.map(render) : null}

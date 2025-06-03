@@ -15,7 +15,6 @@ import { ImageJpg } from "shared/ImageJpg/ImageJpg";
 import { RoutePath } from "resources/router/routeConfig/routeConfig";
 import { LoginModal } from "features/AuthByUserName";
 import { useTheme } from "resources/store/ThemeProvider";
-import { EUserRoles } from "entities/User/model/types/IUserSchema";
 import { CImg } from "shared/CImg";
 import { Skeleton } from "shared/Skeleton/Skeleton";
 import { getNavbarItemsArr } from "../../model/selectors";

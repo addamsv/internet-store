@@ -7,7 +7,8 @@ import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeD
 import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreDecorator";
 import img from "resources/assets/images/img.png";
 import { BookDetails } from "./BookDetails";
-import { EBookOfHashTagType, EBlockOfBookType, IBook } from "../../model/types";
+import { IBook } from "../../model/types";
+import { EBookOfHashTagType, EBlockOfBookType, } from "../../model/consts";
 
 export default {
   title: "entities/Book/Details",

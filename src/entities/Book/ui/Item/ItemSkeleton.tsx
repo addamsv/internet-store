@@ -1,4 +1,4 @@
-import { EBookListView } from "entities/Book/model/types";
+import { EBookListView } from "entities/Book/model/consts";
 import { classes } from "resources/lib/classNames/classes";
 import { memo } from "react";
 import { Card } from "shared/Card/Card";

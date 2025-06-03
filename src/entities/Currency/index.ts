@@ -1,2 +1,2 @@
-export { ECurrency } from "./model/types/currency";
+export { ECurrency } from "./model/consts/currency";
 export { Currency } from "./ui/Currency/Currency";

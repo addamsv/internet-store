@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { memo, useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
-import { Text, TextTheme } from "shared/Text";
+import { Text, ETextTheme } from "shared/Text";
 import { ECountry } from "entities/Country";
 import { ECurrency } from "entities/Currency";
 import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
@@ -13,7 +13,7 @@ import { getProfileIsLoading } from "../../model/selector/getProfileIsLoading/ge
 import { getProfileIsReadOnly } from "../../model/selector/getProfileIsReadOnly/getProfileIsReadOnly";
 import { getProfileErr } from "../../model/selector/getProfileErr/getProfileErr";
 import { getProfileValidateErr } from "../../model/selector/getProfileValidateErr/getProfileValidateErr";
-import { EnumValidateProfileErrs } from "../../model/types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../../model/consts";
 import { fetchProfile } from "../../model/service/fetch/fetchProfile";
 import { getProfileEdited } from "../../model/selector/getProfileEdited/getProfileEdited";
 import cls from "./EditProfileCard.module.scss";
@@ -99,7 +99,7 @@ export const EditProfileCard = memo(({ className, id }: IProps) => {
         {validateErr?.length && validateErr.map((err) => (
           <Text
             key={err}
-            theme={TextTheme.ERROR}
+            theme={ETextTheme.ERROR}
             title={t("Ошибка")}
             text={errTranslateMapping[err]}
             data-testid="EditProfileCardError"

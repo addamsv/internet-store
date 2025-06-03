@@ -1,11 +1,10 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
-import { Select } from "shared/Select/Select";
 import { memo, useCallback } from "react";
 import { ListBox } from "shared/ListBox/ListBox";
-import { Text, TextSize } from "shared/Text";
+import { Text, ETextSize } from "shared/Text";
 import cls from "./Country.module.scss";
-import { ECountry } from "../../model/types/country";
+import { ECountry } from "../../model/consts/country";
 
 interface ICountryProps {
   className?: string;
@@ -31,7 +30,7 @@ export const Country = memo(({ className, defaultValue, isReadOnly, onChange }: 
   return (
     <>
       <Text
-        textSize={TextSize.S}
+        textSize={ETextSize.S}
         text={t("Страна")}
       />
 

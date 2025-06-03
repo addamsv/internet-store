@@ -5,7 +5,7 @@ import { IStateSchema } from "resources/store/StoreProvider";
 import { ECountry } from "entities/Country";
 import { ECurrency } from "entities/Currency";
 import { updateProfile } from "./updateProfile";
-import { EnumValidateProfileErrs } from "../../types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../../consts";
 
 jest.mock("axios");
 

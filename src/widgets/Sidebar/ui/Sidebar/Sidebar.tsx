@@ -9,13 +9,12 @@ import { Button, ButtonSize, ButtonTheme } from "shared/Button/Button";
 import { useTranslation } from "react-i18next";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import { LoginModal } from "features/AuthByUserName";
-import { getUserAuthData, userActions } from "entities/User";
+import { EUserRoles, getUserAuthData, userActions } from "entities/User";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { useNavigate } from "react-router-dom";
 import { RoutePath } from "resources/router/routeConfig/routeConfig";
 import { VFlex } from "shared/Flex/VFlex";
-import { EUserRoles } from "entities/User/model/types/IUserSchema";
 import cls from "./Sidebar.module.scss";
 
 interface SidebarProps {

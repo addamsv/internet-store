@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { classes } from "resources/lib/classNames/classes";
 import { memo, useCallback, useEffect } from "react";
-import { EBookOfHashTagType } from "entities/Book/model/types";
+import { EBookOfHashTagType } from "entities/Book/model/consts";
 import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { useSelector } from "react-redux";

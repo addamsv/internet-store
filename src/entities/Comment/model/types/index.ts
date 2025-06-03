@@ -1,5 +1,3 @@
-import { IUser } from "entities/User";
-
 export interface ICommentUserProfile {
   id: number;
   name: string;

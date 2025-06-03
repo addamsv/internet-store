@@ -3,7 +3,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
-import { EBlockOfBookType, EBookListView, EBookOfHashTagType, IBook } from "entities/Book/model/types";
+import { IBook } from "entities/Book/model/types";
+import { EBlockOfBookType, EBookListView, EBookOfHashTagType } from "entities/Book/model/consts";
 import img from "resources/assets/images/img.png";
 import { List } from "./List";
 

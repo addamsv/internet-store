@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button, ButtonTheme } from "shared/Button/Button";
 import { Text } from "shared/Text";
 import { VFlex } from "shared/Flex/VFlex";
+import { Card } from "shared/Card/Card";
 import cls from "./ErrorWidget.module.scss";
 
 interface ErrorWidgetProps {
@@ -19,9 +20,11 @@ export const ErrorWidget = ({ className, text = "" }: ErrorWidgetProps) => {
   };
 
   return (
-    <VFlex gap="16" align="center" className={classes(cls.ErrorWidget, {}, [className])}>
-      <Text title={t("ошибка")} text={text} />
-      <Button theme={ButtonTheme.GREEN} onClick={reload}>{t("перезагрузить")}</Button>
-    </VFlex>
+    <Card className={cls.wrapper}>
+      <VFlex gap="16" align="center" className={classes(cls.ErrorWidget, {}, [className])}>
+        <Text title={t("ошибка")} text={text} />
+        <Button theme={ButtonTheme.GREEN} onClick={reload}>{t("перезагрузить")}</Button>
+      </VFlex>
+    </Card>
   );
 };

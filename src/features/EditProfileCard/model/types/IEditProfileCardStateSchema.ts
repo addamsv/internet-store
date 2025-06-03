@@ -1,14 +1,5 @@
 import { IProfile } from "entities/Profile";
-
-export enum EnumValidateProfileErrs {
-  INCORRECT_USER_DATA = "INCORRECT_USER_DATA",
-  INCORRECT_AGE = "INCORRECT_AGE",
-  INCORRECT_COUNTRY = "INCORRECT_COUNTRY",
-  INCORRECT_CURRENCY = "INCORRECT_CURRENCY",
-  SERVER_ERROR = "SERVER_ERROR",
-  CLIENT_ERROR = "CLIENT_ERROR",
-  NO_DATA = "NO_DATA"
-}
+import { EnumValidateProfileErrs } from "../consts";
 
 export interface IProfileStateSchema {
   data?: IProfile;

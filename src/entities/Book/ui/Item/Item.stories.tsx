@@ -4,7 +4,8 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import img from "resources/assets/images/img.png";
-import { EBlockOfBookType, EBookListView, EBookOfHashTagType, IBook } from "../../model/types";
+import { IBook } from "../../model/types";
+import { EBlockOfBookType, EBookListView, EBookOfHashTagType, } from "../../model/consts";
 import { Item } from "./Item";
 
 export default {

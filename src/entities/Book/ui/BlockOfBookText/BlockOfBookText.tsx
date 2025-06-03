@@ -1,8 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
-import { Text } from "shared/Text/Text";
-import { TextAlign } from "shared/Text";
+import { Text, ETextAlign } from "shared/Text";
 import { IBlockOfBookText } from "../../model/types";
 import cls from "./BlockOfBookText.module.scss";
 
@@ -24,7 +23,7 @@ const BlockOfBookText = ({ className, block }: IBlockOfBookTextProps) => {
           // eslint-disable-next-line react/no-array-index-key
           key={id}
           text={paragraph}
-          textAlign={TextAlign.LEFT}
+          textAlign={ETextAlign.LEFT}
           className={cls.paragraph}
         />
       ))}

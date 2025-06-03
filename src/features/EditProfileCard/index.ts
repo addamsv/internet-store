@@ -1,2 +1,3 @@
 export { EditProfileCard } from "./ui/EditProfileCard/EditProfileCard";
-export { IProfileStateSchema } from "./model/types/IEditProfileCardStateSchema";
+export { EnumValidateProfileErrs } from "./model/consts";
+export type { IProfileStateSchema } from "./model/types/IEditProfileCardStateSchema";

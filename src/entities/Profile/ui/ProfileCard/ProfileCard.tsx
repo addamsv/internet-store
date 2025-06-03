@@ -1,10 +1,8 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 
-import { Text } from "shared/Text/Text";
-import { TextAlign, TextTheme } from "shared/Text";
+import { Text, ETextAlign, ETextTheme } from "shared/Text";
 import { Input } from "shared/Input/Input";
-import { IProfile } from "entities/Profile/model/type/IProfile";
 import { Loader } from "shared/Loader/Loader";
 
 // import { ImageJpg } from "shared/ImageJpg/ImageJpg";
@@ -14,6 +12,7 @@ import { VFlex } from "shared/Flex/VFlex";
 import { HFlex } from "shared/Flex/HFlex";
 import { CImg } from "shared/CImg";
 import cls from "./ProfileCard.module.scss";
+import { IProfile } from "../../model/type/IProfile";
 
 interface ProfileCardProps {
   className?: string;
@@ -47,7 +46,7 @@ export const ProfileCard = ({
   if (error) {
     return (
       <div className={classes(cls.ProfileCard, {}, [className])}>
-        <Text title={t("Ошибка")} text={error} theme={TextTheme.ERROR} textAlign={TextAlign.LEFT} />
+        <Text title={t("Ошибка")} text={error} theme={ETextTheme.ERROR} textAlign={ETextAlign.LEFT} />
       </div>
     );
   }

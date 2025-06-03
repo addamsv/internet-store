@@ -1,7 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo, Suspense, useCallback, useEffect } from "react";
-import { Text, TextSize } from "shared/Text";
+import { Text, ETextSize } from "shared/Text";
 import { CommentList } from "entities/Comment";
 import { SendCommentForm } from "features/SendCommentForm";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
@@ -48,7 +48,7 @@ export const BookDetailsComments = memo(({ className, bookId }: IBookDetailsComm
 
   return (
     <div className={classes(cls.BookDetailsComments, {}, [className])}>
-      <Text className={cls.mgnTop} textSize={TextSize.L} title={t("комментарии")} />
+      <Text className={cls.mgnTop} textSize={ETextSize.L} title={t("комментарии")} />
 
       <Suspense fallback={<Loader />}>
         <SendCommentForm onSendCommentHandler={onSendCommentHandler} />

@@ -8,16 +8,6 @@ import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreD
 import { IBook } from "entities/Book";
 import { BookRecommendationsList } from "./BookRecommendationsList";
 
-export default {
-  title: "feature/BookRecommendationsList",
-  component: BookRecommendationsList,
-  argTypes: {
-    backgroundColor: { control: "color" },
-  },
-} as ComponentMeta<typeof BookRecommendationsList>;
-
-const Template: ComponentStory<typeof BookRecommendationsList> = (args) => <BookRecommendationsList {...args} />;
-
 const book: IBook = {
   id: 1,
   owner: 1,
@@ -29,26 +19,35 @@ const book: IBook = {
   img,
 };
 
-export const Light = Template.bind({});
-Light.args = {};
-Light.decorators = [StoreDecorator({})];
-Light.parameters = {
-  mockData: [
-    {
-      url: `${__REST_API__BASE_URL__}/api/v1/books?_limit=4 `,
-      method: "GET",
-      status: 200,
-      response: {
-        data: [
-          book,
-          { ...book, id: 2 },
-          { ...book, id: 3 },
-        ]
-      },
+const mockData = [
+  {
+    url: `${__REST_API__BASE_URL__}/api/v1/books?_limit=4 `,
+    method: "GET",
+    status: 200,
+    response: {
+      data: [
+        book,
+        { ...book, id: 2 },
+        { ...book, id: 3 },
+      ]
     },
-  ],
-};
+  },
+];
+
+export default {
+  title: "feature/BookRecommendationsList",
+  component: BookRecommendationsList,
+  argTypes: {
+    backgroundColor: { control: "color" },
+  },
+  decorators: [StoreDecorator({})],
+  parameters: { mockData },
+  args: {}
+} as ComponentMeta<typeof BookRecommendationsList>;
+
+const Template: ComponentStory<typeof BookRecommendationsList> = (args) => <BookRecommendationsList {...args} />;
+
+export const Light = Template.bind({});
 
 export const Dark = Template.bind({});
-Dark.args = {};
-Dark.decorators = [StoreDecorator({}), ThemeDecorator(Theme.DARK)];
+Dark.decorators = [ThemeDecorator(Theme.DARK)];

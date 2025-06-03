@@ -4,8 +4,7 @@ import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
 import { memo, useCallback, useEffect } from "react";
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
-import { Text } from "shared/Text/Text";
-import { TextAlign, TextSize } from "shared/Text";
+import { Text, ETextAlign, ETextSize } from "shared/Text";
 import { Skeleton } from "shared/Skeleton/Skeleton";
 import { Button, ButtonTheme } from "shared/Button/Button";
 import EyeIon from "resources/assets/icons/eye.svg";
@@ -14,7 +13,8 @@ import { IconSVG } from "shared/IconSVG/IconSVG";
 import { AppLink } from "shared/AppLink/AppLink";
 import { HFlex } from "shared/Flex/HFlex";
 import { CImg } from "shared/CImg";
-import { EBlockOfBookType, TBookBlock } from "../../model/types";
+import { TBookBlock } from "../../model/types";
+import { EBlockOfBookType } from "../../model/consts";
 import { getBookDetailsData,
   getBookDetailsError, getBookDetailsIsLoading
 } from "../../model/selectors";
@@ -107,67 +107,67 @@ export const BookDetails = memo(({ className, bookId }: IBookDetailsProps) => {
             <Text
               key="TitleSeries"
               className={cls.imageDescription}
-              textAlign={TextAlign.LEFT}
+              textAlign={ETextAlign.LEFT}
               title={data?.Title}
               text={data?.Series}
             />
             <Text
               key="Author"
               className={cls.imageDescription}
-              textAlign={TextAlign.LEFT}
+              textAlign={ETextAlign.LEFT}
               text={`${t("By")}: ${data?.Author?.join(", ")}`}
             />
 
             <HFlex gap="8" className={cls.info}>
               <HFlex gap="4">
                 <IconSVG Svg={EyeIon} />
-                <Text textAlign={TextAlign.LEFT} textSize={TextSize.S} text={`${String(data?.views)}`} />
+                <Text textAlign={ETextAlign.LEFT} textSize={ETextSize.S} text={`${String(data?.views)}`} />
               </HFlex>
               <HFlex gap="4">
                 <IconSVG Svg={CalendarIon} />
-                <Text textAlign={TextAlign.LEFT} textSize={TextSize.S} text={`${String(data?.PublicationDate)}`} />
+                <Text textAlign={ETextAlign.LEFT} textSize={ETextSize.S} text={`${String(data?.PublicationDate)}`} />
               </HFlex>
             </HFlex>
             <Text
               key="Genres"
               className={cls.hashTagType}
-              textSize={TextSize.S}
-              textAlign={TextAlign.LEFT}
+              textSize={ETextSize.S}
+              textAlign={ETextAlign.LEFT}
               text={`${t("Genres")}: ${data?.Genres?.join(", ")}`}
             />
             <Text
               key="Format"
               className={cls.hashTagType}
-              textSize={TextSize.S}
-              textAlign={TextAlign.LEFT}
+              textSize={ETextSize.S}
+              textAlign={ETextAlign.LEFT}
               text={`${t("Format")}: ${data?.Format}`}
             />
             <Text
               key="Language"
               className={cls.hashTagType}
-              textSize={TextSize.S}
-              textAlign={TextAlign.LEFT}
+              textSize={ETextSize.S}
+              textAlign={ETextAlign.LEFT}
               text={`${t("Language")}: ${data?.Language}`}
             />
             <Text
               key="Length"
               className={cls.hashTagType}
-              textSize={TextSize.S}
-              textAlign={TextAlign.LEFT}
+              textSize={ETextSize.S}
+              textAlign={ETextAlign.LEFT}
               text={`${t("Length")}: ${data?.Length}`}
             />
             <Text
               key="Narrated"
               className={cls.hashTagType}
-              textSize={TextSize.S}
-              textAlign={TextAlign.LEFT}
+              textSize={ETextSize.S}
+              textAlign={ETextAlign.LEFT}
               text={`${t("Narrated by")}: ${data?.Narrated?.join(", ")}`}
             />
             <Text
               key="Publisher"
               className={cls.hashTagType}
-              textSize={TextSize.S}
-              textAlign={TextAlign.LEFT}
+              textSize={ETextSize.S}
+              textAlign={ETextAlign.LEFT}
               text={`${t("Publisher")}: ${data?.Publisher}`}
             />
 

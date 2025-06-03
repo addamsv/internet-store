@@ -2,7 +2,7 @@ import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
 import { IBlockOfBookImage } from "entities/Book/model/types";
-import { Text } from "shared/Text/Text";
+import { Text } from "shared/Text";
 import { CImg } from "shared/CImg";
 import { Skeleton } from "shared/Skeleton/Skeleton";
 import cls from "./BlockOfBookImage.module.scss";

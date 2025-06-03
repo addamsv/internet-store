@@ -1,7 +1,7 @@
 import { ECountry } from "entities/Country";
 import { ECurrency } from "entities/Currency";
 import { validateProfile } from "./validateProfile";
-import { EnumValidateProfileErrs } from "../../types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../../consts";
 
 const data = {
   firstname: "John",

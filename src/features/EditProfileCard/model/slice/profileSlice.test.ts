@@ -3,7 +3,8 @@ import { ECurrency } from "entities/Currency";
 import { IProfile } from "entities/Profile";
 import { profileActions, profileReducer } from "./profileSlice";
 import { updateProfile } from "../service/update/updateProfile";
-import { EnumValidateProfileErrs, IProfileStateSchema } from "../types/IEditProfileCardStateSchema";
+import { IProfileStateSchema } from "../types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../consts";
 
 describe("profileSlice.test", () => {
   beforeEach(() => {

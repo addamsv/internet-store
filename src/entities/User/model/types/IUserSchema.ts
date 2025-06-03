@@ -1,9 +1,4 @@
-export const enum EUserRoles {
-  ADMIN = "ROLE_ADMIN",
-  GUEST = "ROLE_GUEST",
-  USER = "ROLE_USER",
-  MANAGER = "ROLE_MANAGER",
-}
+import { EUserRoles } from "../consts";
 
 export interface IUser {
   id: number;

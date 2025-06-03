@@ -1,5 +1,5 @@
 import { EBookListView, IBook } from "entities/Book";
-import { EBookListSortField, EBookOfHashTagType } from "entities/Book/model/types";
+import { EBookListSortField, EBookOfHashTagType } from "entities/Book/model/consts";
 import { IBookListPageStateSchema } from "../types";
 import { bookListPageActions, bookListPageReducer } from ".";
 import { fetchBookList } from "../services";

@@ -1,3 +1,3 @@
 export { BooksListPageAsync as BooksListPage } from "./ui/BookListPage/BooksListPage.async";
 
-export { IBookListPageStateSchema } from "./model/types";
+export type { IBookListPageStateSchema } from "./model/types";

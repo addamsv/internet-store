@@ -1,7 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
-import { Text, TextSize } from "shared/Text";
+import { Text, ETextSize } from "shared/Text";
 import { BookList, EBookListView } from "entities/Book";
 import { VFlex } from "shared/Flex/VFlex";
 import { Card } from "shared/Card/Card";
@@ -26,7 +26,7 @@ export const BookRecommendationsList = memo(({ className }: IProps) => {
     <VFlex gap="8" align="center" className={classes("", {}, [className])}>
 
       <Card className={cls.contentWrapper}>
-        <Text className={cls.mgnTop} textSize={TextSize.L} title={t("рекомендуем")} />
+        <Text className={cls.mgnTop} textSize={ETextSize.L} title={t("рекомендуем")} />
 
         <BookList
           key="recommendations"

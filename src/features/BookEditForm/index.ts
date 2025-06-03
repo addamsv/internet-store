@@ -1,1 +1,1 @@
-// silence is golden
+export { BookEditForm } from "./ui/BookEditForm/BookEditForm";

@@ -5,7 +5,7 @@ import { getCredentials } from "resources/lib/auth/getCredentials";
 import { IProfile } from "entities/Profile";
 import { getProfileEdited } from "../../selector/getProfileEdited/getProfileEdited";
 import { validateProfile } from "../validate/validateProfile";
-import { EnumValidateProfileErrs } from "../../types/IEditProfileCardStateSchema";
+import { EnumValidateProfileErrs } from "../../consts";
 
 interface IFetchProfileProps {
   profileId: number;

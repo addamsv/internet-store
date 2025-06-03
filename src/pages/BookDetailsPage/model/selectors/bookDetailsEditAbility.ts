@@ -1,7 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { getBookDetailsData } from "entities/Book";
-import { getUserAuthData } from "entities/User";
-import { EUserRoles } from "entities/User/model/types/IUserSchema";
+import { EUserRoles, getUserAuthData } from "entities/User";
 
 export const getBookDetailsEditAbility = createSelector(
   getBookDetailsData,

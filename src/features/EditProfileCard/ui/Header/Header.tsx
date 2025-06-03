@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Text } from "shared/Text/Text";
+import { Text } from "shared/Text";
 // import src from "resources/assets/images/img2.png";
 
 interface HeaderProps {

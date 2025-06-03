@@ -1,8 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
-import { Text } from "shared/Text/Text";
-import { TextAlign, TextSize } from "shared/Text";
+import { Text, ETextAlign, ETextSize } from "shared/Text";
 import { Skeleton } from "shared/Skeleton/Skeleton";
 import { AppLink } from "shared/AppLink/AppLink";
 import { RoutePath } from "resources/router/routeConfig/routeConfig";
@@ -47,10 +46,10 @@ export const CommentItem = memo(({ className, comment, isLoading = false }: ICom
       <AppLink to={path} className={cls.commentHeader}>
         {/* {comment.owner.image ? <ImageJpg className={cls.image} w={20} alt="*" src={comment.owner.image} /> : null} */}
         {comment.owner.image ? <CImg className={cls.image} alt="*" src={comment.owner.image} /> : null}
-        <Text textAlign={TextAlign.LEFT} textSize={TextSize.S} text={comment.owner.name} />
+        <Text textAlign={ETextAlign.LEFT} textSize={ETextSize.S} text={comment.owner.name} />
       </AppLink>
 
-      <Text className={cls.content} textAlign={TextAlign.LEFT} text={comment.text} />
+      <Text className={cls.content} textAlign={ETextAlign.LEFT} text={comment.text} />
     </div>
   );
 });
