@@ -46,7 +46,7 @@ const data: IBook = {
     {
       id: "5",
       type: EBlockOfBookType.IMAGE,
-      src: "http://localhost:3000/images/img3.jpg",
+      src: img,
       title: "Awesome Image ever seen"
     },
     {

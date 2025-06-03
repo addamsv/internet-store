@@ -21,12 +21,12 @@ export const BookRecommendationsList = memo(({ className }: IProps) => {
   if (isLoading || error || !data) {
     return null;
   }
-
+  console.log(data);
   return (
     <VFlex gap="8" align="center" className={classes("", {}, [className])}>
 
       <Card className={cls.contentWrapper}>
-        <Text className={cls.mgnTop} textSize={TextSize.L} title={t("рекомендасьён")} />
+        <Text className={cls.mgnTop} textSize={TextSize.L} title={t("рекомендуем")} />
 
         <BookList
           key="recommendations"

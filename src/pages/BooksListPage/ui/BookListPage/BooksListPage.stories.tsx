@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof BooksListPage> = (args) => <BooksListPage 
 export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [StoreDecorator({
-  bookListPage: {}
+  bookListPage: { isLoading: false, entities: {} }
 })];
 
 export const Dark = Template.bind({});

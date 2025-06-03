@@ -44,7 +44,7 @@ export default ({ config }: {config: webpack.Configuration}): webpack.Configurat
   config!.plugins!.push(
     new DefinePlugin({
       __IS_DEV__: true,
-      __REST_API__BASE_URL__: JSON.stringify(""),
+      __REST_API__BASE_URL__: JSON.stringify("http://test.com"),
       __CONTACT_US_EMAIL__: JSON.stringify(""),
       __PROJECT_TYPE__: JSON.stringify("storybook"),
     })
