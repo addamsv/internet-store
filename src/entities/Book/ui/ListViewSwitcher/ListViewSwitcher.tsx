@@ -6,7 +6,7 @@ import ListComSVG from "resources/assets/icons/listCompact.svg";
 import { Button, ButtonTheme } from "shared/Button/Button";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import { HFlex } from "shared/Flex/HFlex";
-import { EBookListView } from "entities/Book";
+import { EBookListView } from "../../model/consts";
 import cls from "./ListViewSwitcher.module.scss";
 
 interface IListViewSwitcherProps {

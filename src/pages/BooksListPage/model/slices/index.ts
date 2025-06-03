@@ -4,7 +4,7 @@ import { EBookListView, IBook, EBookListSortField, EBookOfHashTagType } from "en
 import { LIST_VIEW_LOCAL_STORAGE_KEY } from "resources/application";
 import { TypeSortOrder } from "resources/types";
 import { IBookListPageStateSchema } from "../types";
-import { fetchBookList } from "../services";
+import { fetchBookList } from "../services/fetchBookList";
 
 const booksAdapter = createEntityAdapter<IBook>({
   selectId: (book) => book.id

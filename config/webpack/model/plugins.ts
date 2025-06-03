@@ -3,6 +3,7 @@ import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import CopyPlugin from "copy-webpack-plugin";
+import CircularDependencyPlugin from "circular-dependency-plugin";
 import { IOptions } from "../types";
 
 export function plugins({
@@ -40,6 +41,11 @@ export function plugins({
         { from: paths.sitemapFrom, to: paths.sitemapTo },
         // { from: "other", to: "public" },
       ],
+    }),
+
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      failOnError: true,
     }),
   ];
 

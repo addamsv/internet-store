@@ -10,7 +10,6 @@ import {
 import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { Input } from "shared/Input/Input";
 import { TypeSortOrder } from "resources/types";
-import { fetchBookList } from "pages/BooksListPage/model/services";
 import { useDebounce } from "resources/hooks/useDebounce";
 import { HashTagTabs } from "features/HashTagTabs";
 import LensIcon from "resources/assets/icons/lens.svg";
@@ -18,6 +17,7 @@ import CloseIcon from "resources/assets/icons/close.svg";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import { HFlex } from "shared/Flex/HFlex";
 import { Button, ButtonTheme } from "shared/Button/Button";
+import { fetchBookList } from "../../model/services/fetchBookList";
 import cls from "./BookListFilters.module.scss";
 import { Sort } from "../Sort/Sort";
 
