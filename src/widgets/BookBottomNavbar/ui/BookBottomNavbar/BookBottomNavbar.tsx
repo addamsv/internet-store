@@ -19,6 +19,10 @@ const itemsArr: IBookBottomNavbarItem[] = [
     path: RoutePath.dmca_report,
     text: "DMCA_Rep"
   },
+  {
+    path: RoutePath.forbidden,
+    text: "Notifications"
+  },
 ];
 
 const NavbarItemList = itemsArr.map((item: INavbarItem) => (
@@ -39,11 +43,11 @@ export const BookBottomNavbar = memo(({ className }: IBookBottomNavbarProps) => 
     <footer className={classes(cls.BookBottomNavbar, {}, [className])}>
       <HFlex className={cls.itemWrapper} justify="center">
         <div className={cls.warnings}>
-          {`${t("warnings")} `}
+          {/* {`${t("warnings")} `} */}
 
-          <NavbarItem item={{ path: RoutePath.dmca_report,
+          {/* <NavbarItem item={{ path: RoutePath.dmca_report,
             text: "DMCA_Rep" }}
-          />
+          /> */}
 
           {/* <div
             className={classes(cls.warnings, {}, [cls.contactUsLink])}
@@ -53,7 +57,7 @@ export const BookBottomNavbar = memo(({ className }: IBookBottomNavbarProps) => 
           </div> */}
         </div>
 
-        {/* { NavbarItemList } */}
+        { NavbarItemList }
 
       </HFlex>
     </footer>

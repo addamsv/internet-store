@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { HTMLAttributeAnchorTarget, memo, useCallback, useMemo } from "react";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import EyeIon from "resources/assets/icons/eye.svg";
-import DownloadIon from "resources/assets/icons/download.svg";
+import AddToBasket from "resources/assets/icons/addToBasket.svg";
 import CalendarIon from "resources/assets/icons/calendar.svg";
 import { Text, ETextAlign, ETextSize } from "shared/Text";
 import { Button, ButtonTheme } from "shared/Button/Button";
@@ -216,7 +216,7 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
           </AppLink>
 
           <AppLink
-            title={`${t("скачать")} ${book.Title}`}
+            title={`${t("добавить в корзину")} ${book.Title}`}
             target="_blank"
             to={`${book?.link}`}
           >
@@ -225,7 +225,7 @@ export const Item = memo(({ className, book, listView, target, onGenreChange, on
               className={cls.downloadBtnWrap}
               theme={ButtonTheme.GREEN}
             >
-              <IconSVG className={cls.downloadBtn} Svg={DownloadIon} />
+              <IconSVG className={cls.downloadBtn} Svg={AddToBasket} />
             </Button>
           </AppLink>
         </HFlex>

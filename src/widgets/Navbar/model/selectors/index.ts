@@ -11,10 +11,10 @@ export const getNavbarItemsArr = createSelector(
         path: RoutePath.books,
         text: "Главная"
       },
-      {
-        path: RoutePath.help,
-        text: "Помощь"
-      },
+      // {
+      //   path: RoutePath.help,
+      //   text: "Помощь"
+      // },
       // {
       //   path: RoutePath.dmca_report,
       //   text: "DMCA_Rep"

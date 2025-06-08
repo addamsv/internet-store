@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { memo, useCallback, useMemo, useState } from "react";
-import { ITabItem, Tabs } from "shared/Tabs/Tabs";
+import { ITabItem, Tabs } from "shared/MenuTabs/Tabs";
 import { EBookOfHashTagType } from "entities/Book";
 import { HFlex } from "shared/Flex/HFlex";
 

@@ -28,36 +28,27 @@ export default {
 
 const Template: ComponentStory<typeof ProfilePage> = () => <ProfilePage />;
 
+const profile = {
+  editedData: {
+    firstname: "John",
+    lastname: "Dore",
+    age: 22,
+    country: ECountry.Armenia,
+    city: "Erevan",
+    address: "Mira, 1-23",
+    currency: ECurrency.USD,
+    image
+  }
+};
+
 export const Light = Template.bind({});
 Light.args = {};
 Light.decorators = [StoreDecorator({
-  profile: {
-    editedData: {
-      firstname: "John",
-      lastname: "Dore",
-      age: 22,
-      country: ECountry.Armenia,
-      city: "Erevan",
-      address: "Mira, 1-23",
-      currency: ECurrency.USD,
-      image
-    }
-  }
+  profile
 })];
 
 export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({
-  profile: {
-    editedData: {
-      firstname: "John",
-      lastname: "Dore",
-      age: 22,
-      country: ECountry.Armenia,
-      city: "Erevan",
-      address: "Mira, 1-23",
-      currency: ECurrency.USD,
-      image
-    }
-  }
+  profile
 })];

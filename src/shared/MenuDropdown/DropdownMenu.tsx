@@ -1,15 +1,12 @@
 import { Menu as M } from "@headlessui/react";
 import { classes } from "resources/lib/classNames/classes";
-import { Fragment } from "react/jsx-runtime";
 import { ReactNode } from "react";
-import { AppLink } from "shared/AppLink/AppLink";
-import { HFlex } from "shared/Flex/HFlex";
-import cls from "./Menu.module.scss";
+import cls from "./DropdownMenu.module.scss";
 
 type TMenuDropdownDirection = "top" | "right" | "bottom" | "left" | "topRight"
 | "topLeft" | "bottomLeft" | "bottomRight";
 
-export interface IMenuItem {
+export interface IDropdownMenuItem {
   id: number;
   onClick?: () => void;
   href?: string;
@@ -17,16 +14,19 @@ export interface IMenuItem {
   content?: ReactNode;
 }
 
-interface IMenuProps {className?: string;
-  items: IMenuItem[];
+interface IDropdownMenuProps {
+  className?: string;
+  items: IDropdownMenuItem[];
   trigger: ReactNode;
   direction?: TMenuDropdownDirection
 }
 
-export function Menu({ className, items, trigger, direction = "bottom" }: IMenuProps) {
+export function DropdownMenu({ className, items, trigger, direction = "bottom" }: IDropdownMenuProps) {
   return (
     <M as="div" className={classes(cls.Menu, {}, [className])}>
+
       <M.Button className={cls.menuButton}>{trigger}</M.Button>
+
       <M.Items className={classes(cls.menuItems, {}, [cls[direction]])}>
         {items.map((link) => (
           <button
@@ -41,7 +41,8 @@ export function Menu({ className, items, trigger, direction = "bottom" }: IMenuP
             </M.Item>
           </button>
         ))}
-        {/* {items.map((item) => {
+        {/*
+        {items.map((item) => {
           const itemFn = ({ active }: {active: boolean}) => (
             <button
               type="button"
@@ -66,10 +67,11 @@ export function Menu({ className, items, trigger, direction = "bottom" }: IMenuP
               {itemFn}
             </M.Item>
           );
-        })} */}
-        {/* <M.Item disabled>
+        })}
+        <M.Item disabled>
           <li className={classes(cls.menuItem, { [cls.unavailable]: true }, [])}>*</li>
-        </M.Item> */}
+        </M.Item>
+        */}
       </M.Items>
     </M>
   );

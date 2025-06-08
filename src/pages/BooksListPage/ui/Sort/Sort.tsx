@@ -1,7 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo, useMemo } from "react";
-import { ISelectOptions, Select } from "shared/Select/Select";
+import { ISelectOptions, Select } from "shared/MenuSelect/Select";
 import { EBookListSortField } from "entities/Book/model/consts";
 import { TypeSortOrder } from "resources/types";
 import { HFlex } from "shared/Flex/HFlex";

@@ -6,7 +6,7 @@ import { Theme } from "resources/store/ThemeProvider";
 import { ListBox } from "./ListBox";
 
 export default {
-  title: "shared/ListBox",
+  title: "shared/Menus/MenuListbox",
   component: ListBox,
   argTypes: {
     backgroundColor: { control: "color" },
@@ -15,16 +15,18 @@ export default {
 
 const Template: ComponentStory<typeof ListBox> = (props) => <ListBox {...props} />;
 
+const items = [
+  { content: "item 1", value: "list 1" },
+  { content: "item 2", value: "list 2" },
+  { content: "item 3", value: "list 3" },
+  { content: "item 4", value: "list 4" },
+];
+
 export const Light = Template.bind({});
 Light.args = {
   onChange: () => {},
   value: "list 1",
-  items: [
-    { content: "item 1", value: "list 1" },
-    { content: "item 2", value: "list 2" },
-    { content: "item 3", value: "list 3" },
-    { content: "item 4", value: "list 4" },
-  ]
+  items
 };
 
 export const LightBottomLeft = Template.bind({});
@@ -32,12 +34,7 @@ LightBottomLeft.args = {
   direction: "bottomLeft",
   onChange: () => {},
   value: "list 1",
-  items: [
-    { content: "item 1", value: "list 1" },
-    { content: "item 2", value: "list 2" },
-    { content: "item 3", value: "list 3" },
-    { content: "item 4", value: "list 4" },
-  ]
+  items
 };
 
 export const LightBottomRight = Template.bind({});
@@ -45,23 +42,13 @@ LightBottomRight.args = {
   direction: "bottomRight",
   onChange: () => {},
   value: "list 1",
-  items: [
-    { content: "item 1", value: "list 1" },
-    { content: "item 2", value: "list 2" },
-    { content: "item 3", value: "list 3" },
-    { content: "item 4", value: "list 4" },
-  ]
+  items
 };
 
 export const Dark = Template.bind({});
 Dark.args = {
   onChange: () => {},
   value: "list 1",
-  items: [
-    { content: "item 1", value: "list 1" },
-    { content: "item 2", value: "list 2" },
-    { content: "item 3", value: "list 3" },
-    { content: "item 4", value: "list 4" },
-  ]
+  items
 };
 Dark.decorators = [ThemeDecorator(Theme.DARK)];

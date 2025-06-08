@@ -2,20 +2,21 @@
 
 <br>
 
-# КРАТКО О ПРИЛОЖЕНИИ:
+## КРАТКО О ПРИЛОЖЕНИИ:
 
 - возможность покупки через yookassa картой (тестируется)
 
 ## Страница доступного списка товаров
 
-- возможность сортировки по типу, бренду
+- возможность сортировки по фильтру: типу, бренду
+- возможность сортировки по убыванию|возрастанию: дате публикации, заголовку...
 - возможность поиска товара
+- два вида отображения товара
+- уведомления (для зарег-х пользователей)
 
 <img src="./.github/projectDescription/images/app.png">
 
 ## О товаре подробнее
-
-<!-- <img src="./.github/projectDescription/images/bookDescription.png" width="300px"> -->
 
 - универсальное описание, состоящее из блоков
 - возможность отправки комментария (только для авторизированных пользователей)
@@ -28,34 +29,41 @@
 
 <img src="./.github/projectDescription/images/basicAuth.png" width="300px">
 
-- роли пользователя (admin, user, manager)
-- возможность использования как Basic так и JWT аутентификацию
+- Authorization: роли пользователя (admin, user, manager) и разграничение доступа
+- возможность использования как Basic так и JWT аутентификацию пользователя
 
 <br>
 
 ## Страница профиля пользователя
 
-<img src="./.github/projectDescription/images/userProfile.png" width="300px">
-
 (только для авторизированных пользователей)
 
 - возможность изменять и сохранять поля профиля
+
+<img src="./.github/projectDescription/images/userProfile.png" width="300px">
 
 <br>
 
 ## Различные темы
 
-<!-- <img src="./.github/projectDescription/images/darkBlue.png" width="100px"><img src="./.github/projectDescription/images/dark.png" width="100px"><img src="./.github/projectDescription/images/lightBlue.png" width="100px"> -->
+- возможность легко добавить новые
+- 5 тем
+
+<img src="./.github/projectDescription/images/darkBlue.png" width="100px"><img src="./.github/projectDescription/images/dark.png" width="100px"><img src="./.github/projectDescription/images/lightBlue.png" width="100px">
 
 <br>
 
-## Интернационализация i18n (RU, EN)
+## Интернационализация i18n
+
+- RU
+- EN
+- возможность легко добавить другие локали
 
 <br>
 
 ## Возможность установить Progressive Web App (WPA)
 
-<img src="./.github/projectDescription/images/wpa.jpg" width="394px" height="250px">
+<img src="./.github/projectDescription/images/wpa.png" width="394px" height="250px">
 
 <br><br>
 

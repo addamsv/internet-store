@@ -176,7 +176,7 @@ export const BookDetails = memo(({ className, bookId }: IBookDetailsProps) => {
                 className={cls.buttonSkeleton}
                 theme={ButtonTheme.GREEN}
               >
-                {t("скачать")}
+                {t("добавить в корзину")}
               </Button>
             </AppLink>
           </div>

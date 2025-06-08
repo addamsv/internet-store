@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { memo, useCallback } from "react";
-import { ListBox } from "shared/ListBox/ListBox";
+import { ListBox } from "shared/MenuListbox/ListBox";
 import { Text, ETextSize } from "shared/Text";
 import cls from "./Currency.module.scss";
 import { ECurrency } from "../../model/consts/currency";

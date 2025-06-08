@@ -9,6 +9,7 @@ import { Page } from "widgets/Page/Page";
 import { useSearchParams } from "react-router-dom";
 import { BookBottomNavbar } from "widgets/BookBottomNavbar";
 import { useDebounce } from "resources/hooks/useDebounce";
+import { Footer } from "features/EditProfileCard/ui/Footer/Footer";
 import { bookListPageActions, bookListPageReducer } from "../../model/slices";
 import cls from "./BooksListPage.module.scss";
 import { fetchBookList } from "../../model/services/fetchBookList";

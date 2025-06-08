@@ -16,30 +16,20 @@ export default {
 const Template: ComponentStory<typeof Skeleton> = (args) => <Skeleton {...args} />;
 
 export const Light = Template.bind({});
-Light.args = {
-  // children: "Text",
-};
+Light.args = {};
 
 export const Dark = Template.bind({});
-Dark.args = {
-  // children: "Text",
-};
+Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const LightBlue = Template.bind({});
-LightBlue.args = {
-  // children: "Text",
-};
+LightBlue.args = {};
 LightBlue.decorators = [ThemeDecorator(Theme.LIGHT_BLUE)];
 
 export const Blue = Template.bind({});
-Blue.args = {
-  // children: "Text",
-};
+Blue.args = {};
 Blue.decorators = [ThemeDecorator(Theme.DARK_BLUE)];
 
 export const LightGreen = Template.bind({});
-LightGreen.args = {
-  // children: "Text",
-};
+LightGreen.args = {};
 LightGreen.decorators = [ThemeDecorator(Theme.LIGHT_GREEN)];

@@ -7,7 +7,7 @@ import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeD
 import { Select } from "./Select";
 
 export default {
-  title: "shared/Select",
+  title: "shared/Menus/Select",
   component: Select,
   argTypes: {
     backgroundColor: { control: "color" },

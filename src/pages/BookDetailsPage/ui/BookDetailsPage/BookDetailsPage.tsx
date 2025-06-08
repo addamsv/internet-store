@@ -7,6 +7,7 @@ import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
 import { Page } from "widgets/Page/Page";
 import { BookBottomNavbar } from "widgets/BookBottomNavbar";
 import { BookRecommendationsList } from "features/BookRecommendationsList";
+import { Footer } from "widgets/Footer";
 import cls from "./BookDetailsPage.module.scss";
 import { bookDetailsPageReducer } from "../../model/slices";
 import { BookDetailsHeader } from "../BookDetailsHeader/BookDetailsHeader";
@@ -44,7 +45,8 @@ const BookDetailsPage = ({ className }: IBookDetailsPageProps) => {
 
         <BookDetailsComments bookId={Number(id)} />
 
-        <BookBottomNavbar />
+        <Footer />
+        {/* <BookBottomNavbar /> */}
       </Page>
     </AsyncModule>
   );

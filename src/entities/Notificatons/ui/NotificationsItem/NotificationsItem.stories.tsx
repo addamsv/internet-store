@@ -3,17 +3,17 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 // import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
-import { ListViewSwitcher } from "./ListViewSwitcher";
+import { NotificationsItem } from "./NotificationsItem";
 
 export default {
-  title: "shared/ListViewSwitcher",
-  component: ListViewSwitcher,
+  title: "entities/Notifications/Item",
+  component: NotificationsItem,
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} as ComponentMeta<typeof ListViewSwitcher>;
+} as ComponentMeta<typeof NotificationsItem>;
 
-const Template: ComponentStory<typeof ListViewSwitcher> = (args) => <ListViewSwitcher {...args} />;
+const Template: ComponentStory<typeof NotificationsItem> = (args) => <NotificationsItem {...args} />;
 
 export const Light = Template.bind({});
 Light.args = {};

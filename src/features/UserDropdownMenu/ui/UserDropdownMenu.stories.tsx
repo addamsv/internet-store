@@ -1,19 +1,20 @@
-import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-// import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
-import { ListViewSwitcher } from "./ListViewSwitcher";
+import { UserDropdownMenu } from "./UserDropdownMenu";
 
 export default {
-  title: "shared/ListViewSwitcher",
-  component: ListViewSwitcher,
+  title: "shared/UserDropdownMenu",
+  component: UserDropdownMenu,
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} as ComponentMeta<typeof ListViewSwitcher>;
+  // args: {},
+  // decorators: [StoreDecorator({})],
+  // parameters: { mockRTKResponseData },
+} as ComponentMeta<typeof UserDropdownMenu>;
 
-const Template: ComponentStory<typeof ListViewSwitcher> = (args) => <ListViewSwitcher {...args} />;
+const Template: ComponentStory<typeof UserDropdownMenu> = (args) => <UserDropdownMenu {...args} />;
 
 export const Light = Template.bind({});
 Light.args = {};

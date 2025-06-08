@@ -16,55 +16,36 @@ export default {
 
 const Template: ComponentStory<typeof Flex> = (args) => <Flex {...args} />;
 
+const children = (
+  <>
+    <div>first</div>
+    <div>second</div>
+    <div>third</div>
+    <div>fourth</div>
+  </>
+);
+
 export const LightRow = Template.bind({});
 LightRow.args = {
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 
 export const DarkRow = Template.bind({});
 DarkRow.args = {
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 DarkRow.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const LightColumn = Template.bind({});
 LightColumn.args = {
   direction: "column",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 
 export const DarkColumn = Template.bind({});
 DarkColumn.args = {
   direction: "column",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 DarkColumn.decorators = [ThemeDecorator(Theme.DARK)];
 
@@ -72,108 +53,52 @@ export const LightColumnGap16 = Template.bind({});
 LightColumnGap16.args = {
   gap: "16",
   direction: "column",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 
 export const DarkColumnGap16 = Template.bind({});
 DarkColumnGap16.args = {
   gap: "16",
   direction: "column",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 DarkColumnGap16.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const LightRowGap4 = Template.bind({});
 LightRowGap4.args = {
   gap: "4",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 
 export const DarkRowGap4 = Template.bind({});
 DarkRowGap4.args = {
   gap: "4",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 DarkRowGap4.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const LightRowGap8 = Template.bind({});
 LightRowGap8.args = {
   gap: "8",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 
 export const DarkRowGap8 = Template.bind({});
 DarkRowGap8.args = {
   gap: "8",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 DarkRowGap8.decorators = [ThemeDecorator(Theme.DARK)];
 
 export const LightRowGap32 = Template.bind({});
 LightRowGap32.args = {
   gap: "32",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 
 export const DarkRowGap32 = Template.bind({});
 DarkRowGap32.args = {
   gap: "32",
-  children: (
-    <>
-      <div>first</div>
-      <div>second</div>
-      <div>third</div>
-      <div>fourth</div>
-    </>
-  )
+  children
 };
 DarkRowGap32.decorators = [ThemeDecorator(Theme.DARK)];

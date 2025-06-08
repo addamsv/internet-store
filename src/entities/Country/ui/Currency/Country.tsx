@@ -1,7 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo, useCallback } from "react";
-import { ListBox } from "shared/ListBox/ListBox";
+import { ListBox } from "shared/MenuListbox/ListBox";
 import { Text, ETextSize } from "shared/Text";
 import cls from "./Country.module.scss";
 import { ECountry } from "../../model/consts/country";
