@@ -1,5 +1,6 @@
 import { classes } from "resources/lib/classNames/classes";
 import { ReactNode, useCallback, useEffect, useState } from "react";
+import { Overlay } from "shared/Overlay/Overlay";
 import cls from "./ModalWin.module.scss";
 import { Portal } from "../Portal/Portal";
 
@@ -60,10 +61,9 @@ export const ModalWin = (props: ModalWinProps) => {
   return (
     <Portal>
       <div className={classes(cls.ModalWin, mods, [className])}>
-        <div className={cls.overlay} onClick={winCloseHandler}>
-          <div className={classes(cls.content, {}, [cls.modalContentAnimation])} onClick={contentHandler}>
-            {children}
-          </div>
+        <Overlay onClick={winCloseHandler} />
+        <div className={classes(cls.content, {}, [cls.modalContentAnimation])} onClick={contentHandler}>
+          {children}
         </div>
       </div>
     </Portal>

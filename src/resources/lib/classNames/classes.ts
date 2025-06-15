@@ -1,4 +1,5 @@
 export type Mods = Record<string, string | boolean | undefined>;
+
 /**
  * Function helper for CSS classes
  * @param mainClass
