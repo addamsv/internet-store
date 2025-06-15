@@ -4,17 +4,17 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { Theme } from "resources/store/ThemeProvider";
 import { ThemeDecorator } from "resources/config/storybook/ThemeDecorator/ThemeDecorator";
 import { StoreDecorator } from "resources/config/storybook/StoreDecorator/StoreDecorator";
-import { BookBottomNavbar } from "./BookBottomNavbar";
+import { FloatFooter } from "./FloatFooter";
 
 export default {
   title: "widget/Navbar",
-  component: BookBottomNavbar,
+  component: FloatFooter,
   argTypes: {
     backgroundColor: { control: "color" },
   },
-} as ComponentMeta<typeof BookBottomNavbar>;
+} as ComponentMeta<typeof FloatFooter>;
 
-const Template: ComponentStory<typeof BookBottomNavbar> = (args) => <BookBottomNavbar {...args} />;
+const Template: ComponentStory<typeof FloatFooter> = (args) => <FloatFooter {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};

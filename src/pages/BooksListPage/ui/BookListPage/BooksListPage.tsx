@@ -7,9 +7,9 @@ import { useAppDispatch } from "resources/hooks/useAppDispatch";
 import { useSelector } from "react-redux";
 import { Page } from "widgets/Page/Page";
 import { useSearchParams } from "react-router-dom";
-import { BookBottomNavbar } from "widgets/BookBottomNavbar";
+import { FloatFooter } from "shared/FloatFooter";
 import { useDebounce } from "resources/hooks/useDebounce";
-import { Footer } from "features/EditProfileCard/ui/Footer/Footer";
+import { Footer } from "widgets/Footer";
 import { bookListPageActions, bookListPageReducer } from "../../model/slices";
 import cls from "./BooksListPage.module.scss";
 import { fetchBookList } from "../../model/services/fetchBookList";
@@ -75,7 +75,9 @@ const BooksListPage = ({ className }: IBooksListPageProps) => {
 
         <BooksList onGenreChange={onGenreChange} onSearchQueryChange={onSearchQueryChange} />
 
-        <BookBottomNavbar key="BookBottomNavbar" />
+        <FloatFooter key="FloatFooter">
+          <Footer />
+        </FloatFooter>
 
       </Page>
     </AsyncModule>

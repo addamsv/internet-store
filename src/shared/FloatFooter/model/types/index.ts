@@ -1,4 +1,4 @@
-export interface IBookBottomNavbarItem {
+export interface IFloatFooterItem {
   path: string;
 
   text: string;

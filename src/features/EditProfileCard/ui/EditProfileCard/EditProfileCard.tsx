@@ -18,7 +18,7 @@ import { fetchProfile } from "../../model/service/fetch/fetchProfile";
 import { getProfileEdited } from "../../model/selector/getProfileEdited/getProfileEdited";
 import cls from "./EditProfileCard.module.scss";
 import { Header } from "../Header/Header";
-import { Footer } from "../Footer/Footer";
+import { EditProfileCardFooter } from "../Footer/EditProfileCardFooter";
 
 interface IProps {
   className?: string;
@@ -94,7 +94,7 @@ export const EditProfileCard = memo(({ className, id }: IProps) => {
 
         <Header />
 
-        <Footer />
+        <EditProfileCardFooter />
 
         {validateErr?.length && validateErr.map((err) => (
           <Text

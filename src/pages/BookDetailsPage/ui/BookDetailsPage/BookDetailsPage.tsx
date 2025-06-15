@@ -5,7 +5,7 @@ import { BookDetails } from "entities/Book";
 import { useParams } from "react-router-dom";
 import { AsyncModule, ReducerListT } from "shared/AsyncModule/AsyncModule";
 import { Page } from "widgets/Page/Page";
-import { BookBottomNavbar } from "widgets/BookBottomNavbar";
+import { FloatFooter } from "shared/FloatFooter";
 import { BookRecommendationsList } from "features/BookRecommendationsList";
 import { Footer } from "widgets/Footer";
 import cls from "./BookDetailsPage.module.scss";
@@ -46,7 +46,7 @@ const BookDetailsPage = ({ className }: IBookDetailsPageProps) => {
         <BookDetailsComments bookId={Number(id)} />
 
         <Footer />
-        {/* <BookBottomNavbar /> */}
+        {/* <FloatFooter /> */}
       </Page>
     </AsyncModule>
   );

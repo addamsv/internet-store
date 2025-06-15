@@ -14,11 +14,11 @@ import { profileActions } from "../../model/slice/profileSlice";
 import { updateProfile } from "../../model/service/update/updateProfile";
 import cls from "./Footer.module.scss";
 
-interface FooterProps {
+interface IEditProfileCardFooterProps {
   className?: string;
 }
 
-export const Footer = ({ className }: FooterProps) => {
+export const EditProfileCardFooter = ({ className }: IEditProfileCardFooterProps) => {
   const { t } = useTranslation("profile");
 
   const isReadOnly = useSelector(getProfileIsReadOnly);
