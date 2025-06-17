@@ -1,7 +1,7 @@
 import { classes } from "resources/lib/classNames/classes";
 import { useTranslation } from "react-i18next";
 import { memo } from "react";
-import { useGetNotificationsAPI } from "entities/Notificatons/api/getNotificationsAPI";
+import { useGetNotificationsAPI } from "entities/Notifications/api/getNotificationsAPI";
 import { VFlex } from "shared/Flex/VFlex";
 import { Skeleton } from "shared/Skeleton/Skeleton";
 import cls from "./NotificationsList.module.scss";

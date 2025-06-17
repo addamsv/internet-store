@@ -1,3 +1,36 @@
 .Drawer {
-  display: block;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--modal-z-ind);
+}
+
+.drawerContent {
+  width: 95%;
+
+  // height: 0;
+  padding: 20px;
+  border-radius: 5px;
+  background: #fff;
+  color: #333;
+  transition: 0.1s transform;
+  transform: translateY(100%);
+  z-index: var(--modal-z-ind);
+}
+
+.drawerContentRevealed {
+  pointer-events: auto;
+  opacity: 1;
+
+  .drawerContent {
+    height: 90%;
+    transform: translateY(0%);
+  }
 }

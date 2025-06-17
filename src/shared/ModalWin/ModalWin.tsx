@@ -62,6 +62,7 @@ export const ModalWin = (props: ModalWinProps) => {
     <Portal>
       <div className={classes(cls.ModalWin, mods, [className])}>
         <Overlay onClick={winCloseHandler} />
+
         <div className={classes(cls.content, {}, [cls.modalContentAnimation])} onClick={contentHandler}>
           {children}
         </div>

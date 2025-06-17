@@ -19,13 +19,14 @@ export const Drawer = memo((props: IDrawerProps) => {
   const { theme } = useTheme();
 
   const mods: Mods = {
-    [cls.opened]: isOpen
+    [cls.drawerContentRevealed]: isOpen
   };
 
   return (
     <Portal>
-      <div className={classes(cls.Drawer, {}, [className])}>
+      <div className={classes(cls.Drawer, mods, [className])}>
         <Overlay onClick={onClose} />
+
         <div className={cls.drawerContent}>
           {children}
         </div>

@@ -1,6 +1,6 @@
 import { classes } from "resources/lib/classNames/classes";
 
-import { memo } from "react";
+import { memo, useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { INavbarItem } from "widgets/Navbar/model/types";
@@ -13,6 +13,8 @@ import { AppLink } from "shared/AppLink/AppLink";
 import { IconSVG } from "shared/IconSVG/IconSVG";
 import { NotificationButton } from "features/NotificationButton";
 import { UserDropdownMenu } from "features/UserDropdownMenu";
+import { Drawer } from "shared/Drawer/Drawer";
+import { NotificationsList } from "entities/Notifications";
 import { getNavbarItemsArr } from "../../model/selectors";
 import cls from "./Navbar.module.scss";
 import { NavbarItem } from "../NavbarItem/NavbarItem";
@@ -38,7 +40,6 @@ export const Navbar = memo(({ className }: INavbarProps) => {
       </HFlex>
 
       <HFlex justify="end" gap="16" align="start" className={cls.rightMenuWrapper}>
-
         <AppLink target="blank" to={RoutePath.help} style={{ paddingTop: 3, height: 19 }}>
           <IconSVG Svg={BasketSVG} />
         </AppLink>
